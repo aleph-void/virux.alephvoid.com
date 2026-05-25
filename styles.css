@@ -1398,6 +1398,31 @@ code {
   border: 0;
 }
 
+/* Two demos side by side (AUv3 + VST3) */
+.demo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 56px;
+}
+.demo-pair .demo {
+  margin: 0;
+}
+.demo-pair .demo-feature {
+  max-width: none;
+  margin: 0 0 12px;
+}
+.demo-pair figcaption {
+  text-align: center;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+@media (max-width: 768px) {
+  .demo-pair { grid-template-columns: 1fr; max-width: 900px; }
+}
+
 /* Platform sub-label within the screenshot gallery */
 .shot-group-label {
   display: flex;
