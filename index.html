@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aleph Virux &mdash; The Access Virus TI, Native on Apple Silicon</title>
+  <meta name="description" content="Aleph Virux is a userspace driver and synth plugin that brings the Access Virus TI (Snow, Desktop, Polar) to Apple Silicon Macs and Android. No kext, no DriverKit — the original control surface as an AUv3 / VST3 plugin." />
+  <link rel="icon" type="image/png" href="assets/img/app-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aleph Virux" />
+  <meta property="og:url" content="https://virux.alephvoid.com/" />
+  <meta property="og:title" content="Aleph Virux — The Access Virus TI, Native on Apple Silicon" />
+  <meta property="og:description" content="A userspace driver and synth plugin that brings the Access Virus TI to Apple Silicon Macs and Android. No kext, no DriverKit — the original control surface as an AUv3 / VST3 plugin." />
+  <meta property="og:image" content="https://virux.alephvoid.com/assets/img/app-icon.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="256" />
+  <meta property="og:image:height" content="256" />
+  <meta property="og:image:alt" content="Aleph Virux icon" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aleph Virux — The Access Virus TI, Native on Apple Silicon" />
+  <meta name="twitter:description" content="A userspace driver and synth plugin for the Access Virus TI on Apple Silicon and Android. AUv3 / VST3, the original control surface." />
+  <meta name="twitter:image" content="https://virux.alephvoid.com/assets/img/app-icon.png" />
+  <meta name="twitter:image:alt" content="Aleph Virux icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img class="nav-logo" src="assets/img/app-icon.png" alt="Aleph Virux" />
+        <span>Aleph Virux</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#hardware">Compatibility</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#install" class="btn btn-sm btn-primary">Get Virux</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#hardware">Compatibility</a>
+      <a href="#faq">FAQ</a>
+      <a href="#install" class="btn btn-primary">Get Virux</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">// Access Virus TI &middot; Apple Silicon &amp; Android</div>
+        <h1>The Access Virus TI,<br /><span class="text-gradient">Native Again</span></h1>
+        <p class="hero-subtitle">
+          Access shipped the Virus TI with an x86 kernel driver that never made the jump to
+          Apple Silicon. Aleph Virux rebuilds the whole stack from scratch in userspace &mdash;
+          no kext, no DriverKit &mdash; so your Virus TI Snow, Desktop, or Polar shows up as a
+          plugin again. The original control surface, as an AUv3 / VST3 on macOS and a control
+          app on Android.
+        </p>
+        <div class="hero-actions">
+          <a href="#install" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Get Virux
+          </a>
+          <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+        </div>
+        <div class="hero-platforms">
+          <span class="hero-platforms-label">Built for</span>
+          <div class="platform-icons">
+            <div class="platform-icon" title="macOS (Apple Silicon)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              <span>macOS &middot; AUv3 / VST3</span>
+            </div>
+            <div class="platform-icon" title="Android">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.27.18-.37.54-.22.83L6.4 9.48A10.9 10.9 0 0 0 2 18.33h20a10.9 10.9 0 0 0-4.4-8.85zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+              <span>Android</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plugin Mockup -->
+      <div class="hero-visual">
+        <div class="plugin-mockup">
+          <div class="plugin-header">
+            <div class="plugin-dots"><span></span><span></span><span></span></div>
+            <span class="plugin-title">Aleph Virux &middot; Virus TI Snow</span>
+          </div>
+          <div class="plugin-tabs" aria-hidden="true">
+            <span>Osc</span><span>Filter</span><span class="active">LFO</span><span>Matrix</span><span>Arp</span><span>FX</span>
+          </div>
+          <div class="plugin-body" aria-hidden="true">
+            <div class="knob-row">
+              <div class="knob"><span class="knob-dial" style="--r:-120deg"></span><span class="knob-cap">Cutoff</span></div>
+              <div class="knob"><span class="knob-dial" style="--r:40deg"></span><span class="knob-cap">Reso</span></div>
+              <div class="knob"><span class="knob-dial" style="--r:130deg"></span><span class="knob-cap">Env</span></div>
+              <div class="knob"><span class="knob-dial" style="--r:-30deg"></span><span class="knob-cap">Drive</span></div>
+            </div>
+            <div class="plugin-screen">
+              <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+                <path d="M0 25 H200 M50 0 V50 M100 0 V50 M150 0 V50" stroke="#6d28d9" stroke-width="0.4" opacity="0.5" fill="none"/>
+                <path d="M0 25 Q 12.5 2, 25 25 T 50 25 T 75 25 T 100 25 T 125 25 T 150 25 T 175 25 T 200 25"
+                      fill="none" stroke="#8b5cf6" stroke-width="1.4"/>
+              </svg>
+            </div>
+            <div class="knob-row">
+              <div class="knob sm"><span class="knob-dial" style="--r:10deg"></span><span class="knob-cap">Rate</span></div>
+              <div class="knob sm"><span class="knob-dial" style="--r:-80deg"></span><span class="knob-cap">Shape</span></div>
+              <div class="knob sm"><span class="knob-dial" style="--r:90deg"></span><span class="knob-cap">Amount</span></div>
+              <div class="knob sm"><span class="knob-dial" style="--r:160deg"></span><span class="knob-cap">Dest</span></div>
+              <div class="knob sm"><span class="knob-dial" style="--r:-150deg"></span><span class="knob-cap">Phase</span></div>
+              <div class="knob sm"><span class="knob-dial" style="--r:60deg"></span><span class="knob-cap">Fade</span></div>
+            </div>
+          </div>
+          <div class="plugin-footer" aria-hidden="true">
+            <span class="plugin-led on"></span> Connected &middot; 48 kHz &middot; Aleph Void 0.1.0
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Features</span>
+        <h2>A Modern Stack for a <span class="text-gradient">Classic Synth</span></h2>
+        <p>Aleph Virux rebuilds the Access TI software stack from the ground up so the hardware you already own keeps working on the machines you actually use today.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          </div>
+          <h3>Native Apple Silicon</h3>
+          <p>Runs natively on aarch64 &mdash; no Rosetta, no x86 kernel extension. The original Access software was never ported to Apple Silicon; Virux is built for it from day one.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>No Kext, No DriverKit</h3>
+          <p>The whole USB stack lives in userspace and talks to the device over IOUSBLib. Nothing loads into the kernel, so there's no system extension to approve and no reboot to install.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="12" r="2.5"/><circle cx="17" cy="12" r="2.5"/><path d="M3 12h1.5M9.5 12h5M19.5 12H21"/></svg>
+          </div>
+          <h3>The Original Control Surface</h3>
+          <p>Oscillators, filters, LFOs, the modulation matrix, arpeggiator, and the full effects section &mdash; the Virus editor you already know, sourced from the documented page&nbsp;A/B parameter model.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3>AUv3 &amp; VST3</h3>
+          <p>Load Virux in Logic, GarageBand, Ableton Live, or any AU/VST3 host. The macOS VST3 build passes the Steinberg SDK validator 47/47 &mdash; audio, MIDI notes, and parameters.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h3l2-7 4 14 2-7 2 4h5"/></svg>
+          </div>
+          <h3>Audio &amp; MIDI Over USB</h3>
+          <p>Multi-channel USB audio capture through CoreAudio and full note / CC / parameter control over the vendor protocol &mdash; the same isochronous and control endpoints the original driver used.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          </div>
+          <h3>Open Source</h3>
+          <p>Built in the open and rebuilt from a clean-room understanding of the protocol. No vendor binaries required &mdash; the core, the CLI test harness, and the plugins are all yours to inspect.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Architecture</span>
+        <h2>How It <span class="text-gradient">Works</span></h2>
+        <p>One process owns the hardware; your plugins reach it over IPC. That split is what lets a single USB device drive multiple plugin instances without a kernel driver in the middle.</p>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-number">1</div>
+          <h3>Container App</h3>
+          <p class="mode-desc">A lightweight macOS app claims the Virus over USB from userspace, enumerates its audio and control interfaces, and keeps the device's keepalive stream alive.</p>
+          <ul class="mode-details">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Owns the single USB connection
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              No kernel extension involved
+            </li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-number">2</div>
+          <h3>Plugin over IPC</h3>
+          <p class="mode-desc">The AUv3 extension and VST3 plugin connect to the container over XPC / IPC, so your DAW talks to the synth without ever touching the USB device directly.</p>
+          <ul class="mode-details">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Audio, notes, and parameters
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Same core engine on every host
+            </li>
+          </ul>
+        </div>
+        <div class="mode-card">
+          <div class="mode-number">3</div>
+          <h3>The Hardware</h3>
+          <p class="mode-desc">Your Virus TI does the synthesis, exactly as it always has. Virux is the bridge &mdash; it speaks the device's native USB audio and vendor control protocol.</p>
+          <ul class="mode-details">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              All the original DSP, in hardware
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Reads model &amp; firmware off the device
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="workflow-steps">
+        <h3 class="workflow-title">Getting Started</h3>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Connect</h4>
+              <p>Plug your Virus TI Snow, Desktop, or Polar into your Mac or Android device over USB.</p>
+            </div>
+          </div>
+          <div class="step-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Launch</h4>
+              <p>Open the container app once so it claims the device, then add the Virux plugin to a track.</p>
+            </div>
+          </div>
+          <div class="step-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Play</h4>
+              <p>Send MIDI from your DAW; audio streams back from the Virus into your session.</p>
+            </div>
+          </div>
+          <div class="step-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Tweak</h4>
+              <p>Edit patches from the on-screen control surface &mdash; every change is sent straight to the hardware.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section id="screenshots" class="demos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Screenshots</span>
+        <h2>The Same Editor, <span class="text-gradient">Two Platforms</span></h2>
+        <p>The full Virus control surface, page by page &mdash; as an AUv3 plugin in your DAW on macOS, and as a standalone app on Android. Click any shot to enlarge.</p>
+      </div>
+
+      <h3 class="shot-group-label">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        macOS &middot; AUv3 plugin
+      </h3>
+
+      <div class="demo-feature">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/DHn4kDeQUQM"
+          title="Aleph Virux macOS AUv3 demo"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="shot-grid">
+        <figure class="shot">
+          <img src="assets/screenshots/macos/osc-edit-1.png" alt="Aleph Virux oscillator edit page on macOS" loading="lazy" />
+          <figcaption>Oscillators &amp; common</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/lfo-edit.png" alt="Aleph Virux LFO and modulation page on macOS" loading="lazy" />
+          <figcaption>LFOs &amp; modulation</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/effects.png" alt="Aleph Virux effects section on macOS" loading="lazy" />
+          <figcaption>Effects section</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/mod-matrix.png" alt="Aleph Virux modulation matrix on macOS" loading="lazy" />
+          <figcaption>Modulation matrix</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/preset-browser.png" alt="Aleph Virux preset browser on macOS" loading="lazy" />
+          <figcaption>Preset browser</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/remote-templates.png" alt="Aleph Virux remote control templates on macOS" loading="lazy" />
+          <figcaption>Remote templates</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/osc-common.png" alt="Aleph Virux oscillator detail page on macOS" loading="lazy" />
+          <figcaption>Oscillator detail</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/config-system.png" alt="Aleph Virux configuration and device info on macOS" loading="lazy" />
+          <figcaption>Config &amp; device info</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="shot-group-label">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.27.18-.37.54-.22.83L6.4 9.48A10.9 10.9 0 0 0 2 18.33h20a10.9 10.9 0 0 0-4.4-8.85zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+        Android &middot; standalone app
+      </h3>
+
+      <div class="demo-feature">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/5ValNI1-WzU"
+          title="Aleph Virux Android demo"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="shot-grid">
+        <figure class="shot">
+          <img src="assets/screenshots/android/easy-mixer.jpg" alt="Aleph Virux Easy page and 16-part mixer on Android" loading="lazy" />
+          <figcaption>Easy page &amp; mixer</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/osc-keyboard.jpg" alt="Aleph Virux oscillators with on-screen keyboard on Android" loading="lazy" />
+          <figcaption>Oscillators &amp; keyboard</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/filter-record.jpg" alt="Aleph Virux filter page with record-to-WAV panel on Android" loading="lazy" />
+          <figcaption>Filter &amp; record to WAV</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/lfo-edit.jpg" alt="Aleph Virux LFO and modulation page on Android" loading="lazy" />
+          <figcaption>LFOs &amp; modulation</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/mod-matrix.jpg" alt="Aleph Virux modulation matrix on Android" loading="lazy" />
+          <figcaption>Modulation matrix</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/arpeggiator.jpg" alt="Aleph Virux arpeggiator pattern editor on Android" loading="lazy" />
+          <figcaption>Arpeggiator</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/effects.jpg" alt="Aleph Virux effects section on Android" loading="lazy" />
+          <figcaption>Effects section</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/android/diagnostics.jpg" alt="Aleph Virux diagnostics and device info on Android" loading="lazy" />
+          <figcaption>Diagnostics &amp; device info</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compatibility -->
+  <section id="hardware" class="hardware">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Compatibility</span>
+        <h2>Works With Your <span class="text-gradient">Virus TI</span></h2>
+        <p>Aleph Virux targets the USB-connected Access Virus TI family. It speaks the device's native protocol directly &mdash; no Access software, no kernel driver.</p>
+      </div>
+      <div class="hardware-grid">
+        <div class="hardware-item">
+          <div class="name">Virus TI Snow</div>
+          <div class="label">Confirmed on live hardware</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Virus TI Desktop</div>
+          <div class="label">Same USB protocol family</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Virus TI Polar</div>
+          <div class="label">Same USB protocol family</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Apple Silicon Macs</div>
+          <div class="label">macOS on aarch64</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Android, USB host</div>
+          <div class="label">Vendor USB access supported</div>
+        </div>
+        <div class="hardware-item">
+          <div class="name">Why not iOS?</div>
+          <div class="label">iOS forbids the vendor USB access this needs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section id="install" class="install">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Get Virux</span>
+        <h2>Download <span class="text-gradient">Aleph Virux</span></h2>
+        <p>Builds are on the way. Pick your platform below &mdash; we'll light these up the moment each release is ready.</p>
+      </div>
+      <div class="install-grid">
+        <a href="#" class="install-card is-soon" aria-disabled="true">
+          <span class="install-badge">Coming soon</span>
+          <svg class="install-platform-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <h3>macOS AUv3</h3>
+          <p>Apple Silicon &middot; AUv3 / VST3</p>
+          <span class="install-btn">Mac App Store</span>
+        </a>
+        <a href="#" class="install-card is-soon" aria-disabled="true">
+          <span class="install-badge">Coming soon</span>
+          <svg class="install-platform-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.43 11.43 0 0 0-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.27.18-.37.54-.22.83L6.4 9.48A10.9 10.9 0 0 0 2 18.33h20a10.9 10.9 0 0 0-4.4-8.85zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+          <h3>Android App</h3>
+          <p>Android phones &amp; tablets</p>
+          <span class="install-btn">Google Play</span>
+        </a>
+      </div>
+      <p class="install-note">Want to know when a build drops? Email <a href="mailto:contact@alephvoid.com?subject=Aleph%20Virux">contact@alephvoid.com</a> and we'll let you know.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// FAQ</span>
+        <h2>Frequently Asked <span class="text-gradient">Questions</span></h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What problem does Aleph Virux solve?</summary>
+          <p>The Access Virus TI shipped with an x86 kernel extension and plugins that don't run natively on Apple Silicon. Aleph Virux rebuilds that stack in userspace so your Virus TI works as a plugin again on a modern Mac &mdash; no Rosetta, no legacy driver.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which hardware is supported?</summary>
+          <p>The Access Virus TI family connected over USB &mdash; Snow, Desktop, and Polar. Development is confirmed against a live Virus TI Snow (USB VID <code>0x133E</code>, PID <code>0x0815</code>); the Desktop and Polar share the same USB protocol.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to install a kernel driver?</summary>
+          <p>No. Everything runs in userspace over IOUSBLib. There's no kext or DriverKit system extension to approve, and no reboot to install. A small container app claims the USB device, and your plugins reach it over IPC.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What plugin formats are there?</summary>
+          <p>On macOS, Aleph Virux ships as an AUv3 (app + extension) and a VST3 plugin sharing the same core engine. The VST3 build passes the Steinberg SDK validator 47/47, with working audio, MIDI notes, and parameters.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will there be an iOS version?</summary>
+          <p>No. iOS does not allow the vendor-specific USB access that talking to the Virus requires, so an iPhone / iPad build isn't possible. Android, which does permit USB host vendor access, is supported instead.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is it really open source?</summary>
+          <p>Yes. Aleph Virux is built from a clean-room understanding of the device's USB audio and vendor control protocol &mdash; no vendor binaries required. The portable core, CLI test harness, and plugins are open for inspection.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does it collect any data?</summary>
+          <p>The macOS driver and plugins do no networking and collect nothing &mdash; everything happens locally between your Mac and the synth. See the <a href="privacy.html">Privacy Policy</a> for the full breakdown, including the Android build.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I report a bug?</summary>
+          <p>Head to the <a href="support.html">Support page</a> &mdash; email us or open a public issue. Include your hardware model, OS version, host / DAW, and steps to reproduce.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img class="footer-logo" src="assets/img/app-icon.png" alt="Aleph Virux" />
+          <span>Aleph Virux</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#faq">FAQ</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void</a>
+        </div>
+        <p class="footer-copy">Created by <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void LLC</a>. &copy; 2026 Aleph Virux. Access and Virus are trademarks of their respective owners; Aleph Virux is an independent, unaffiliated project.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

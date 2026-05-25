@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy &mdash; Aleph Virux</title>
+  <meta name="description" content="Privacy policy and permission justifications for Aleph Virux, the userspace driver and synth plugin for the Access Virus TI on macOS and Android." />
+  <link rel="icon" type="image/png" href="assets/img/app-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aleph Virux" />
+  <meta property="og:url" content="https://virux.alephvoid.com/privacy.html" />
+  <meta property="og:title" content="Privacy Policy — Aleph Virux" />
+  <meta property="og:description" content="Privacy policy and permission justifications for Aleph Virux, the userspace driver and synth plugin for the Access Virus TI on macOS and Android." />
+  <meta property="og:image" content="https://virux.alephvoid.com/assets/img/app-icon.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="256" />
+  <meta property="og:image:height" content="256" />
+  <meta property="og:image:alt" content="Aleph Virux icon" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Privacy Policy — Aleph Virux" />
+  <meta name="twitter:description" content="Privacy policy and permission justifications for Aleph Virux." />
+  <meta name="twitter:image" content="https://virux.alephvoid.com/assets/img/app-icon.png" />
+  <meta name="twitter:image:alt" content="Aleph Virux icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img class="nav-logo" src="assets/img/app-icon.png" alt="Aleph Virux" />
+        <span>Aleph Virux</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how-it-works">How It Works</a>
+        <a href="index.html#hardware">Compatibility</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html#install" class="btn btn-sm btn-primary">Get Virux</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="index.html#hardware">Compatibility</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#install" class="btn btn-primary">Get Virux</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">// Privacy Policy</div>
+        <h1>Your Music Stays<br /><span class="text-gradient">On Your Device</span></h1>
+        <p class="hero-subtitle">
+          Aleph Virux, published by Aleph Void LLC ("Aleph Void," "we," "us," or "our"), does
+          not collect, transmit, sell, or share any personal data tied to your identity. The
+          audio from your synthesizer, your patches, and your settings stay on your device. The
+          macOS driver and plugins perform no network requests at all. The Android build may
+          send a limited stream of anonymous diagnostic and usage data through Firebase
+          Analytics and Crashlytics so we can measure stability and aggregate usage &mdash;
+          details and the Google Play Data Safety disclosure are below.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Single purpose -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Purpose</span>
+        <h2>Single <span class="text-gradient">Purpose</span></h2>
+        <p>Aleph Virux exists for one purpose only.</p>
+      </div>
+      <div class="doc-card" style="max-width: 800px; margin: 0 auto;">
+        <div class="doc-content">
+          <p><strong>Aleph Virux is a userspace driver and synth plugin that connects an Access Virus TI hardware synthesizer to your computer or Android device over USB.</strong></p>
+          <p>It lets musicians play and edit a Virus TI Snow, Desktop, or Polar from a modern host &mdash; streaming the synth's audio into your DAW, sending it MIDI notes and controller messages, and editing patches from an on-screen control surface. The software does not analyze your behavior, build a profile, or perform any activity unrelated to driving the connected synthesizer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data handling -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Data Handling</span>
+        <h2>What We <span class="text-gradient">Handle</span></h2>
+        <p>What we collect, transmit, and store &mdash; in plain English.</p>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <h3>What We Collect</h3>
+          <p class="mode-desc"><strong>No personally identifiable information.</strong> Aleph Virux does not collect your name, email, contacts, precise location, browsing history, authentication credentials, financial data, health information, or communications. The Android build collects anonymous diagnostic and aggregate usage data via Firebase &mdash; see the Google Play Data Safety section below.</p>
+        </div>
+        <div class="mode-card">
+          <h3>What We Transmit</h3>
+          <p class="mode-desc"><strong>Audio and MIDI never leave your device.</strong> Everything Virux exchanges with your synth travels over the USB cable between the two of you and is processed locally. The macOS build performs no network transmission. The Android build transmits anonymous crash reports and aggregate usage events to Google's Firebase servers (Analytics and Crashlytics).</p>
+        </div>
+        <div class="mode-card">
+          <h3>What We Store</h3>
+          <p class="mode-desc">On your device only: your patches and presets, plugin / app preferences, and UI settings. On macOS this lives in the app's and plugins' standard support directories; on Android it lives in scoped app storage. It is retained until you delete it or uninstall the software, at which point the operating system removes it.</p>
+        </div>
+        <div class="mode-card">
+          <h3>Data Sale &amp; Sharing</h3>
+          <p class="mode-desc">We do <strong>not</strong> sell user data and we do <strong>not</strong> share user data with third parties for advertising, credit assessment, or any purpose unrelated to the software. Firebase data on the Android build is processed by Google acting as our service provider under the <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener">Firebase Data Processing and Security Terms</a>; we do not use it for advertising and we have not enabled Google Signals or ads personalization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Permission justifications -->
+  <section class="docs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Permissions</span>
+        <h2>Permission <span class="text-gradient">Justifications</span></h2>
+        <p>Each permission Aleph Virux requests on macOS and Android, and why it is required for the software to function.</p>
+      </div>
+      <div class="docs-grid">
+        <div class="doc-card">
+          <h3>USB Device Access</h3>
+          <div class="doc-content">
+            <p>On macOS, Virux talks to the Virus over USB from userspace via <code>IOUSBLib</code>; on Android it uses USB Host (<code>android.hardware.usb.host</code>) and the standard <code>USB_DEVICE_ATTACHED</code> flow so the system can offer to open Virux when the synth is plugged in. This is the software's core function &mdash; without it there is no connection to your synthesizer. No USB data is ever forwarded off the device.</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <h3>Microphone / Audio Input</h3>
+          <div class="doc-content">
+            <p>The Virus is a class-compliant USB audio device, and both macOS (<code>NSMicrophoneUsageDescription</code> / TCC) and Android (<code>android.permission.RECORD_AUDIO</code>) group USB audio input under the microphone permission. Virux needs it to capture the synthesizer's audio output &mdash; that is the audio you hear in your DAW. It is <strong>not</strong> used to record your built-in microphone; the signal chain is simply the audio coming back from the Virus.</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <h3>MIDI</h3>
+          <div class="doc-content">
+            <p>Virux sends MIDI notes, controller (CC) messages, and parameter changes to the Virus over its vendor control endpoints, and relays MIDI from your DAW or controller. MIDI data is used solely to play and edit the connected synthesizer and is never transmitted off the device.</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <h3>Local Storage</h3>
+          <div class="doc-content">
+            <p>Patches, presets, and settings are written to the software's own support and configuration directories &mdash; standard application support locations on macOS and scoped app storage on Android. No cloud storage, no shared folders, no access to other apps' data. Files remain on the device until you delete them or uninstall the software.</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <h3>Network Access</h3>
+          <div class="doc-content">
+            <p><strong>The macOS driver, container app, and plugins perform no network requests.</strong> The Android build embeds two Google client libraries that talk to Google's servers on its behalf: Firebase Analytics (aggregate usage) and Firebase Crashlytics (crash reports), both over HTTPS. No remote configuration, A/B testing, advertising SDK, or third-party analytics is embedded.</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <h3>Remote Code</h3>
+          <div class="doc-content">
+            <p><strong>Aleph Virux does not execute remote code.</strong> There is no dynamic module loading, no remotely hosted scripts, and no runtime evaluation of downloaded payloads. All code is bundled inside the binaries you install. The project is open source, so the full source is available for inspection.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Play Data Safety -->
+  <section class="docs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Google Play</span>
+        <h2>Data Safety <span class="text-gradient">Disclosure</span></h2>
+        <p>The data the Android build of Aleph Virux collects, why, and how it is handled &mdash; mirroring the Data Safety form in the Google Play Console. This section applies to the Android build only; the macOS build collects nothing.</p>
+      </div>
+      <div class="doc-card" style="max-width: 960px; margin: 0 auto;">
+        <div class="doc-content">
+          <h4>Data Collected</h4>
+          <p>The Android build embeds <strong>Firebase Analytics</strong> and <strong>Firebase Crashlytics</strong> (Google LLC). The data types below are collected automatically by these SDKs. Aleph Virux does not log custom events, set user IDs, or attach user properties beyond the SDK defaults.</p>
+          <div class="disclosure-wrap">
+            <table class="disclosure-table">
+              <thead>
+                <tr>
+                  <th>Data type</th>
+                  <th>Category</th>
+                  <th>Purpose</th>
+                  <th>Required?</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Crash logs</td>
+                  <td>App info and performance</td>
+                  <td>Analytics, App functionality</td>
+                  <td>Required</td>
+                  <td>Crashlytics</td>
+                </tr>
+                <tr>
+                  <td>Diagnostics</td>
+                  <td>App info and performance</td>
+                  <td>Analytics, App functionality</td>
+                  <td>Required</td>
+                  <td>Crashlytics, Analytics</td>
+                </tr>
+                <tr>
+                  <td>Other app performance data</td>
+                  <td>App info and performance</td>
+                  <td>Analytics</td>
+                  <td>Required</td>
+                  <td>Analytics</td>
+                </tr>
+                <tr>
+                  <td>App interactions</td>
+                  <td>App activity</td>
+                  <td>Analytics</td>
+                  <td>Required</td>
+                  <td>Analytics (auto-collected events: <code>first_open</code>, <code>session_start</code>, <code>screen_view</code>, <code>app_update</code>)</td>
+                </tr>
+                <tr>
+                  <td>Device or other IDs</td>
+                  <td>Device or other IDs</td>
+                  <td>Analytics</td>
+                  <td>Required</td>
+                  <td>Firebase Installation ID (Crashlytics), App Instance ID (Analytics)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Data Handling</h4>
+          <ul>
+            <li><strong>Encryption in transit:</strong> Yes. All data sent to Firebase is transmitted over HTTPS.</li>
+            <li><strong>Data sharing with third parties:</strong> No. Firebase is operated by Google LLC, which acts as our service provider / data processor under the <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener">Firebase Data Processing and Security Terms</a>. We do not transfer this data to any other party. Google Signals, ads personalization, and the Google Analytics for Firebase advertising features are <strong>not</strong> enabled.</li>
+            <li><strong>Identifiers:</strong> The App Instance ID and Firebase Installation ID are pseudonymous identifiers generated on the device. They are not your Google account, your advertising ID, your phone number, or any other identifier you would recognise as yours. Aleph Virux does not request or read the Android Advertising ID.</li>
+            <li><strong>IP address:</strong> Firebase uses your IP address only to derive an approximate (country-level) region for analytics; the IP itself is not retained in long-term Analytics storage. Crashlytics may retain the IP for a short window for spam protection.</li>
+            <li><strong>User account:</strong> Aleph Virux has no sign-in. We do not collect a name, email address, password, or any other account credential.</li>
+            <li><strong>Audio and MIDI data:</strong> The audio and MIDI exchanged with your synthesizer are processed locally only. They are <strong>not</strong> transmitted to Firebase or anywhere else.</li>
+            <li><strong>Data retention:</strong> Firebase Crashlytics retains crash data for up to 90 days. Firebase Analytics is configured with a user-data retention window of 14 months, after which records expire automatically. Aggregate reports may be retained longer but are not tied to an individual installation.</li>
+            <li><strong>Data deletion request:</strong> Because we do not collect direct identifiers, we cannot look you up by name or email. You can erase your installation's pseudonymous data by uninstalling and reinstalling the app (this generates a new App Instance ID and Firebase Installation ID and orphans the previous identifiers, which then expire under the retention windows above). You can also email <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a> with your current App Instance ID (visible to us only via the Firebase console at the time of your request) and we will delete the matching records.</li>
+            <li><strong>Opting out of analytics:</strong> You can disable Analytics collection on your device by uninstalling the app, or contact us at <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a> for guidance on a future in-app opt-out.</li>
+          </ul>
+
+          <h4>Data Not Collected</h4>
+          <p>For clarity, the following Data Safety categories are <strong>not</strong> collected by Aleph Virux: personal info (name, email, phone, address, identifiers tied to a real person), financial info, health and fitness, messages, photos, videos, audio recordings (your synth's audio stays on your device), files and docs, calendar, contacts, web browsing history, search history, installed apps, precise location.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance -->
+  <section class="install">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">// Compliance</span>
+        <h2>Developer Program Policy <span class="text-gradient">Compliance</span></h2>
+        <p>Our certification under the App Store Review Guidelines and Google Play Developer Program Policies.</p>
+      </div>
+      <div class="doc-card" style="max-width: 800px; margin: 0 auto;">
+        <div class="doc-content">
+          <p>We certify that Aleph Virux's data usage complies with the <strong>Apple App Store Review Guidelines</strong> (including the App Privacy Details requirements) and the <strong>Google Play Developer Program Policies</strong> (including the User Data policy, the SDK policy, and the Families policy). Specifically:</p>
+          <ul>
+            <li>We do <strong>not</strong> sell user data to third parties.</li>
+            <li>We do <strong>not</strong> use or transfer user data for purposes unrelated to the software's functionality, stability, and aggregate usage analytics.</li>
+            <li>We do <strong>not</strong> use or transfer user data to determine creditworthiness or for lending purposes.</li>
+            <li>We do <strong>not</strong> collect personally identifiable user data &mdash; the audio and MIDI exchanged with your synthesizer never leave your device. The pseudonymous diagnostic data the Android build sends to Firebase is described in detail in the Google Play Data Safety section above and is fully reflected in the Data Safety form on our Google Play listing.</li>
+            <li>All permissions requested are used solely to support connecting to and controlling your synthesizer and (Android only) crash and stability monitoring as described above.</li>
+          </ul>
+
+          <h4>Data Controller</h4>
+          <p>The data controller responsible for Aleph Virux is <strong>Aleph Void LLC</strong>. We do not operate any servers that store user data. The Android build's Firebase Analytics and Crashlytics data is processed by <strong>Google LLC</strong> on our behalf as a data processor under the <a href="https://firebase.google.com/terms/data-processing-terms" target="_blank" rel="noopener">Firebase Data Processing and Security Terms</a>. Aleph Void LLC remains the publisher accountable for this policy.</p>
+
+          <h4>Children's Privacy</h4>
+          <p>Aleph Virux is a tool for musicians and producers using Access Virus TI hardware. It is not directed at children under the age of 13 (or under 16 in jurisdictions where that is the applicable age). We do not knowingly collect personal information from children. Because the software does not collect any personal information from any user, no special handling for children's data is required.</p>
+
+          <h4>Your Rights (GDPR, CCPA, and Similar Laws)</h4>
+          <p>Privacy laws such as the EU General Data Protection Regulation (GDPR), the UK GDPR, and the California Consumer Privacy Act (CCPA/CPRA) grant users rights including access, correction, deletion, portability, and the right to object to processing of their personal data.</p>
+          <p>Because Aleph Virux does <strong>not</strong> collect direct identifiers (name, email, account ID, government ID, device-level advertising ID) and does not sell or share user data, the personal data we hold about you is limited to the pseudonymous Firebase identifiers and aggregate event data described in the Google Play Data Safety section above (Android build only). All patches, presets, and preferences are stored locally on your own device, and you can view, edit, or delete them from within the software, from the system file manager, or by uninstalling it. To request access, correction, export, or deletion of the Firebase data tied to your installation, email <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a>; we will respond within 30 days.</p>
+          <p>We do not "sell" or "share" personal information as those terms are defined under the CCPA/CPRA.</p>
+
+          <h4>Changes to This Policy</h4>
+          <p>We may update this privacy policy from time to time, for example to reflect changes to the software's functionality, requested permissions, or applicable law. When we do, we will update the "Effective date" and "Last updated" fields below and post the revised policy at this URL. For material changes, we will additionally note the change in the release notes for the corresponding version. Your continued use of the software after a revised policy takes effect constitutes acceptance of the updated policy.</p>
+
+          <h4>Contact</h4>
+          <p>Questions, concerns, or reports about this privacy policy can be sent to <a href="mailto:privacy@alephvoid.com">privacy@alephvoid.com</a> or filed as a public issue on our project repository. See also our <a href="support.html">Support page</a>.</p>
+          <p style="opacity: 0.7; font-size: 0.9em;">Effective date: May 25, 2026<br />Last updated: May 25, 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img class="footer-logo" src="assets/img/app-icon.png" alt="Aleph Virux" />
+          <span>Aleph Virux</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="support.html">Support</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void</a>
+        </div>
+        <p class="footer-copy">Created by <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void LLC</a>. &copy; 2026 Aleph Virux.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

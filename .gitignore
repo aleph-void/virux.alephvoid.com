@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Editor / tooling
+.claude
+.codex
+
+# Jekyll build output (if ever used)
+_site
