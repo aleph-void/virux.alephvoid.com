@@ -20,7 +20,7 @@ This repository hosts the source for the Aleph Virux marketing site at [virux.al
 
 ## Reporting Bugs
 
-Found a bug or have a feature request? Email <support@alephvoid.com> or open an issue. Include your Virus model, macOS or Android version, the Virux build, your host / DAW, and steps to reproduce so we can track it down quickly.
+Found a bug or have a feature request? File it on our [GitHub issue tracker](https://github.com/aleph-void/virux.alephvoid.com/issues) or email <support@alephvoid.com>. Include your Virus model, macOS or Android version, the Virux build, your host / DAW, and steps to reproduce so we can track it down quickly.
 
 ---
 
