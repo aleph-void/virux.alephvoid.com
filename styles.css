@@ -278,6 +278,19 @@ code {
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
+.hero-demo-note {
+  font-size: .95rem;
+  color: var(--color-text-secondary);
+  margin: -24px 0 40px;
+}
+.hero-demo-note a {
+  color: var(--color-accent-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hero-demo-note a:hover {
+  color: var(--color-accent-hover);
+}
 .hero-platforms {
   display: flex;
   align-items: center;
