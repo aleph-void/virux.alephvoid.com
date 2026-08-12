@@ -272,6 +272,25 @@ code {
   margin-bottom: 32px;
   line-height: 1.7;
 }
+.hero-claim {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+  margin: -16px 0 32px;
+  padding: 14px 18px;
+  line-height: 1.6;
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-accent-border);
+  border-radius: 10px;
+}
+.hero-claim strong {
+  color: var(--color-accent-light);
+  font-weight: 600;
+}
+.hero-claim em {
+  font-style: normal;
+  color: var(--color-accent-light);
+}
 .hero-actions {
   display: flex;
   gap: 14px;
