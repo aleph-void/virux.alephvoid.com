@@ -1,0 +1,48 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate release notes HTML from JSON
+        run: node scripts/generate-release-notes.mjs
+
+      - name: Assemble site
+        run: |
+          mkdir -p dist
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='scripts' \
+            --exclude='dist' \
+            --exclude='README.md' \
+            --exclude='.gitignore' \
+            --exclude='release-notes/*.json' \
+            ./ dist/
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
