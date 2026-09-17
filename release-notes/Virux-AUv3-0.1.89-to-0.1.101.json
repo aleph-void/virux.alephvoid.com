@@ -1,0 +1,103 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.89",
+  "toVersion": "0.1.101",
+  "generated": "2026-09-17",
+  "releases": [
+    {
+      "version": "0.1.92",
+      "date": "2026-09-14",
+      "changes": [
+        "Reconciled protocol, session, editor parameter/UI, USB, host, bench-tool and identity behavior against the original Virus Control software (divergence audit sections 3.1-3.8).",
+        "Sync: reject truncated SysEx dumps and verify per-patch 14-bit CRCs.",
+        "Editor gestures now wired consistently across every plugin shell, including host lane names and value texts.",
+        "virusctl audio: routes through openConfigurePlan on IF#3, sends the MIDI port start/stop word, reports IF#3 liveness and per-channel peaks, and reads back part 1's edit buffer -- matching the plugin's own behavior.",
+        "Hardware-in-the-loop test node now runs automatically on every pull request.",
+        "Fixed GCC -Werror failures and four CI breaks on non-MSVC toolchains.",
+        "Dependency updates: vst3sdk, azure/trusted-signing-action, softprops/action-gh-release."
+      ]
+    },
+    {
+      "version": "0.1.93",
+      "date": "2026-09-14",
+      "changes": [
+        "Hardware test node: the auval build now refreshes provisioning profiles automatically; documented the code-signing setup.",
+        "Dependency update: actions/download-artifact."
+      ]
+    },
+    {
+      "version": "0.1.94",
+      "date": "2026-09-14",
+      "changes": [
+        "Added a global \"Patch Sync\" switch to the Config page.",
+        "Fixed patches not refreshing correctly on Windows/Linux.",
+        "Editor zoom level is now remembered per user."
+      ]
+    },
+    {
+      "version": "0.1.95",
+      "date": "2026-09-14",
+      "changes": [
+        "Hardware bench suite: implemented phases 0-4, including a characterisation reader, a real plugin-path XCTest against hardware, tier-2 manual procedures, and analog loopback capture.",
+        "macOS USB pump: fixed a truncation bug where a 524-byte SysEx dump was being delivered as 700 bytes.",
+        "hw-smoke: usage errors now exit with code 64 instead of 2, so a bad invocation is no longer mistaken for a wedged synth.",
+        "CI: dependency updates for actions/checkout and actions/upload-artifact."
+      ]
+    },
+    {
+      "version": "0.1.96",
+      "date": "2026-09-14",
+      "changes": [
+        "Fixed hardware test node regressions surfaced by CI dependency merges (checkout, upload-artifact, download-artifact, trusted-signing-action, action-gh-release, vst3sdk submodule).",
+        "hw-smoke: fixed optional-argument handling for bash 3.2 compatibility; pinned the 3-outs USB pair layout.",
+        "Updated the auval install path."
+      ]
+    },
+    {
+      "version": "0.1.97",
+      "date": "2026-09-15",
+      "changes": [
+        "Installer: added a \"Sync patches\" setting, off by default.",
+        "Audio: each output bus is now fed from the correct capture pair.",
+        "virusctl: lists visible CoreAudio devices when no Virus hardware is found."
+      ]
+    },
+    {
+      "version": "0.1.98",
+      "date": "2026-09-15",
+      "changes": [
+        "VST3: each part now meters its own note activity instead of only the currently selected part.",
+        "macOS: per-part meters are now driven through the shared model tick."
+      ]
+    },
+    {
+      "version": "0.1.99",
+      "date": "2026-09-15",
+      "changes": [
+        "USB: bulk OUT transfers now chunk at 64 bytes and resume correctly after timeouts.",
+        "Release audit: removed dead code, consolidated duplicated logic, and improved platform parity between macOS, Windows and Linux.",
+        "Renamed MidiDeadNoticeAction::None to Keep to avoid a collision with the X11 None macro."
+      ]
+    },
+    {
+      "version": "0.1.100",
+      "date": "2026-09-15",
+      "changes": [
+        "Test-coverage audit: added tests across the C API, protocol and editor, plus new parts, single-buffer and program-change benchmark cases.",
+        "Fixed a ThreadSanitizer race in c_api_paths_test and an MSVC narrowing warning.",
+        "c_api_paths_test now wipes per-synth memory files at start to prevent cross-test contamination."
+      ]
+    },
+    {
+      "version": "0.1.101",
+      "date": "2026-09-15",
+      "changes": [
+        "Hardened USB handle lifetime, render commands and capture handoffs for improved stability.",
+        "CI: parallelized builds, added Ninja to the Windows test job, and run fuzzers concurrently; shared test sources are now compiled once and curl is fetched as a tarball for faster CI runs.",
+        "Benchmarks: aligned the timing window's sample and wall-clock origins.",
+        "Reduced editor_model_test runtime from ~223s to ~30s under ThreadSanitizer by pruning invisible hit-probe candidates."
+      ]
+    }
+  ]
+}
