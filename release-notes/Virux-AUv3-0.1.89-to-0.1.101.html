@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Virux-AUv3 Release Notes (0.1.89 - 0.1.101)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.89 &ndash; 0.1.101</p>
+      <section class="release">
+        <h2>v0.1.92 <span class="date">2026-09-14</span></h2>
+        <ul>
+        <li>Reconciled protocol, session, editor parameter/UI, USB, host, bench-tool and identity behavior against the original Virus Control software (divergence audit sections 3.1-3.8).</li>
+        <li>Sync: reject truncated SysEx dumps and verify per-patch 14-bit CRCs.</li>
+        <li>Editor gestures now wired consistently across every plugin shell, including host lane names and value texts.</li>
+        <li>virusctl audio: routes through openConfigurePlan on IF#3, sends the MIDI port start/stop word, reports IF#3 liveness and per-channel peaks, and reads back part 1's edit buffer -- matching the plugin's own behavior.</li>
+        <li>Hardware-in-the-loop test node now runs automatically on every pull request.</li>
+        <li>Fixed GCC -Werror failures and four CI breaks on non-MSVC toolchains.</li>
+        <li>Dependency updates: vst3sdk, azure/trusted-signing-action, softprops/action-gh-release.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.93 <span class="date">2026-09-14</span></h2>
+        <ul>
+        <li>Hardware test node: the auval build now refreshes provisioning profiles automatically; documented the code-signing setup.</li>
+        <li>Dependency update: actions/download-artifact.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.94 <span class="date">2026-09-14</span></h2>
+        <ul>
+        <li>Added a global &quot;Patch Sync&quot; switch to the Config page.</li>
+        <li>Fixed patches not refreshing correctly on Windows/Linux.</li>
+        <li>Editor zoom level is now remembered per user.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.95 <span class="date">2026-09-14</span></h2>
+        <ul>
+        <li>Hardware bench suite: implemented phases 0-4, including a characterisation reader, a real plugin-path XCTest against hardware, tier-2 manual procedures, and analog loopback capture.</li>
+        <li>macOS USB pump: fixed a truncation bug where a 524-byte SysEx dump was being delivered as 700 bytes.</li>
+        <li>hw-smoke: usage errors now exit with code 64 instead of 2, so a bad invocation is no longer mistaken for a wedged synth.</li>
+        <li>CI: dependency updates for actions/checkout and actions/upload-artifact.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.96 <span class="date">2026-09-14</span></h2>
+        <ul>
+        <li>Fixed hardware test node regressions surfaced by CI dependency merges (checkout, upload-artifact, download-artifact, trusted-signing-action, action-gh-release, vst3sdk submodule).</li>
+        <li>hw-smoke: fixed optional-argument handling for bash 3.2 compatibility; pinned the 3-outs USB pair layout.</li>
+        <li>Updated the auval install path.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.97 <span class="date">2026-09-15</span></h2>
+        <ul>
+        <li>Installer: added a &quot;Sync patches&quot; setting, off by default.</li>
+        <li>Audio: each output bus is now fed from the correct capture pair.</li>
+        <li>virusctl: lists visible CoreAudio devices when no Virus hardware is found.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.98 <span class="date">2026-09-15</span></h2>
+        <ul>
+        <li>VST3: each part now meters its own note activity instead of only the currently selected part.</li>
+        <li>macOS: per-part meters are now driven through the shared model tick.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.99 <span class="date">2026-09-15</span></h2>
+        <ul>
+        <li>USB: bulk OUT transfers now chunk at 64 bytes and resume correctly after timeouts.</li>
+        <li>Release audit: removed dead code, consolidated duplicated logic, and improved platform parity between macOS, Windows and Linux.</li>
+        <li>Renamed MidiDeadNoticeAction::None to Keep to avoid a collision with the X11 None macro.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.100 <span class="date">2026-09-15</span></h2>
+        <ul>
+        <li>Test-coverage audit: added tests across the C API, protocol and editor, plus new parts, single-buffer and program-change benchmark cases.</li>
+        <li>Fixed a ThreadSanitizer race in c_api_paths_test and an MSVC narrowing warning.</li>
+        <li>c_api_paths_test now wipes per-synth memory files at start to prevent cross-test contamination.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.101 <span class="date">2026-09-15</span></h2>
+        <ul>
+        <li>Hardened USB handle lifetime, render commands and capture handoffs for improved stability.</li>
+        <li>CI: parallelized builds, added Ninja to the Windows test job, and run fuzzers concurrently; shared test sources are now compiled once and curl is fetched as a tarball for faster CI runs.</li>
+        <li>Benchmarks: aligned the timing window's sample and wall-clock origins.</li>
+        <li>Reduced editor_model_test runtime from ~223s to ~30s under ThreadSanitizer by pruning invisible hit-probe candidates.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
