@@ -4,6 +4,8 @@
 
 Access shipped the Virus TI with an x86 kernel driver that never made the jump to Apple Silicon. Aleph Virux rebuilds the whole stack from scratch in userspace — no kext, no DriverKit — so your Virus TI Snow, Desktop, or Polar shows up as a plugin again. A lightweight container app claims the USB device; the AUv3 and VST3 plugins reach it over IPC, exposing the original control surface (oscillators, filters, LFOs, modulation matrix, arpeggiator, and effects). An Android control app is in the works too.
 
+It is the only Virus TI plugin that does both audio over USB and two-way patch sync — the synth's multi-channel audio streams back over the same USB connection that carries notes and parameters, and patches move in both directions between the editor and the hardware.
+
 This repository hosts the source for the Aleph Virux marketing site at [virux.alephvoid.com](https://virux.alephvoid.com).
 
 ## Links

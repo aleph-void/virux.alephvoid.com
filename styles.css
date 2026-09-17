@@ -272,11 +272,43 @@ code {
   margin-bottom: 32px;
   line-height: 1.7;
 }
+.hero-claim {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+  margin: -16px 0 32px;
+  padding: 14px 18px;
+  line-height: 1.6;
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-accent-border);
+  border-radius: 10px;
+}
+.hero-claim strong {
+  color: var(--color-accent-light);
+  font-weight: 600;
+}
+.hero-claim em {
+  font-style: normal;
+  color: var(--color-accent-light);
+}
 .hero-actions {
   display: flex;
   gap: 14px;
   margin-bottom: 40px;
   flex-wrap: wrap;
+}
+.hero-demo-note {
+  font-size: .95rem;
+  color: var(--color-text-secondary);
+  margin: -24px 0 40px;
+}
+.hero-demo-note a {
+  color: var(--color-accent-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hero-demo-note a:hover {
+  color: var(--color-accent-hover);
 }
 .hero-platforms {
   display: flex;
