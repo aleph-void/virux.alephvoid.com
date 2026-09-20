@@ -1403,6 +1403,32 @@ code {
   border-radius: 100px;
   padding: 4px 10px;
 }
+.install-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 640px;
+  margin: 28px auto 0;
+  padding: 16px 20px;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: var(--radius-md);
+}
+.install-warning svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  color: var(--color-warn);
+}
+.install-warning strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-warn);
+}
 .install-note {
   text-align: center;
   margin-top: 28px;
