@@ -205,6 +205,18 @@
         </div>
 
         <div class="doc-card">
+          <h3>Windows: the VST3 plugin can't find my Virus</h3>
+          <div class="doc-content">
+            <p><strong>The Virux VST3 plugin cannot be used alongside the original Access Virus TI driver on Windows.</strong> Both talk to the same USB device, and the original driver claims it first, so Virux never gets to open the synth.</p>
+            <ul>
+              <li>Uninstall the original Access Virus TI driver (Settings &rarr; Apps, or via Device Manager &rarr; Sound, video and game controllers &rarr; uninstall the Virus TI device and tick "Delete the driver software for this device").</li>
+              <li>Reboot, then reconnect the Virus and reload the plugin.</li>
+            </ul>
+            <p>Running the two side by side is not supported. If you need the original Access software again, reinstalling its driver will stop Virux from working until it is removed.</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
           <h3>The plugin doesn't appear in my DAW</h3>
           <div class="doc-content">
             <p>After installing, your host may need to rescan plugins.</p>
