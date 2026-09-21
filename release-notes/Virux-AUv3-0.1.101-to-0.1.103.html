@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Virux-AUv3 Release Notes (0.1.101 - 0.1.103)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.101 &ndash; 0.1.103</p>
+      <section class="release">
+        <h2>v0.1.102 <span class="date">2026-09-20</span></h2>
+        <ul>
+        <li>Windows: fixed a blue screen (MULTIPLE_IRP_COMPLETE_REQUESTS, 0x44, in VirusUSB.sys) triggered by approving the Virux driver installer while a Virus was still bound to the original Access driver. The installer now refuses a live takeover and shows step-by-step migration instructions, in all four editor languages, instead of prompting for elevation.</li>
+        <li>Windows installer: added an opt-in &quot;Uninstall original driver&quot; option to the MSI, also available during repair. It removes the original driver packages, services, binaries and ASIO/COM registrations, requires every Virus to be disconnected, and requires a reboot before Virux can take over the device. Silent installs pass VIRUX_REMOVE_ORIGINAL_DRIVER=1.</li>
+        <li>VST3: saving a project while the editor is open now persists the current edits rather than the state from when the editor was last closed.</li>
+        <li>VST3: project recall without the editor open now honours the saved synth binding instead of ignoring it.</li>
+        <li>Editor: hardware knob movements are no longer discarded after GUI edits to the same parameter.</li>
+        <li>Editor: hardware-panel preset changes now respect section locks, so a locked parameter is no longer overwritten on the synth while the UI still shows the locked value.</li>
+        <li>Editor: restoring a document whose keyboard routing is Off now actually disables the previous route.</li>
+        <li>Hardware preset navigation: bank buttons on the synth panel are now applied at the current program instead of being ignored until the next program event; outgoing dumps are stamped with the browsed bank/program with both checksums repaired; per-part navigation state now survives editor reattach.</li>
+        <li>Windows: panel events no longer depend on idle-priority timer dispatch, fixing the roughly six-second catch-up when the editor regained focus.</li>
+        <li>Presets: loading a classic 267-byte patch after a TI patch no longer leaves stale C/D page values in the editor; truncated presets are rejected before they change the document; storing to another RAM slot now stamps the new origin into the patch.</li>
+        <li>Stability: an exception on a session worker thread no longer terminates the host. Activation failures are reported to the host and can be retried; a failed sync callback no longer leaves MIDI disabled; a truncated editor document no longer partially replaces live state; host buffers are validated before output writes.</li>
+        <li>AUv3: fixed an out-of-bounds read when copying host MIDI event lists with more packets than the declared structure; stale readiness callbacks are fenced and capture restarts are coalesced.</li>
+        <li>C API: all send entry points now catch backend exceptions and return an error instead of crashing the host (previously a hard abort under MSVC).</li>
+        <li>The audio and MIDI session runtime is now shared between the VST3 and AUv3 plugins, and the agent sync, ownership-lock probe, remote-template mapping, editor diagnostics and latency statistics are shared across macOS, Windows and Linux.</li>
+        <li>Testing: new C API sync sweep, ring buffer and signal-metrics tests; the hardware bench suite gains a model directive, dump-origin stamping, full-patch round-trip comparison, per-check margins, dropout and clipping metrics and a held-note ledger, plus new stream, preset and multi-part cases.</li>
+        <li>CI: added compiler caching, and a hardware idle job that runs the full bench suite on the test node when it is otherwise unused and triages the results automatically. Fixed the triage script under the node's bash 3.2.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.103 <span class="date">2026-09-21</span></h2>
+        <ul>
+        <li>Release fix: the 0.1.102 release workflow failed at startup because the hardware gate needed an actions permission the release workflow did not grant, so no 0.1.102 builds were published. 0.1.103 grants it and ships the same code as 0.1.102.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
