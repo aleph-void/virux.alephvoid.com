@@ -1,0 +1,38 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.101",
+  "toVersion": "0.1.103",
+  "generated": "2026-09-21",
+  "releases": [
+    {
+      "version": "0.1.102",
+      "date": "2026-09-20",
+      "changes": [
+        "Windows: fixed a blue screen (MULTIPLE_IRP_COMPLETE_REQUESTS, 0x44, in VirusUSB.sys) triggered by approving the Virux driver installer while a Virus was still bound to the original Access driver. The installer now refuses a live takeover and shows step-by-step migration instructions, in all four editor languages, instead of prompting for elevation.",
+        "Windows installer: added an opt-in \"Uninstall original driver\" option to the MSI, also available during repair. It removes the original driver packages, services, binaries and ASIO/COM registrations, requires every Virus to be disconnected, and requires a reboot before Virux can take over the device. Silent installs pass VIRUX_REMOVE_ORIGINAL_DRIVER=1.",
+        "VST3: saving a project while the editor is open now persists the current edits rather than the state from when the editor was last closed.",
+        "VST3: project recall without the editor open now honours the saved synth binding instead of ignoring it.",
+        "Editor: hardware knob movements are no longer discarded after GUI edits to the same parameter.",
+        "Editor: hardware-panel preset changes now respect section locks, so a locked parameter is no longer overwritten on the synth while the UI still shows the locked value.",
+        "Editor: restoring a document whose keyboard routing is Off now actually disables the previous route.",
+        "Hardware preset navigation: bank buttons on the synth panel are now applied at the current program instead of being ignored until the next program event; outgoing dumps are stamped with the browsed bank/program with both checksums repaired; per-part navigation state now survives editor reattach.",
+        "Windows: panel events no longer depend on idle-priority timer dispatch, fixing the roughly six-second catch-up when the editor regained focus.",
+        "Presets: loading a classic 267-byte patch after a TI patch no longer leaves stale C/D page values in the editor; truncated presets are rejected before they change the document; storing to another RAM slot now stamps the new origin into the patch.",
+        "Stability: an exception on a session worker thread no longer terminates the host. Activation failures are reported to the host and can be retried; a failed sync callback no longer leaves MIDI disabled; a truncated editor document no longer partially replaces live state; host buffers are validated before output writes.",
+        "AUv3: fixed an out-of-bounds read when copying host MIDI event lists with more packets than the declared structure; stale readiness callbacks are fenced and capture restarts are coalesced.",
+        "C API: all send entry points now catch backend exceptions and return an error instead of crashing the host (previously a hard abort under MSVC).",
+        "The audio and MIDI session runtime is now shared between the VST3 and AUv3 plugins, and the agent sync, ownership-lock probe, remote-template mapping, editor diagnostics and latency statistics are shared across macOS, Windows and Linux.",
+        "Testing: new C API sync sweep, ring buffer and signal-metrics tests; the hardware bench suite gains a model directive, dump-origin stamping, full-patch round-trip comparison, per-check margins, dropout and clipping metrics and a held-note ledger, plus new stream, preset and multi-part cases.",
+        "CI: added compiler caching, and a hardware idle job that runs the full bench suite on the test node when it is otherwise unused and triages the results automatically. Fixed the triage script under the node's bash 3.2."
+      ]
+    },
+    {
+      "version": "0.1.103",
+      "date": "2026-09-21",
+      "changes": [
+        "Release fix: the 0.1.102 release workflow failed at startup because the hardware gate needed an actions permission the release workflow did not grant, so no 0.1.102 builds were published. 0.1.103 grants it and ships the same code as 0.1.102."
+      ]
+    }
+  ]
+}
