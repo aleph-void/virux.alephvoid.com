@@ -1,0 +1,38 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.103",
+  "toVersion": "0.1.105",
+  "generated": "2026-10-02",
+  "releases": [
+    {
+      "version": "0.1.104",
+      "date": "2026-10-01",
+      "changes": [
+        "HW Link: an external MIDI controller plugged into the Virus's MIDI IN now plays the synth while HW Link is active. Notes, note-offs, sustain, pressure, pitch bend, controllers and program changes are forwarded to the engine, with no editor timer or DAW monitoring required; forwarding stops when HW Link is turned off.",
+        "Editor: loading a preset now sends Sustain Off, All Sound Off and All Notes Off to the loaded part first (the same sequence PANIC uses), so preset loads no longer leave stuck or hanging notes. Other parts keep playing, and the cleanup applies whether HW Link is on or off.",
+        "Editor: storing a patch to a RAM slot no longer sends note cleanup or rewrites output routing for whichever playing part happened to match the patch's program byte.",
+        "Patch sync: the patch reader now waits for each slot's reply to complete (at least 1.5-2 seconds) instead of advancing every 150 ms as soon as any reply arrived. On TI2 units whose replies take over a second, this caused alternating missing slots and banks being re-scanned four or five times in an endless sync loop (GitHub issue #3).",
+        "Windows/TI2: a failed audio routing attempt no longer retries every five seconds forever, re-sending the session opener each time. Busy and cooldown states still retry; hard failures are handed to the bounded MIDI recovery ladder and reported as such in the log.",
+        "TI2: recovery routing on an already-armed device no longer replays GlobalInit, which replaced the current Multi edit buffer.",
+        "TI2: host MIDI, including the panic burst, is now held back while audio routing runs, so it can no longer interleave with the routing writes and time them out halfway. Multi-mode and USB I/O configuration writes are paced so a reconnect no longer floods the synth.",
+        "Windows/TI2: turning HW Link off no longer leaves the device rejecting every later note at the send gate.",
+        "Audio: clock-drift correction is now spread smoothly across the whole block instead of dropping or repeating the last sample, removing the audible click on each correction, particularly on sustained bass.",
+        "Build: updated the VST3 SDK to 3.8.1 and fixed the Windows arm64 release build, where the SDK linked the plugin into the x86_64-win bundle folder under Ninja and the post-build step failed.",
+        "Testing: new MIDI input policy, patch-reply timing, routing-retry, audio timing and session engine tests; a fake slow-reply device model; and a replay of the captured external-controller session from the field report."
+      ]
+    },
+    {
+      "version": "0.1.105",
+      "date": "2026-10-01",
+      "changes": [
+        "VST3: HW Link keeps working with the editor window closed. A background panel session handles front-panel preset changes and knob moves while the window is closed, saving the project captures those edits, and reopening the window picks them up without a resend or rearm. Part locks are still respected, and the session never opens or re-arms a synth on its own.",
+        "ROM cache: front-panel preset selections are no longer skipped because of a sparse ROM cache. The cache is verified slot by slot and repaired from the first missing bank while keeping valid patches in later banks, a failed re-read can no longer overwrite a good cached patch, cache files are written atomically, duplicate browser rows for cached slots are gone, and the ROM bank range was widened from A-D to A-Z.",
+        "Patch sync agent: ROM slots the synth never answers no longer trigger a remote session every 30 seconds. The agent saves the patches it did receive, reports that the missing slots will be retried on reconnect, and retries once per reconnect instead of on every retry tick.",
+        "Editor: double-clicking a browser preset loads it once instead of twice; the second mouse-down used to queue another ~130 ms dump and a second voice cleanup. Clicking the same preset again later still reloads it, for example after editing.",
+        "Diagnostics: panel-event log lines now state why a hardware preset change was not applied, such as a locked part, a program missing from the cache, or an unchanged value or patch echo, instead of a generic ignored/no match.",
+        "CI: the ThreadSanitizer job now builds with GCC 12, avoiding GCC 11's false double-lock reports on condition-variable waits that the new panel session test triggered."
+      ]
+    }
+  ]
+}
