@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Virux-AUv3 Release Notes (0.1.103 - 0.1.105)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.103 &ndash; 0.1.105</p>
+      <section class="release">
+        <h2>v0.1.104 <span class="date">2026-10-01</span></h2>
+        <ul>
+        <li>HW Link: an external MIDI controller plugged into the Virus's MIDI IN now plays the synth while HW Link is active. Notes, note-offs, sustain, pressure, pitch bend, controllers and program changes are forwarded to the engine, with no editor timer or DAW monitoring required; forwarding stops when HW Link is turned off.</li>
+        <li>Editor: loading a preset now sends Sustain Off, All Sound Off and All Notes Off to the loaded part first (the same sequence PANIC uses), so preset loads no longer leave stuck or hanging notes. Other parts keep playing, and the cleanup applies whether HW Link is on or off.</li>
+        <li>Editor: storing a patch to a RAM slot no longer sends note cleanup or rewrites output routing for whichever playing part happened to match the patch's program byte.</li>
+        <li>Patch sync: the patch reader now waits for each slot's reply to complete (at least 1.5-2 seconds) instead of advancing every 150 ms as soon as any reply arrived. On TI2 units whose replies take over a second, this caused alternating missing slots and banks being re-scanned four or five times in an endless sync loop (GitHub issue #3).</li>
+        <li>Windows/TI2: a failed audio routing attempt no longer retries every five seconds forever, re-sending the session opener each time. Busy and cooldown states still retry; hard failures are handed to the bounded MIDI recovery ladder and reported as such in the log.</li>
+        <li>TI2: recovery routing on an already-armed device no longer replays GlobalInit, which replaced the current Multi edit buffer.</li>
+        <li>TI2: host MIDI, including the panic burst, is now held back while audio routing runs, so it can no longer interleave with the routing writes and time them out halfway. Multi-mode and USB I/O configuration writes are paced so a reconnect no longer floods the synth.</li>
+        <li>Windows/TI2: turning HW Link off no longer leaves the device rejecting every later note at the send gate.</li>
+        <li>Audio: clock-drift correction is now spread smoothly across the whole block instead of dropping or repeating the last sample, removing the audible click on each correction, particularly on sustained bass.</li>
+        <li>Build: updated the VST3 SDK to 3.8.1 and fixed the Windows arm64 release build, where the SDK linked the plugin into the x86_64-win bundle folder under Ninja and the post-build step failed.</li>
+        <li>Testing: new MIDI input policy, patch-reply timing, routing-retry, audio timing and session engine tests; a fake slow-reply device model; and a replay of the captured external-controller session from the field report.</li>
+        </ul>
+      </section>
+      <section class="release">
+        <h2>v0.1.105 <span class="date">2026-10-01</span></h2>
+        <ul>
+        <li>VST3: HW Link keeps working with the editor window closed. A background panel session handles front-panel preset changes and knob moves while the window is closed, saving the project captures those edits, and reopening the window picks them up without a resend or rearm. Part locks are still respected, and the session never opens or re-arms a synth on its own.</li>
+        <li>ROM cache: front-panel preset selections are no longer skipped because of a sparse ROM cache. The cache is verified slot by slot and repaired from the first missing bank while keeping valid patches in later banks, a failed re-read can no longer overwrite a good cached patch, cache files are written atomically, duplicate browser rows for cached slots are gone, and the ROM bank range was widened from A-D to A-Z.</li>
+        <li>Patch sync agent: ROM slots the synth never answers no longer trigger a remote session every 30 seconds. The agent saves the patches it did receive, reports that the missing slots will be retried on reconnect, and retries once per reconnect instead of on every retry tick.</li>
+        <li>Editor: double-clicking a browser preset loads it once instead of twice; the second mouse-down used to queue another ~130 ms dump and a second voice cleanup. Clicking the same preset again later still reloads it, for example after editing.</li>
+        <li>Diagnostics: panel-event log lines now state why a hardware preset change was not applied, such as a locked part, a program missing from the cache, or an unchanged value or patch echo, instead of a generic ignored/no match.</li>
+        <li>CI: the ThreadSanitizer job now builds with GCC 12, avoiding GCC 11's false double-lock reports on condition-variable waits that the new panel session test triggered.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
