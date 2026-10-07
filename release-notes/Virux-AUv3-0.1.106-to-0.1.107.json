@@ -1,0 +1,22 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.106",
+  "toVersion": "0.1.107",
+  "generated": "2026-10-07",
+  "releases": [
+    {
+      "version": "0.1.107",
+      "date": "2026-10-07",
+      "changes": [
+        "Browser: both bank selectors and their bank steppers now offer all RAM, ROM and file banks. The former restriction of the top browser to ROM and the bottom browser to RAM is gone (follow-up to GitHub issue #6).",
+        "Browser: bank selection follows the preset collection's folder structure, one level per menu, with a Parent folder entry to navigate back up. Leaf names omit the full path, and identically named banks in different folders still select their own bank.",
+        "Editor: the bank menu's Parent folder entry no longer shares an internal menu tag with the patch-export command, which could trigger an export instead of navigating up a folder (seen on macOS).",
+        "Remote: the Remote browser now displays the loaded template's name. The old renderer unconditionally drew 'no remote templates loaded', even after a successful JSON or .vrt import; unnamed templates use the Remote Templates heading.",
+        "Remote: Load and Save dialogs now start in a Remote Templates folder inside the preset folder, including a custom preset folder selected on Windows. Existing files in the former sibling Virux/RemoteTemplates location are untouched and can still be selected through the file dialog.",
+        "HW Link: the front panel's Value 1/2/3 soft knobs now work while HW Link is active. A field log showed 214 of their movements being discarded; the editor now resolves the focused part's soft-knob assignment, scales the movement into the target parameter's range, and sends it through the regular panel-parameter path. Part locks, unassigned knobs and repeated-value suppression are respected.",
+        "Testing: the captured Value-knob field session is replayed against three soft-knob assignments in Multi and Sequencer modes; new coverage for bank folder descent and parent navigation, RAM/ROM/file selection in both browsers, and the Remote template-name display. 78/78 CTest cases and 47/47 VST3 validator checks passed on Windows."
+      ]
+    }
+  ]
+}
