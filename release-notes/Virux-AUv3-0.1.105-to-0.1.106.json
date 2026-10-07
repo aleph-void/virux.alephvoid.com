@@ -1,0 +1,23 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.105",
+  "toVersion": "0.1.106",
+  "generated": "2026-10-06",
+  "releases": [
+    {
+      "version": "0.1.106",
+      "date": "2026-10-06",
+      "changes": [
+        "Preset browser: scanning the preset folder now descends into subfolders and follows directory links/junctions, with cycle protection and inaccessible directories skipped. Bank labels include their relative folder, so author folders are preserved and identical filenames in different folders stay distinguishable (GitHub issue #6).",
+        "Windows: Config has a new Preset folder... menu with a native folder picker and a reset to the default. Imports and saved patches use the chosen folder; existing files are not copied or moved, and other open instances pick up the change on their next bank reload or editor reopen.",
+        "Editor: each browser now has < / > patch buttons. On Windows, clicking the editor gives it keyboard focus, and the arrow keys load adjacent patches in the last-used browser. Navigation follows the active search/category filters and sort order, keeps the row visible, respects part locks, and stops at bank ends.",
+        "Patch sync: Config's Patch Sync menu now has separate RAM and ROM sync switches, honored by both the plugin and the background agents. Disabled categories replay their existing caches, including partial ROM caches, without any USB access, and are labeled Cached in Config. Re-enabling a category allows syncing again; re-enabling RAM forces a live refresh.",
+        "Patch sync: Cancel now cooperatively aborts the in-process sync worker or asks the background service to yield. Patches already received stay in the cache, cancelling RAM no longer starts a live ROM sweep, and a cancelled service sync leaves the partial disk cache usable on the next plugin load.",
+        "VST3: fresh editor instances no longer skip the remembered USB I/O mode when there is no saved editor state, and the device probe retries display adoption if device startup or a busy device prevented the first read.",
+        "Remote templates: Load now accepts original Access .vrt files in addition to Virux JSON, importing the template name, knob names, MIDI strings and channel behavior flag with bounds-checked parsing, including legacy padded Attack records. Per-knob scaling metadata and uploading complete remote sets to hardware remain outside the Remote model; JSON saving is unchanged.",
+        "Testing: new coverage for nested banks and link cycles, folder-qualified duplicate bank names, browser navigation with filters and locks, sync cancellation, independent sync preference persistence and migration, USB-free cache replay, and truncated or malformed VRT input, including all 35 original Access reference templates."
+      ]
+    }
+  ]
+}
