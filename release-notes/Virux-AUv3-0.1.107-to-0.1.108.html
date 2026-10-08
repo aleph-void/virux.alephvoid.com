@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Virux-AUv3 Release Notes (0.1.107 - 0.1.108)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.107 &ndash; 0.1.108</p>
+      <section class="release">
+        <h2>v0.1.108 <span class="date">2026-10-07</span></h2>
+        <ul>
+        <li>Bank editing: drag a patch into the other browser pane to copy it. Dropping on an existing patch replaces that slot; dropping on free space appends at the first unused program number. Sorting and filtering do not change the destination slot, a floating label identifies the patch being copied, the source stays intact, and program numbers and SysEx checksums are repaired on copy (GitHub issue #6).</li>
+        <li>Bank editing: right-click a browser, or open its bank selector or Export menu, for the new Edit / save bank... actions. New empty bank... creates a named blank bank, Duplicate bank for editing copies a library or device bank into an editable draft, Clear bank... asks before removing all patches from a file or draft bank, and Undo last bank edit reverses the most recent copy, replacement, append or clear.</li>
+        <li>Bank editing: Append current edited patch adds the focused part's loaded patch to the bank, including its current editor parameter values, without a device read. Save bank as MIDI... writes the displayed bank to a .mid file; empty banks round-trip through save, import and folder scanning. This is separate from the existing .vtibackup device-cache export.</li>
+        <li>Bank editing: an asterisk marks a working draft bank. Edits survive bank rescans, device-cache refreshes, editor close/reopen and DAW project saves, and files change only through an explicit save dialog; Clear never erases a file. Banks hold up to 128 patches with up to 128 simultaneous drafts. Device RAM/ROM banks serve as copy sources; drag and drop does not write hardware bank memory.</li>
+        <li>HW Link/USB: a field report showed a refused USB session being treated as open, enabling MIDI fallback and repeating arm attempts against an unresponsive device. A failed session opener or restore now latches the device handle as failed: HW Link and external MIDI forwarding are disabled, host MIDI is gated, further sync/link/fallback openers on that handle are refused, and the per-synth cooldown is recorded. The post-sync MIDI path now requires a completed opener, completed restore and running pump on every model.</li>
+        <li>Patch sync: all three background agents now stop automatic sync attempts after a USB transport failure until the synth is observed to disconnect and return. A failed RAM sync no longer proceeds to open a ROM session, while busy, cancellation and cooldown states remain retryable. A device whose USB engine is already wedged may need a full power cycle after updating both the plugin and the background service.</li>
+        <li>Testing: replays of both field-captured opener failures (ten failing assertions before the fix), the full post-sync routing decision matrix, 500 agent retry ticks at the observed cadence, and broad bank-editing coverage including filtered destinations, undo, MIDI round trips, same-name files in separate folders and malformed state rejection. 78/78 CTest cases and 47/47 VST3 validator checks passed on Windows.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
