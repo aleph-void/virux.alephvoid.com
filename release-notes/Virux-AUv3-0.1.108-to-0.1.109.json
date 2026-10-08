@@ -1,0 +1,23 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.108",
+  "toVersion": "0.1.109",
+  "generated": "2026-10-08",
+  "releases": [
+    {
+      "version": "0.1.109",
+      "date": "2026-10-08",
+      "changes": [
+        "Browser: typing in Search now searches every loaded bank by default - cached device RAM/ROM and file banks from the preset folder, including subfolders - with each result showing its source bank. Each pane has an All banks / This bank scope button to restrict searching to its selected bank. Search never starts a hardware sync or fetches missing banks, and results keep their source identity for loading, keyboard navigation, export and hardware storage.",
+        "Browser: new favorites system. Click the star on a patch row, or right-click and choose Add favorite / Remove favorite; marking a favorite does not load the patch or send MIDI. The Favorites button filters the collection and combines with Search and the category filter. Favorites identify the sound content itself, so identical copies share a mark, copying a favorite into another bank preserves it, and editing the sound creates a new identity. Marks persist outside DAW projects, with atomic per-sound storage so concurrent editor instances cannot overwrite each other.",
+        "Browser: both scrollbars now accept thumb dragging and page-sized clicks on either side of the thumb, and the two panes scroll independently, including wheel scrolling. Scrolling only changes the viewport; it does not load a sound (GitHub issue #7).",
+        "Windows: Left/Right keys move to the adjacent column in the active browser, preserving the row where possible, while Up/Down keeps single-patch stepping. Navigation follows the filtered list, reveals the selected patch and stops at bank edges.",
+        "Editor: loading a sound no longer moves the part volume fader. The parameter reader misinterpreted a byte of patch data as the CC7 volume controller, so loading a patch shifted the displayed fader without an actual volume change. Performance controllers now stay separate from sound data during patch loading, original-value lookup and export.",
+        "Editor: chorus LFO shape and phaser stages are now named dropdowns backed by the device's value lists, with the phaser showing 1-6 stages. Part Save buttons use light text on an explicit dark background, including when bitmap assets cannot be loaded.",
+        "Build: fixed the Linux and macOS builds of the test tools, which the Windows-built 0.1.108 release had broken.",
+        "Testing: new coverage for scrollbar interaction, filtered column navigation, volume preservation across loads and part changes, controller exclusion from exported patches, both FX dropdowns, cross-bank duplicate names, favorite identity across copies, disk persistence and write failures, edits from multiple instances, and cache refresh after rescans, bank edits and restores. 78/78 CTest cases and 47/47 VST3 validator checks passed on Windows."
+      ]
+    }
+  ]
+}
