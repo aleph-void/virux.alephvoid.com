@@ -6,7 +6,7 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
 <link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
-<title>Release Notes</title>
+<title>Virux-AUv3 Release Notes (0.1.109 - 0.1.110)</title>
 <style>
   :root {
     --color-bg: #0a0a0f;
@@ -109,59 +109,19 @@
 </head>
 <body>
 <main>
-  <a class="back-link" href="../">&larr; Aleph Virux</a>
-  <h1>Release Notes</h1>
-  <p class="subtitle">Pick a version range to see what changed.</p>
-  <ul class="index-list">
-    <li>
-      <a href="Virux-AUv3-0.1.109-to-0.1.110.html">
-        <span class="range">Virux-AUv3 0.1.109 &ndash; 0.1.110</span>
-        <span class="meta">1 release &middot; latest 2026-10-09</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.108-to-0.1.109.html">
-        <span class="range">Virux-AUv3 0.1.108 &ndash; 0.1.109</span>
-        <span class="meta">1 release &middot; latest 2026-10-08</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.107-to-0.1.108.html">
-        <span class="range">Virux-AUv3 0.1.107 &ndash; 0.1.108</span>
-        <span class="meta">1 release &middot; latest 2026-10-07</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.106-to-0.1.107.html">
-        <span class="range">Virux-AUv3 0.1.106 &ndash; 0.1.107</span>
-        <span class="meta">1 release &middot; latest 2026-10-07</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.105-to-0.1.106.html">
-        <span class="range">Virux-AUv3 0.1.105 &ndash; 0.1.106</span>
-        <span class="meta">1 release &middot; latest 2026-10-06</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.103-to-0.1.105.html">
-        <span class="range">Virux-AUv3 0.1.103 &ndash; 0.1.105</span>
-        <span class="meta">2 releases &middot; latest 2026-10-01</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.101-to-0.1.103.html">
-        <span class="range">Virux-AUv3 0.1.101 &ndash; 0.1.103</span>
-        <span class="meta">2 releases &middot; latest 2026-09-21</span>
-      </a>
-    </li>
-    <li>
-      <a href="Virux-AUv3-0.1.89-to-0.1.101.html">
-        <span class="range">Virux-AUv3 0.1.89 &ndash; 0.1.101</span>
-        <span class="meta">10 releases &middot; latest 2026-09-15</span>
-      </a>
-    </li>
-  </ul>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.109 &ndash; 0.1.110</p>
+      <section class="release">
+        <h2>v0.1.110 <span class="date">2026-10-09</span></h2>
+        <ul>
+        <li>Browser: Search now follows the pane it was typed into. Only the targeted pane filters its rows; the other pane keeps its unfiltered bank view and its own selection. Starting a new search clears the previous search pane's selection and scroll position, and typing never auditions a sound.</li>
+        <li>Browser: right-clicking a patch adds Load containing bank, which opens the patch's full source bank in that pane - clearing the search, favorites and category filters - and highlights and scrolls to the original patch without loading it or sending MIDI.</li>
+        <li>Browser: file banks gain Delete patch from bank in the right-click menu, with a confirmation step and undo via the bank menu. Deletion targets the exact sound that was clicked: if the bank is rescanned while the confirmation is open and a different patch now occupies the same program slot, the stale confirmation does nothing. Deleting the last patch leaves an empty draft bank that exports empty and survives DAW project save and restore. Delete is unavailable for device banks (which keep the duplicate-for-editing workflow) and is blocked during hardware sync, driver conflicts and demo mode; it never touches the hardware or the currently loaded sound.</li>
+        <li>Editor: the classic oscillator wave selectors for Oscillator 1 and 2 are now horizontal sliders matching their visual travel, replacing vertical knobs that moved against the graphic. The wave name below each slider is now itself a dropdown listing the waves by name, replacing the separate small menu button.</li>
+        <li>Testing: new coverage for per-pane search targeting, opening a search result's containing bank in either pane, delete with cancel, undo, stale-confirmation safety after rescans, device-bank exclusion and empty-draft persistence through export and project restore, and the horizontal wave selectors including drag direction, named dropdown selection and pulse-width reachability. 76/76 CTest cases passed on Linux, and the macOS plugin smoke test passed in CI on the release commit.</li>
+        </ul>
+      </section>
 </main>
 </body>
 </html>
