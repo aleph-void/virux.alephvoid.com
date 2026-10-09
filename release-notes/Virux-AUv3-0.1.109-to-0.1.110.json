@@ -1,0 +1,20 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.109",
+  "toVersion": "0.1.110",
+  "generated": "2026-10-09",
+  "releases": [
+    {
+      "version": "0.1.110",
+      "date": "2026-10-09",
+      "changes": [
+        "Browser: Search now follows the pane it was typed into. Only the targeted pane filters its rows; the other pane keeps its unfiltered bank view and its own selection. Starting a new search clears the previous search pane's selection and scroll position, and typing never auditions a sound.",
+        "Browser: right-clicking a patch adds Load containing bank, which opens the patch's full source bank in that pane - clearing the search, favorites and category filters - and highlights and scrolls to the original patch without loading it or sending MIDI.",
+        "Browser: file banks gain Delete patch from bank in the right-click menu, with a confirmation step and undo via the bank menu. Deletion targets the exact sound that was clicked: if the bank is rescanned while the confirmation is open and a different patch now occupies the same program slot, the stale confirmation does nothing. Deleting the last patch leaves an empty draft bank that exports empty and survives DAW project save and restore. Delete is unavailable for device banks (which keep the duplicate-for-editing workflow) and is blocked during hardware sync, driver conflicts and demo mode; it never touches the hardware or the currently loaded sound.",
+        "Editor: the classic oscillator wave selectors for Oscillator 1 and 2 are now horizontal sliders matching their visual travel, replacing vertical knobs that moved against the graphic. The wave name below each slider is now itself a dropdown listing the waves by name, replacing the separate small menu button.",
+        "Testing: new coverage for per-pane search targeting, opening a search result's containing bank in either pane, delete with cancel, undo, stale-confirmation safety after rescans, device-bank exclusion and empty-draft persistence through export and project restore, and the horizontal wave selectors including drag direction, named dropdown selection and pulse-width reachability. 76/76 CTest cases passed on Linux, and the macOS plugin smoke test passed in CI on the release commit."
+      ]
+    }
+  ]
+}
