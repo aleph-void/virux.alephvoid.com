@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.111 - 0.1.112)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.111 &ndash; 0.1.112</p>
+      <section class="release">
+        <h2>v0.1.112 <span class="date">2026-10-12</span></h2>
+        <ul>
+        <li>Standalone: Virux now runs without a DAW on all three platforms. The macOS installer package installs the standalone Virux.app (with the AUv3 inside) to /Applications alongside the VST3; Windows gets Virux.exe with a Start Menu shortcut, hosting the plugin's own processor in-process and playing the synth's USB audio return through a chosen WASAPI output; Linux gets virux-standalone, the same editor in an X11 window with an ALSA monitor output. Each app is the full editor - device binding, patch sync, Hardware Link - and owns the synth's USB interfaces while it runs, so close any DAW instance of the plugin first (and vice versa).</li>
+        <li>Standalone: the on-screen piano keyboard from the macOS app arrives on Windows (View - Piano Keyboard, Ctrl+K) and Linux: a bottom drawer with per-voice channel toggle buttons, an octave slider (C1-C7) and a two-octave keyboard. The channel buttons on every app now track the connected model's part count - a Snow shows channels 1-4 and clamps the selection, everything else shows 1-16 - and the voice selection and octave persist across launches.</li>
+        <li>Standalone: OSC remote control is no longer macOS-only. The Windows app gains the same OSC server (File - Settings, Ctrl+comma: enable switch, port field, status dot and activity line; off by default, UDP port 9000 by default, settings persist in %APPDATA%\Virux), and the Linux app takes an --osc flag. All platforms accept the identical message dialect for the 587 parameter addresses, MIDI notes and monitor-output selection. The /audio/reroute and /audio/reboot recovery commands are now paced to one every 30 seconds so a stray or hostile sender on the unauthenticated UDP port cannot loop the synth through reconfigurations.</li>
+        <li>OsTIrus: Virux can now control an emulated Virus TI, TI2 or Snow through The Usual Suspects' DSP Bridge (server 2.2.25). Choose Config - System Info - Device - Add OsTIrus... and select your own original TI firmware.bin - no firmware ships with Virux. MIDI, parameter edits, patch transfer and all three stereo audio returns use the same session and editor as a USB Virus; multiple independent emulated synths are supported via per-instance configurations. Hardware-only features (Hardware Link, physical USB I/O configuration, the RAM/ROM bank sweep) stay unavailable for emulators, processing is paced in real time, and built-in offline USB and OsTIrus help pages appear whenever no backend can be used.</li>
+        <li>Studio: a new Studio view opens from the editor's bottom bar, operating on the current edit buffer. History offers grouped undo/redo, up to 32 named checkpoints, parameter comparisons and restoring one parameter, a section or a whole patch. Mutate creates bounded random variations of chosen parameter groups while protecting modes, hardware configuration, routing and locked sections. Morph captures A/B for a slider or A/B/C/D for an XY pad with selectable groups and curves. Eight named Macros - each with up to 16 destinations across parts, two-endpoint ranges and curves - are exposed to host automation and support MIDI Learn. A Modulation inspector searches matrix, LFO, envelope, velocity, key-follow and macro routes by source or destination.</li>
+        <li>Studio: patches can be exported and imported as readable .vxp.txt text presets - a versioned UTF-8 format with stable ordering that preserves every payload byte, validated in full before any import changes the patch. Share Preset publishes a captured preset to an unlisted Gist, public Gist or a repository through GitHub CLI's own browser sign-in; Virux never stores the credential in preset files or project state.</li>
+        <li>Studio: the new Assistant view connects to Codex or Claude through their locally installed CLIs and sign-ins. Ask about the current patch, or describe a sound and review the proposed parameter changes old-vs-new before applying; a checkpoint is saved first and Apply participates in undo. Proposals are validated (only known sound parameters, in-range integer values; device, session and routing controls are rejected), the CLIs run sandboxed and read-only, and conversations stay in memory only - excluded from preset exports and project state.</li>
+        <li>Device: fixed a Windows-only failure where Reconnect after Release USB could error and leave the synth released - our own pollers and antimalware scans held handles on the release marker file, blocking its deletion. The marker is now probed without taking a handle and removal retries on a bounded schedule, so Reconnect succeeds even while the file is being scanned.</li>
+        <li>Security: audit fixes hardening the Windows installation - the MSI now creates the shared %ProgramData%\Virux directory with a protected ACL, the sync service refuses to start if the path is a junction or symlink, every file read from the shared directory is size-bounded, and the elevated driver installer no longer takes a log path from its command line and stages its payload in a high-integrity, unguessably named directory so a same-user process cannot swap binaries before execution.</li>
+        <li>Performance: audit fixes across the stack - audio-thread ring-buffer copies are now one or two contiguous memcpys instead of per-sample loops, the session render path precomputes its routing and interpolation tables once per block, the Windows editor caches DirectWrite text layouts, and the editor renderer and parameter table shed redundant lookups - lowering CPU in both the plugins and the standalones.</li>
+        <li>Testing: new pinned policy tests for the OSC parser/dispatch, the piano keyboard, standalone settings and audio formats, plus Studio, OsTIrus protocol and standalone-host suites. New firmware-backed CI boots real TI firmware under DSP Bridge on hosted Windows, Linux and macOS runners and checks discovery, patch load, SysEx readback and audible note-on/note-off on all three audio buses at 44.1 and 48 kHz, alongside the existing physical-synth node. On the release code, 84/84 CTest cases passed on Linux and macOS and 86/86 on Windows, including full runs under the address/undefined-behavior and thread sanitizers, and the macOS plugin smoke and combined hardware checks passed in CI.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
