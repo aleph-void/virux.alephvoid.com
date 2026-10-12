@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual &mdash; Aleph Virux</title>
+  <meta name="description" content="The Aleph Virux user manual: connecting your Access Virus TI, the editor, Studio tools, patch sync, the OsTIrus DSP Bridge emulator backend, OSC remote control, Windows drivers, and licensing." />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <link rel="icon" type="image/png" href="assets/img/app-icon.png" sizes="256x256" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Aleph Virux" />
+  <meta property="og:url" content="https://virux.alephvoid.com/manual.html" />
+  <meta property="og:title" content="Manual — Aleph Virux" />
+  <meta property="og:description" content="The Aleph Virux user manual: devices and patch sync, the editor, Studio tools, the OsTIrus DSP Bridge integration, OSC remote control, and more." />
+  <meta property="og:image" content="https://virux.alephvoid.com/assets/img/app-icon.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="256" />
+  <meta property="og:image:height" content="256" />
+  <meta property="og:image:alt" content="Aleph Virux icon" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Manual — Aleph Virux" />
+  <meta name="twitter:description" content="How every Aleph Virux feature works, including the OsTIrus DSP Bridge emulator backend." />
+  <meta name="twitter:image" content="https://virux.alephvoid.com/assets/img/app-icon.png" />
+  <meta name="twitter:image:alt" content="Aleph Virux icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .manual-hero {
+      padding: calc(var(--nav-height) + 64px) 0 40px;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg-alt);
+    }
+    .manual-hero h1 { font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.15; margin-bottom: 12px; }
+    .manual-hero p { color: var(--color-text-secondary); max-width: 760px; }
+    .manual-layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 56px;
+      padding: 48px 0 110px;
+      align-items: start;
+    }
+    .manual-toc {
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+      font-size: .9rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-card);
+      padding: 18px 16px;
+      max-height: calc(100vh - var(--nav-height) - 48px);
+      overflow-y: auto;
+    }
+    .manual-toc .toc-title {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+    }
+    .manual-toc a {
+      display: block;
+      color: var(--color-text-secondary);
+      padding: 4px 8px;
+      border-radius: 4px;
+      line-height: 1.4;
+    }
+    .manual-toc a:hover { color: var(--color-accent-light); background: var(--color-accent-soft); }
+    .manual-toc a.toc-sub { padding-left: 22px; font-size: .84rem; color: var(--color-text-muted); }
+    .manual-toc a.toc-sub:hover { color: var(--color-accent-light); }
+
+    .manual-content { max-width: 820px; }
+    .manual-content section { margin-bottom: 20px; }
+    .manual-content h2 {
+      font-size: 1.7rem;
+      margin: 56px 0 6px;
+      padding-top: 28px;
+      border-top: 1px solid var(--color-border);
+    }
+    .manual-content section:first-child h2 { margin-top: 0; border-top: none; padding-top: 0; }
+    .manual-content .h2-label {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--color-accent-light);
+      letter-spacing: .06em;
+      display: block;
+      margin: 0 0 6px;
+    }
+    .manual-content h3 { font-size: 1.18rem; margin: 34px 0 10px; }
+    .manual-content h4 { font-size: 1rem; margin: 24px 0 8px; }
+    .manual-content p, .manual-content li { color: var(--color-text-secondary); }
+    .manual-content p { margin: 0 0 14px; }
+    .manual-content strong { color: var(--color-text); font-weight: 600; }
+    .manual-content ul, .manual-content ol { margin: 0 0 16px 22px; }
+    .manual-content li { margin-bottom: 7px; }
+    .manual-content pre {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin: 0 0 16px;
+      font-family: var(--font-mono);
+      font-size: .82rem;
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+    .manual-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+    .manual-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 18px;
+      font-size: .9rem;
+    }
+    .manual-content th, .manual-content td {
+      text-align: left;
+      padding: 8px 12px;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      vertical-align: top;
+    }
+    .manual-content th { color: var(--color-text); background: var(--color-bg-card); font-weight: 600; }
+    .callout {
+      display: flex;
+      gap: 12px;
+      border: 1px solid var(--color-accent-border);
+      background: var(--color-accent-soft);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin: 0 0 18px;
+      font-size: .92rem;
+    }
+    .callout.warn { border-color: rgba(251, 191, 36, .35); background: rgba(251, 191, 36, .08); }
+    .callout p { margin: 0; }
+    .callout .callout-icon { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 2px; }
+    .callout.warn .callout-icon { stroke: var(--color-warn); }
+    .callout:not(.warn) .callout-icon { stroke: var(--color-accent-light); }
+    .menu-path {
+      font-family: var(--font-mono);
+      font-size: .85em;
+      color: var(--color-text);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    @media (max-width: 960px) {
+      .manual-layout { grid-template-columns: 1fr; gap: 32px; }
+      .manual-toc { position: static; max-height: none; }
+      .menu-path { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img class="nav-logo" src="assets/img/app-icon.png" alt="Aleph Virux" />
+        <span>Aleph Virux</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="manual.html">Manual</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="release-notes/">Release Notes</a>
+        <a href="support.html">Support</a>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html#install" class="btn btn-sm btn-primary">Get Virux</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html#features">Features</a>
+      <a href="manual.html">Manual</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="release-notes/">Release Notes</a>
+      <a href="support.html">Support</a>
+      <a href="index.html#install" class="btn btn-primary">Get Virux</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="manual-hero">
+    <div class="container">
+      <div class="hero-badge">// User Manual</div>
+      <h1>The Aleph Virux <span class="text-gradient">Manual</span></h1>
+      <p>
+        Everything in Virux, explained: connecting and sharing your Virus&nbsp;TI, the editor and
+        Studio tools, patch sync, the <a href="#ostirus">OsTIrus DSP&nbsp;Bridge integration</a> for
+        running an emulated Virus, OSC remote control, Windows driver management, and licensing.
+      </p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="manual-layout">
+
+      <!-- Table of contents -->
+      <aside class="manual-toc" aria-label="Table of contents">
+        <div class="toc-title">Contents</div>
+        <a href="#overview">1. Overview</a>
+        <a href="#getting-started">2. Getting Started</a>
+        <a href="#devices">3. Devices &amp; USB Ownership</a>
+        <a href="#devices-release" class="toc-sub">Release USB &amp; Reconnect</a>
+        <a href="#devices-patchsync" class="toc-sub">Patch Sync</a>
+        <a href="#ostirus">4. OsTIrus Integration</a>
+        <a href="#ostirus-setup" class="toc-sub">Setup</a>
+        <a href="#ostirus-config" class="toc-sub">Configurations &amp; models</a>
+        <a href="#ostirus-behavior" class="toc-sub">Behavior &amp; limits</a>
+        <a href="#ostirus-troubleshooting" class="toc-sub">Troubleshooting</a>
+        <a href="#editor">5. The Editor</a>
+        <a href="#editor-osc-pages" class="toc-sub">Oscillator pages</a>
+        <a href="#editor-browser" class="toc-sub">Browser &amp; banks</a>
+        <a href="#editor-live-hwlink" class="toc-sub">Live Mode &amp; HW Link</a>
+        <a href="#studio">6. Studio Tools</a>
+        <a href="#studio-text" class="toc-sub">Text presets</a>
+        <a href="#studio-share" class="toc-sub">Share Preset</a>
+        <a href="#studio-assistant" class="toc-sub">Patch Assistant</a>
+        <a href="#standalone">7. Standalone Apps &amp; OSC</a>
+        <a href="#osc-params" class="toc-sub">OSC parameters</a>
+        <a href="#osc-midi" class="toc-sub">OSC notes &amp; audio</a>
+        <a href="#windows">8. Windows Drivers</a>
+        <a href="#licensing">9. Licensing</a>
+        <a href="#troubleshooting">10. Troubleshooting</a>
+      </aside>
+
+      <!-- Content -->
+      <main class="manual-content">
+
+        <section id="overview">
+          <h2><span class="h2-label">// 1</span>Overview</h2>
+          <p>
+            Aleph Virux is a ground-up, userspace reimplementation of Access &ldquo;Virus
+            Control&rdquo; for the <strong>Access Virus TI family</strong> &mdash; TI, TI2, Snow,
+            Desktop, Keyboard, and Polar. It drives the synth directly over USB with no kernel
+            driver anywhere: no kext or DriverKit on macOS, WinUSB on Windows, libusb on Linux.
+          </p>
+          <ul>
+            <li><strong>Plugins:</strong> VST3 on Windows, Linux, and macOS, plus an AUv3 on macOS &mdash; all with the original synth control surface.</li>
+            <li><strong>Standalone apps:</strong> Virux runs without a DAW on all three desktop platforms. Each standalone is the full editor &mdash; device binding, patch sync, Hardware Link &mdash; with an on-screen piano keyboard and a monitor output for the synth's USB audio return. An Android control app is also available.</li>
+            <li><strong>Audio and MIDI over USB:</strong> multi-channel audio streams back from the synth over the same USB cable that carries notes, parameter edits, and patches.</li>
+            <li><strong>Two-way patch sync:</strong> a background agent and the plugins keep the editor and the hardware's patch banks in step.</li>
+            <li><strong>Emulator support:</strong> an emulated TI, TI2, or Snow can be used in place of hardware through the <a href="#ostirus">OsTIrus DSP Bridge backend</a>.</li>
+          </ul>
+          <p>
+            One plugin instance (or standalone app, or the background sync agent) <strong>owns the
+            USB device at a time</strong>; ownership is handed over automatically. Run your project
+            at <strong>44.1&nbsp;kHz or 48&nbsp;kHz</strong> &mdash; the synth streams at its own
+            rate and Virux performs no sample-rate conversion.
+          </p>
+        </section>
+
+        <section id="getting-started">
+          <h2><span class="h2-label">// 2</span>Getting Started</h2>
+          <h3>Install</h3>
+          <ul>
+            <li><strong>macOS (Apple Silicon):</strong> install from the <a href="https://apps.apple.com/us/app/aleph-void-virux/id6773055172?mt=12" target="_blank" rel="noopener">Mac App Store</a>, or use the installer package from the <a href="https://store.alephvoid.com/l/virux-vst3" target="_blank" rel="noopener">Aleph Void store</a>, which installs the standalone <code>Virux.app</code> (with the AUv3 inside) to <code>/Applications</code> alongside the VST3.</li>
+            <li><strong>Windows:</strong> the MSI installs the VST3 plugin, the standalone <code>Virux.exe</code> (with a Start Menu shortcut), and the Virux Patch Sync service. See <a href="#windows">Windows Drivers</a> before first use &mdash; Virux cannot run alongside the original Access driver.</li>
+            <li><strong>Linux:</strong> the installer provides the VST3 and <code>virux-standalone</code>, the same editor in an X11 window with an ALSA monitor output.</li>
+            <li><strong>Android:</strong> install from <a href="https://play.google.com/store/apps/details?id=com.alephvoid.virux.android" target="_blank" rel="noopener">Google Play</a> on a device with USB host support.</li>
+          </ul>
+          <h3>First run</h3>
+          <ol>
+            <li>Connect the Virus TI over USB and power it on.</li>
+            <li>Open the standalone app once (macOS: this also registers the background agent), or add the Virux plugin to a track in your DAW.</li>
+            <li>Select your synth in the Device menu: <span class="menu-path">Config &rsaquo; System Info &rsaquo; Device</span>.</li>
+            <li>If Patch Sync is enabled, Virux sweeps the synth's RAM/ROM banks into the browser in the background on first connection.</li>
+            <li>Play: send MIDI from your DAW or the on-screen keyboard; the synth's audio streams back over USB into your session or the standalone's monitor output.</li>
+          </ol>
+          <div class="callout">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p>The standalone apps own the synth's USB interfaces while they run. Close any DAW instance of the plugin before starting a standalone, and vice versa.</p>
+          </div>
+        </section>
+
+        <section id="devices">
+          <h2><span class="h2-label">// 3</span>Devices &amp; USB Ownership</h2>
+          <p>
+            The Device menu (<span class="menu-path">Config &rsaquo; System Info &rsaquo; Device</span>)
+            always lists every USB Virus and every configured OsTIrus emulator. A backend that
+            cannot be used right now is greyed out rather than hidden, and the list refreshes
+            automatically &mdash; you never need to restart the editor after plugging in a synth or
+            starting an emulator server.
+          </p>
+          <ul>
+            <li><strong>Single-open ownership:</strong> one process owns a synth. A device claimed by another plugin instance, another DAW, or a standalone app cannot be selected until it is released. Two Virux tracks can each own a different synth (for example one USB Virus and one OsTIrus instance) at the same time.</li>
+            <li><strong>Sync-agent handoff:</strong> the background patch-sync agent hands the synth over to a foreground plugin automatically, so its temporary ownership can never lock you out of your own hardware.</li>
+            <li><strong>Availability checks:</strong> a USB entry is enabled when the device enumerates and its control interface can be accessed without seizing it from another owner &mdash; driver and permission failures disable the entry with help available.</li>
+          </ul>
+
+          <h3 id="devices-release">Release USB &amp; Reconnect</h3>
+          <p>
+            <span class="menu-path">Config &rsaquo; System Info &rsaquo; Device &rsaquo; Release USB</span>
+            stops audio capture and MIDI, cancels any patch sweep in progress, and closes Virux's
+            USB interfaces so other compatible software can use the synth. The editor and your
+            saved project remain fully available. Choose <strong>Reconnect</strong> in the same
+            menu to take the synth back.
+          </p>
+          <ul>
+            <li>The preference applies to that synth across all Virux instances <em>and</em> the background sync agent, and survives closing the DAW or unplugging the synth.</li>
+            <li>It follows the device key &mdash; normally the USB port. Moving the synth to a different port gives it a new key, so the release no longer applies.</li>
+            <li>Reconnect is always explicit; loading a project does not silently clear a release.</li>
+            <li>On macOS, releasing makes the vendor interfaces available to other software; it does not install a MIDI driver. On Windows, it does not change the installed USB driver &mdash; see <a href="#windows">Windows Drivers</a> for switching drivers.</li>
+          </ul>
+
+          <h3 id="devices-patchsync">Patch Sync</h3>
+          <p>
+            <strong>Patch Sync</strong> is a global switch on the Config page's System Info card.
+            When it is on, Virux reads the synth's RAM and ROM banks into the browser (a
+            &ldquo;sweep&rdquo;) when a device first connects, and keeps the editor and hardware in
+            step from then on. When it is off, no sweep ever starts and the browser shows no device
+            banks &mdash; but storing a patch to a RAM slot still works (unsynced occupants are
+            marked <em>&ldquo;(not synced)&rdquo;</em>).
+          </p>
+          <ul>
+            <li>Turning the switch on starts a fresh live RAM read immediately.</li>
+            <li><strong>Refresh patches from synth&hellip;</strong> in a device bank's context menu forces a new live read of the hardware banks at any time (offered when a sweep could start, never mid-sweep, never with Patch Sync off).</li>
+            <li>Installers can preset the switch: the Windows MSI has a <em>&ldquo;Sync patches from a connected Virus after install&rdquo;</em> checkbox (silent installs: <code>VIRUX_PATCH_SYNC=0</code>), and the Linux installer accepts <code>--no-sync</code>.</li>
+          </ul>
+        </section>
+
+        <section id="ostirus">
+          <h2><span class="h2-label">// 4</span>OsTIrus Integration (Emulated Virus)</h2>
+          <p>
+            Virux can control an <strong>emulated Virus TI, TI2, or Snow</strong> through The Usual
+            Suspects' <strong>DSP Bridge</strong>. MIDI, parameter edits, patch transfer, and all
+            three stereo audio returns use the same session and the same editor as a USB Virus
+            &mdash; the emulator simply appears as another entry in the Device menu. No hardware
+            required.
+          </p>
+          <div class="callout warn">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <p>Virux does not bundle or redistribute the emulator or any firmware. You need the DSP Bridge <strong>server</strong> running (installing the OsTIrus instrument plugin alone is not enough) and your own original TI <code>firmware.bin</code> or a compatible ROM.</p>
+          </div>
+
+          <h3 id="ostirus-setup">Setup</h3>
+          <ol>
+            <li>Download the <strong>DSP Bridge 2.2.25 server package</strong> for your OS from <a href="https://theusualsuspects.io/" target="_blank" rel="noopener">The Usual Suspects</a> or the <a href="https://github.com/dsp56300/gearmulator/releases/tag/2.2.25" target="_blank" rel="noopener">2.2.25 release on GitHub</a>. Extract the complete package and keep its OsTIrus server plugin with it.</li>
+            <li>Start <code>dsp56300EmuServer</code> and keep it running. The default connection is <code>127.0.0.1:56362</code>; allow that local connection if a firewall blocks it. The <a href="https://theusualsuspects.io/docs/dsp-bridge" target="_blank" rel="noopener">official server guide</a> covers platform install locations and server configuration.</li>
+            <li>In Virux, open <span class="menu-path">Config &rsaquo; System Info &rsaquo; Device &rsaquo; Add OsTIrus&hellip;</span> and select your original TI <code>firmware.bin</code> or a compatible ROM. This creates a <strong>TI2</strong> instance by default.</li>
+            <li>Use a <strong>44.1 or 48&nbsp;kHz</strong> project. Wait for the firmware to boot &mdash; a cold boot can take several seconds &mdash; then select the OsTIrus entry in the Device menu.</li>
+          </ol>
+          <h4>Automatic firmware discovery</h4>
+          <p>
+            When no explicit configuration exists, Virux looks for <code>.bin</code> and
+            <code>.rom</code> files in <code>Documents/The&nbsp;Usual&nbsp;Suspects/OsTIrus</code>
+            in your home directory (also <code>~/.local/share/The Usual Suspects/OsTIrus</code> on
+            Linux) and in the standard Access firmware directory on Windows and macOS. Any other
+            location can be chosen through <strong>Add OsTIrus&hellip;</strong>. (Setting a
+            <code>VIRUX_DATA_DIR</code> override disables the automatic search, which keeps
+            portable installations isolated.)
+          </p>
+
+          <h3 id="ostirus-config">Configurations, models &amp; remote servers</h3>
+          <p>
+            Each firmware selection creates a small UTF-8 configuration file in the Virux data
+            directory's <code>ostirus/</code> folder, named by an ID such as <code>1.cfg</code>.
+            Close any Virux instances using a configuration before editing it by hand:
+          </p>
+          <pre><code>rom=C:/Synths/Virus/firmware.bin
+host=127.0.0.1
+port=56362
+version=20225
+model=5</code></pre>
+          <table>
+            <tr><th>Key</th><th>Meaning</th></tr>
+            <tr><td><code>rom</code></td><td>Absolute path to the firmware file.</td></tr>
+            <tr><td><code>host</code> / <code>port</code></td><td>The DSP Bridge server. Only <code>localhost</code> or a numeric IPv4 address is accepted.</td></tr>
+            <tr><td><code>version</code></td><td>Must match the installed server plugin (<code>20225</code> for DSP Bridge 2.2.25).</td></tr>
+            <tr><td><code>model</code></td><td><code>3</code> = Snow, <code>4</code> = TI, <code>5</code> = TI2.</td></tr>
+          </table>
+          <ul>
+            <li><strong>Multiple instances:</strong> add separate configurations to run independent emulated synths side by side. Each configuration has a stable <code>ostirus-ID</code> key that is saved with your project and belongs to one Virux instance in a process.</li>
+            <li><strong>Shared ownership rules:</strong> USB devices and OsTIrus configurations share the same Device menu and the same single-owner rules &mdash; two tracks can control a USB Virus and an emulator simultaneously, but neither can steal the other's synth.</li>
+            <li><strong>Remote servers:</strong> the server can run on another machine on your LAN. The server must be trusted &mdash; your firmware is sent to it when its cache is empty &mdash; and a wired network is recommended for remote audio.</li>
+            <li><strong>Project recall:</strong> if a saved OsTIrus configuration is still booting when a project opens, Virux falls back to USB automatically and returns to the emulator once it is ready and free. An explicit Device-menu choice always takes precedence over the saved preference.</li>
+          </ul>
+
+          <h3 id="ostirus-behavior">Behavior &amp; limits</h3>
+          <ul>
+            <li><strong>Audio:</strong> the main and auxiliary buses carry USB1, USB2, and USB3. Snow's different channel layout is mapped automatically. Analog output destinations are not captured &mdash; route parts to the USB outputs.</li>
+            <li><strong>MIDI &amp; patches:</strong> notes, parameter edits, and patch replies travel over the bridge exactly as they would over USB.</li>
+            <li><strong>Not available on emulators:</strong> Hardware Link, physical USB I/O configuration, and the hardware RAM/ROM bank sweep. Import preset banks into Virux instead.</li>
+            <li><strong>Real-time only:</strong> processing is paced in real time, like the physical USB backend. Use real-time export; faster-than-real-time offline rendering is not supported.</li>
+            <li><strong>Crash recovery:</strong> if the server fails, Virux reconnects and restores its latest periodic synth snapshot. Up to one second of changes made just before the disconnection may be lost; project save and recall always use Virux's own editor document.</li>
+            <li><strong>Audio-thread safety:</strong> firmware loading, hashing, networking, and discovery probes all run outside the audio callback, so an emulator that is booting or unreachable never glitches your session.</li>
+          </ul>
+
+          <h3 id="ostirus-troubleshooting">Availability &amp; troubleshooting</h3>
+          <p>
+            A configured emulator stays greyed out in the Device menu until its server accepts the
+            plugin version, boots the firmware, reports a supported audio format, and supplies a
+            valid audio block &mdash; installing files alone does not mark it ready. Failed probes
+            retry automatically and the menu repaints as soon as the emulator becomes usable.
+          </p>
+          <ul>
+            <li><strong>OsTIrus help</strong> is built into the editor (in the Device menu, and shown automatically whenever no backend can be used). It works offline and includes a firmware selector and the <em>current failure reason</em> &mdash; check it first.</li>
+            <li>Emulator never becomes selectable: confirm <code>dsp56300EmuServer</code> is running and reachable on the configured host/port, the firewall allows the connection, and the <code>version</code> in the configuration matches the installed server.</li>
+            <li>Instance boots but stays silent: confirm the project runs at 44.1 or 48&nbsp;kHz and the part's output routes to USB1&ndash;USB3, not an analog destination.</li>
+            <li>A cold firmware boot takes several seconds; the entry enables itself when the emulator is ready.</li>
+          </ul>
+        </section>
+
+        <section id="editor">
+          <h2><span class="h2-label">// 5</span>The Editor</h2>
+          <p>
+            The editor is the original Virus control surface &mdash; oscillators, filters,
+            envelopes, LFOs, the modulation matrix, arpeggiator, effects, and the multi/part
+            pages &mdash; built from the documented Access parameter model. Every knob edit is sent
+            straight to the synth (hardware or emulated), and the patch state saves with your
+            project.
+          </p>
+
+          <h3 id="editor-osc-pages">Oscillator pages</h3>
+          <ul>
+            <li>The oscillator page provides <strong>named wave selection</strong> and a position readout for Wavetable, Wave PWM, Grain Simple/Complex, and Formant Simple/Complex oscillators.</li>
+            <li><strong>Classic</strong> oscillators use the hardware's own spectral-wave names: Sine, Triangle, Wave&nbsp;3&ndash;64. The wave selector always draws the selected contour, while the main preview follows the <strong>Shape</strong> knob as it blends spectral wave &rarr; saw &rarr; pulse (and follows pulse width).</li>
+            <li>The <strong>Sub Osc</strong> square/triangle buttons choose the separate sub-oscillator's waveform &mdash; they are not Shape's destination.</li>
+            <li><strong>HyperSaw</strong> has rotary density and local-detune controls plus one central X-Sync dial; its preview follows density and detune.</li>
+            <li><strong>Wavetable</strong> oscillators show an honest position marker (&ldquo;Position N&nbsp;/&nbsp;127&rdquo;) instead of an invented waveform. All previews are illustrative displays driven by the parameters, not captured hardware audio.</li>
+          </ul>
+
+          <h3 id="editor-browser">Preset browser &amp; bank editing</h3>
+          <ul>
+            <li>The browser shows synced device banks (RAM/ROM) and your local banks in two panes, with program numbers and category tags.</li>
+            <li><strong>Drag to rearrange:</strong> drag a patch within an editable bank to move it to the destination row, or onto empty space to move it to the end &mdash; this works even when both panes show the same bank. Dragging between different banks <strong>copies</strong> the patch.</li>
+            <li>Moving preserves every patch and the occupied program slots, switches the bank's panes to program order, and supports <strong>Undo last bank edit</strong>, MIDI export, and project recall.</li>
+            <li><strong>Duplicate device banks</strong> for local editing: rearranging a draft never writes the hardware banks or overwrites source files.</li>
+            <li>Storing a patch to a RAM slot offers all four RAM banks, even while Patch Sync is off.</li>
+          </ul>
+
+          <h3 id="editor-live-hwlink">Live Mode &amp; Hardware Link</h3>
+          <ul>
+            <li><strong>Live Mode</strong> is a send gate: while engaged, knob movements update the editor without sending parameter changes to the synth. The button sits immediately left of Hardware Link. (If knobs seem to do nothing on the hardware, check this first.)</li>
+            <li><strong>Hardware Link (HW Link)</strong> puts the synth's own panel and the editor in step for hands-on editing. While HW Link is engaged, notes and controllers from a keyboard plugged into the Virus's DIN <strong>MIDI IN</strong> are forwarded back to the synth &mdash; channels, sustain, pitch bend, pressure, program changes and all &mdash; so an external controller keeps playing in remote mode without DAW monitoring.</li>
+            <li>Loading a preset onto a part first sends Sustain Off, All Sound Off, and All Notes Off on that part's channel (the same sequence as PANIC), so held voices can't survive a patch change. Other parts are unaffected.</li>
+          </ul>
+        </section>
+
+        <section id="studio">
+          <h2><span class="h2-label">// 6</span>Studio Tools</h2>
+          <p>
+            Open <strong>Studio</strong> in the editor's bottom bar. Studio edits the current edit
+            buffer &mdash; it never stores changes into the synth's RAM banks by itself. History,
+            checkpoints, morph corners, macro routes, and MIDI assignments are all saved in your
+            project state.
+          </p>
+          <ul>
+            <li><strong>History:</strong> grouped undo/redo, up to 32 named checkpoints, parameter comparisons, and restoration of one parameter, a section, or a whole patch. Loading a patch and renaming a loaded patch can also be undone.</li>
+            <li><strong>Mutate:</strong> pick parameter groups and an intensity, generate a bounded variation, then undo it or keep a checkpoint. Modes, hardware configuration, routing, and locked sections/parts are protected from mutation.</li>
+            <li><strong>Morph:</strong> capture A/B for a slider or A/B/C/D for an XY pad, choose groups and a curve, and sweep between captured sounds. Discrete modes stay fixed unless midpoint switching is enabled.</li>
+            <li><strong>Macros:</strong> eight named controls, each with up to 16 destinations across parts. Every route has two endpoints (reversed ranges included) and a curve. Studio/Macro 1&ndash;8 are exposed to host automation, and <strong>MIDI Learn</strong> binds a channel and CC per macro (matching CCs are consumed; everything else passes through).</li>
+            <li><strong>Modulation inspector:</strong> search the matrix, fixed LFO, filter-envelope, velocity, key-follow, and macro routes by source or destination, and edit amounts in place. These are configured routes, not live signal measurements.</li>
+          </ul>
+
+          <h3 id="studio-text">Text presets (.vxp.txt)</h3>
+          <p>
+            Load a patch, then choose <strong>Export patch text</strong>. The <code>.vxp.txt</code>
+            file is a versioned, human-readable UTF-8 format with stable ordering and no
+            timestamps &mdash; ideal for diffing, sharing, and version control:
+          </p>
+          <pre><code>virux-patch 1
+data_size = 512
+name = "Warm Pad  "
+
+[parameters]
+"Filter 1/Cutoff" = 64 # display label</code></pre>
+          <p>
+            A complete file also carries every remaining payload byte (including unmodeled bytes in
+            a <code>[bytes]</code> section), so nothing is lost round-tripping.
+            <strong>Import patch text</strong> validates the whole file before changing anything:
+            unknown parameters, duplicate coordinates, unsupported versions, incomplete payloads,
+            and out-of-range values are rejected. A checkpoint is saved before import when space is
+            available, and import participates in undo history. A text preset contains one synth
+            patch &mdash; not the Studio workspace or its cross-part macros.
+          </p>
+
+          <h3 id="studio-share">Share Preset (GitHub)</h3>
+          <ol>
+            <li>Install the <a href="https://cli.github.com/" target="_blank" rel="noopener">GitHub CLI</a> if needed, then choose <strong>Connect</strong> to discover signed-in github.com accounts &mdash; or <strong>Sign in / add account</strong> to run GitHub CLI's browser sign-in from inside Virux.</li>
+            <li>Choose <strong>Unlisted Gist</strong>, <strong>Public Gist</strong>, or <strong>Repository</strong>. For repositories, Virux lists your writable, non-archived repos and their default branches.</li>
+            <li><strong>Capture current patch</strong>, review the captured text, pick a filename, and <strong>Publish captured preset</strong>. Later edits don't change the captured text &mdash; capture again to include them.</li>
+            <li>Open the returned GitHub URL. Publishing to a repository creates a new file on the shown branch; an existing filename produces an error rather than an overwrite.</li>
+          </ol>
+          <p>
+            Unlisted Gists are readable by anyone with the link. Credentials are managed by GitHub
+            CLI; Virux holds a selected credential only in memory and never writes it into preset
+            files or project state. Note that sandboxed macOS hosts may block external CLI
+            execution &mdash; use a permitted standalone/VST3 host, or export the text file instead.
+          </p>
+
+          <h3 id="studio-assistant">Patch Assistant (Codex / Claude)</h3>
+          <p>
+            <span class="menu-path">Studio &rsaquo; Assistant</span> connects the editor to the
+            installed <a href="https://developers.openai.com/codex/cli/" target="_blank" rel="noopener">Codex CLI</a>
+            or <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Claude Code</a>,
+            using that provider's own account and credentials (provider usage limits and billing
+            apply). Install a current CLI via <strong>Install / help</strong>, then
+            <strong>Connect</strong> to use an existing login or <strong>Sign in</strong> to
+            authenticate. If your host can't complete a browser flow, run <code>codex login</code>
+            or <code>claude auth login</code> in a terminal first.
+          </p>
+          <ol>
+            <li>Load a patch &mdash; its current edits and complete text representation are the starting point. Start from an initialized patch to build a sound from scratch.</li>
+            <li>Choose <strong>Ask about patch</strong> for questions (&ldquo;Why does this have such a sharp attack?&rdquo;) or <strong>Create / edit patch</strong> for an idea (&ldquo;Make a warm evolving pad with a slow attack and subtle chorus&rdquo;).</li>
+            <li>Enter your request and <strong>Send</strong>. This sends the current patch text, parameter reference, and recent chat to the selected provider.</li>
+            <li><strong>Review changes</strong> shows old and new parameter values side by side; <strong>Apply proposal</strong> edits only the captured part. A changed part/patch or a locked parameter prevents the whole apply.</li>
+            <li><strong>Undo</strong> restores the previous edit, and a &ldquo;Before assistant&rdquo; checkpoint is saved when space allows. Use text export or Share Preset afterwards to keep the result.</li>
+          </ol>
+          <p>
+            Safety rails: Ask mode can never apply changes; generated edits must name valid sound
+            parameters with in-range integer values; device, session, and routing controls are
+            rejected; responses never write to the synth or hardware RAM automatically. The
+            assistant sees parameter data, not audio. Conversations and pending proposals live in
+            memory only and are excluded from preset exports and project state, as are credentials.
+            The provider CLIs run locked down &mdash; read-only, with shell, web, and tools
+            disabled. Apply is unavailable in Live Mode or while USB ownership is released.
+          </p>
+        </section>
+
+        <section id="standalone">
+          <h2><span class="h2-label">// 7</span>Standalone Apps &amp; OSC Remote Control</h2>
+          <p>
+            The standalone apps are the full editor without a DAW. Each binds the synth, runs patch
+            sync and Hardware Link, and plays the synth's USB audio return through a chosen monitor
+            output (Core Audio on macOS, WASAPI on Windows, ALSA on Linux). A bottom-drawer
+            <strong>piano keyboard</strong> (macOS/Windows: <span class="menu-path">View &rsaquo; Piano Keyboard</span>,
+            Ctrl/⌘+K) offers per-part channel buttons &mdash; tracking the connected model's part
+            count, so a Snow shows channels 1&ndash;4 &mdash; and an octave slider; the selection
+            persists across launches. On Linux, a missing or failing audio device drops the app to
+            an internal clock instead of ending the session, so MIDI, OSC, and edits keep working.
+          </p>
+
+          <h3>Enabling the OSC server</h3>
+          <p>
+            The standalones (<em>not</em> the plugins) can run an OSC server so TouchOSC, Max/MSP,
+            Pd, SuperCollider, or your own scripts can set any synth parameter and play notes over
+            the network. It is <strong>off by default</strong> and receive-only (no OSC feedback is
+            sent).
+          </p>
+          <ul>
+            <li><strong>macOS:</strong> <span class="menu-path">Virux &rsaquo; Settings&hellip;</span> (⌘,) &mdash; toggle <em>Enable OSC server</em> and pick a UDP port (1024&ndash;65535, default <strong>9000</strong>).</li>
+            <li><strong>Windows:</strong> <span class="menu-path">File &rsaquo; Settings&hellip;</span> (Ctrl+,) &mdash; the same switch, port field, status dot, and activity line, plus the monitor-output picker.</li>
+            <li><strong>Linux:</strong> start with the <code>--osc</code> flag.</li>
+          </ul>
+          <p>
+            The status dot shows green with &ldquo;Listening on UDP port N&rdquo; when live, and the
+            line under it echoes the last message handled &mdash; the quickest way to verify a
+            controller mapping. Transport is OSC 1.0 over UDP, one packet per datagram; bundles are
+            dispatched on arrival, ints and floats are interchangeable (TouchOSC's floats just
+            work), and address wildcards are not supported.
+          </p>
+
+          <h3 id="osc-params">Parameters</h3>
+          <pre><code>/param/&lt;Section&gt;/&lt;Name&gt; &lt;value&gt;            set on the editor's current part
+/param/&lt;Section&gt;/&lt;Name&gt; &lt;part&gt; &lt;value&gt;     set on part 1&ndash;16</code></pre>
+          <ul>
+            <li>Addresses are the <code>Section/Name</code> paths from the Access parameter database with spaces replaced by <code>_</code>, matched case-insensitively: <code>Filter 1 / Cutoff</code> &rarr; <code>/param/Filter_1/Cutoff</code>. All 587 addresses with their ranges are one click away: the Settings pane's <strong>Copy Full Address List</strong> button puts the list on the clipboard.</li>
+            <li><strong>Integers</strong> are raw device values, clamped to the parameter's range (e.g. <code>Oscillator_1/Semitone</code> is 16&ndash;112 with 64 = center &mdash; the hardware's own numbers).</li>
+            <li><strong>Floats in 0.0&ndash;1.0</strong> are normalized across the range: <code>0.5</code> on Semitone &rarr; 64. Floats outside 0&ndash;1 are treated as raw values and rounded.</li>
+            <li>Parameter messages drive the on-screen editor &mdash; knobs move, and the change reaches the synth through the same path a GUI edit takes. Without a part argument the message targets the focused part.</li>
+          </ul>
+
+          <h3 id="osc-midi">MIDI notes, audio output &amp; recovery</h3>
+          <pre><code>/midi/noteon  &lt;ch&gt; &lt;note&gt; [vel]     ch 1&ndash;16, note 0&ndash;127, vel 0&ndash;127 (default 100)
+/midi/noteoff &lt;ch&gt; &lt;note&gt; [vel]
+/midi/note    &lt;ch&gt; &lt;note&gt; &lt;vel&gt;     vel 0 acts as note off
+/midi/&lt;ch&gt;/noteon  &lt;note&gt; [vel]     channel-in-address variants</code></pre>
+          <p>
+            Channels map to multi parts one-to-one (part N listens on channel N; the app re-asserts
+            this routing on connect and after preset loads). OSC-triggered notes feed the per-part
+            activity meters just like the on-screen keyboard.
+          </p>
+          <pre><code>/audio/output &lt;name|index|automatic&gt;   switch the monitor output (substring match ok)
+/audio/reroute                          re-assert per-part USB routing on all 16 parts
+/audio/reboot                           full USB audio reboot (blocking seconds of USB I/O)</code></pre>
+          <ul>
+            <li><code>/audio/output</code> re-enumerates devices on every message, so hot-plugged interfaces are addressable; the choice persists across launches and reboots.</li>
+            <li>If the USB audio return goes silent mid-set (loading a patch overwrites that part's Output Select), try <code>/audio/reroute</code> first; escalate to <code>/audio/reboot</code> only if the return stays at the noise floor. The app also detects and runs this recovery itself. Recovery commands are paced to one every 30&nbsp;seconds, since the port is unauthenticated UDP.</li>
+            <li>Every handled or rejected message is mirrored to the log with the reason for rejection. macOS: <code>log stream --predicate 'subsystem == "com.alephvoid.virux" AND category == "osc"'</code>. Windows: <code>%TEMP%\virux.log</code>, prefixed <code>[osc]</code>. The first Windows launch may raise a firewall prompt &mdash; allow it for controllers on other machines (localhost is never blocked).</li>
+          </ul>
+        </section>
+
+        <section id="windows">
+          <h2><span class="h2-label">// 8</span>Windows Drivers</h2>
+          <p>
+            On Windows, Virux talks to the synth through its own WinUSB driver, and the original
+            Access Virus TI driver claims the same device. <strong>Ownership is exclusive:</strong>
+            the two driver stacks cannot be installed for the synth at the same time, and Virux
+            will never force a live driver replacement while the Access driver is bound &mdash;
+            doing so can crash Windows.
+          </p>
+          <h3>Moving from the Access driver to Virux</h3>
+          <ol>
+            <li>Close all DAWs and Virus Control applications.</li>
+            <li>Disconnect every Virus USB cable.</li>
+            <li>Run the Virux Windows MSI and select <strong>Uninstall original driver</strong>. (Silent installs: pass <code>VIRUX_REMOVE_ORIGINAL_DRIVER=1</code>.)</li>
+            <li>Restart Windows, then reconnect the Virus, open Virux, and choose <strong>Install Virus USB driver</strong>.</li>
+          </ol>
+          <p>
+            The removal option appears whenever original driver components are detected, requires
+            all Virus devices to be disconnected, and removes the original USB/audio/MIDI driver
+            packages, services, and ASIO registrations &mdash; leaving Microsoft and unrelated
+            drivers untouched. The restart is mandatory; the installer refuses further driver
+            changes until Windows has rebooted. Your Virus Control patches are not touched.
+          </p>
+          <h3>Switching back to the Access driver</h3>
+          <p>
+            <span class="menu-path">Config &rsaquo; System Info &rsaquo; Switch to Access driver&hellip;</span>
+            runs the reverse migration. Disconnect every Virus USB cable first. The helper stops and
+            disables Virux Patch Sync, removes Virux's WinUSB packages and stale device entries, and
+            reports any cleanup failure. Success means the WinUSB cleanup finished &mdash; then
+            close Virux and all DAWs, install or repair the Access Virus TI software, and restart
+            Windows before reconnecting. Returning to Virux later requires the migration above
+            again.
+          </p>
+          <div class="callout warn">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <p>Never bypass the conflict guard by forcing a driver replacement with another tool while a Virus device is bound to the Access driver. <strong>Release USB</strong> only releases Virux's handles &mdash; it does not change which Windows driver is installed.</p>
+          </div>
+        </section>
+
+        <section id="licensing">
+          <h2><span class="h2-label">// 9</span>Licensing (Aleph Void store VST3)</h2>
+          <p>
+            VST3 builds purchased from the <a href="https://store.alephvoid.com/l/virux-vst3" target="_blank" rel="noopener">Aleph Void store</a> (Gumroad)
+            use a license key; Mac App Store and Google Play builds are licensed by their stores and
+            need none of this. Your key is shown on the Gumroad receipt/download page.
+          </p>
+          <ol>
+            <li>Install the downloaded <code>.vst3</code> (the installer does this, or unzip into <code>C:\Program Files\Common Files\VST3\</code> on Windows / <code>/Library/Audio/Plug-Ins/VST3/</code> on macOS).</li>
+            <li>Place the license-key string in a plain-text <code>license.key</code> file (the installer can write it for you):</li>
+          </ol>
+          <table>
+            <tr><th>OS</th><th>Path</th></tr>
+            <tr><td>Windows</td><td><code>%APPDATA%\Virux\license.key</code></td></tr>
+            <tr><td>macOS</td><td><code>~/Library/Application Support/Virux/license.key</code></td></tr>
+            <tr><td>Linux</td><td><code>$XDG_DATA_HOME/Virux/license.key</code> (else <code>~/.local/share/Virux/license.key</code>)</td></tr>
+          </table>
+          <p>
+            On first launch the plugin verifies the key online against the store, then writes a
+            machine-bound cache next to it. After that, launches are <strong>offline</strong>: the
+            cache is trusted for its re-check window (default 7&nbsp;days), then re-verified online;
+            if the store is unreachable at re-check time, the cache is honored for a further grace
+            period (default 14&nbsp;days). An invalid license (no key, refunded, or disputed
+            purchase) keeps the editor from opening the synth and the audio path emits silence.
+          </p>
+        </section>
+
+        <section id="troubleshooting">
+          <h2><span class="h2-label">// 10</span>Troubleshooting</h2>
+          <ul>
+            <li><strong>Knobs move but the synth doesn't change:</strong> check <strong>Live Mode</strong> &mdash; it gates every parameter send while the GUI looks normal. Its button is immediately left of Hardware Link.</li>
+            <li><strong>Can't select the synth:</strong> another process owns it &mdash; a second DAW, a standalone app, or another plugin instance. Close the other owner, or check whether <strong>Release USB</strong> is active for that device (<span class="menu-path">Config &rsaquo; System Info &rsaquo; Device &rsaquo; Reconnect</span>).</li>
+            <li><strong>No audio return, notes still sounding:</strong> a patch load can overwrite a part's Output Select. Re-route the part to USB1&nbsp;L+R, or in a standalone send <code>/audio/reroute</code>; the apps also detect and repair this themselves.</li>
+            <li><strong>No device banks in the browser:</strong> Patch Sync is off (Config page, System Info card), or the first sweep hasn't completed. Use <strong>Refresh patches from synth&hellip;</strong> on a device bank to force a live read.</li>
+            <li><strong>Wrong or no sample rate:</strong> run the host at 44.1 or 48&nbsp;kHz &mdash; Virux performs no sample-rate conversion.</li>
+            <li><strong>Emulator trouble:</strong> see <a href="#ostirus-troubleshooting">OsTIrus troubleshooting</a>; the built-in OsTIrus help page shows the current failure reason.</li>
+            <li><strong>Help pages:</strong> USB help and OsTIrus help are built into the editor and work offline; both appear automatically whenever no backend can be used.</li>
+          </ul>
+          <p>
+            Still stuck? Open an issue on the
+            <a href="https://github.com/aleph-void/virux.alephvoid.com/issues" target="_blank" rel="noopener">GitHub tracker</a>
+            or email via the <a href="support.html">Support page</a> &mdash; include your hardware
+            model, OS version, host/DAW, Virux version, and steps to reproduce.
+          </p>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img class="footer-logo" src="assets/img/app-icon.png" alt="Aleph Virux" />
+          <span>Aleph Virux</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="manual.html">Manual</a>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="support.html">Support</a>
+          <a href="release-notes/">Release Notes</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/aleph-void/virux.alephvoid.com/issues" target="_blank" rel="noopener">Report a Bug</a>
+          <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void</a>
+        </div>
+        <p class="footer-copy">Created by <a href="https://alephvoid.com" target="_blank" rel="noopener">Aleph Void LLC</a>. &copy; 2026 Aleph Virux. Access and Virus are trademarks of their respective owners; Aleph Virux is an independent, unaffiliated project. OsTIrus and DSP Bridge are projects of The Usual Suspects; Virux does not bundle or redistribute the emulator or any firmware.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
