@@ -1,0 +1,17 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.112",
+  "toVersion": "0.1.113",
+  "generated": "2026-10-13",
+  "releases": [
+    {
+      "version": "0.1.113",
+      "date": "2026-10-13",
+      "changes": [
+        "OsTIrus: Virux can now control an emulated Virus TI, TI2 or Snow through The Usual Suspects' DSP Bridge (server 2.2.25). Choose Config - System Info - Device - Add OsTIrus... and select your own original TI firmware.bin - no firmware ships with Virux. MIDI, parameter edits, patch transfer and all three stereo audio returns use the same session and editor as a USB Virus; multiple independent emulated synths are supported via per-instance configurations. Hardware-only features (Hardware Link, physical USB I/O configuration, the RAM/ROM bank sweep) stay unavailable for emulators, processing is paced in real time, and built-in offline USB and OsTIrus help pages appear whenever no backend can be used.",
+        "OsTIrus: USB synths and emulator configurations share the same Device menu and ownership rules, so two Virux tracks can control a USB Virus and an OsTIrus instance (or several independent emulators) at the same time - neither track can take the synth owned by the other. A saved OsTIrus configuration that is still booting when a project opens gets an automatic USB fallback, and the track returns to its preferred emulator once it is ready and free; an explicit pick in the Device menu always takes precedence. A host sample-rate change now just retires the old audio stream instead of being treated as a reconnect, so routing and presets are no longer replayed, and session health waits for the requested rate and keeps the connection identity through brief unavailability."
+      ]
+    }
+  ]
+}
