@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.112 - 0.1.113)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.112 &ndash; 0.1.113</p>
+      <section class="release">
+        <h2>v0.1.113 <span class="date">2026-10-13</span></h2>
+        <ul>
+        <li>OsTIrus: Virux can now control an emulated Virus TI, TI2 or Snow through The Usual Suspects' DSP Bridge (server 2.2.25). Choose Config - System Info - Device - Add OsTIrus... and select your own original TI firmware.bin - no firmware ships with Virux. MIDI, parameter edits, patch transfer and all three stereo audio returns use the same session and editor as a USB Virus; multiple independent emulated synths are supported via per-instance configurations. Hardware-only features (Hardware Link, physical USB I/O configuration, the RAM/ROM bank sweep) stay unavailable for emulators, processing is paced in real time, and built-in offline USB and OsTIrus help pages appear whenever no backend can be used.</li>
+        <li>OsTIrus: USB synths and emulator configurations share the same Device menu and ownership rules, so two Virux tracks can control a USB Virus and an OsTIrus instance (or several independent emulators) at the same time - neither track can take the synth owned by the other. A saved OsTIrus configuration that is still booting when a project opens gets an automatic USB fallback, and the track returns to its preferred emulator once it is ready and free; an explicit pick in the Device menu always takes precedence. A host sample-rate change now just retires the old audio stream instead of being treated as a reconnect, so routing and presets are no longer replayed, and session health waits for the requested rate and keeps the connection identity through brief unavailability.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
