@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.113 - 0.1.114)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.113 &ndash; 0.1.114</p>
+      <section class="release">
+        <h2>v0.1.114 <span class="date">2026-10-15</span></h2>
+        <ul>
+        <li>Editor: a refreshed interface. The editor now opens on an Overview page, with persistent navigation that follows the sound-design workflow: oscillators, filters and envelopes, LFOs, modulation, arpeggiator, effects and performance. Focused tabs keep complex engines manageable, the patch inspector stays at the top, and a bottom ribbon selects parts and shows their levels. Section locks take a single click, and Help &gt; Section locks... exposes every lock group. The library offers separate Browse and Organize banks views, including bank-to-bank drag and drop.</li>
+        <li>Editor: Classic Mode. Switch to Classic Mode restores the original layout; in Classic Mode, Use refreshed interface in the upper left switches back, and the Help menu also offers the switch. The choice is remembered across launches and plugin formats, independently of songs. Switching keeps the selected part, patch, parameters and locks and sends nothing to the synth. Both interfaces share the same parameter model, host automation, patch formats, native dialogs and scalable 907x513 frame.</li>
+        <li>Accessibility: keyboard access to the main editor. Tab and Shift+Tab move through visible controls in visual order, Enter and Space activate buttons and menus, arrow keys adjust knobs and sliders by one step and Home/End jump to the parameter limits, and Enter or Shift+F10 opens a parameter's default/revert/lock menu. Enter renames a patch without a double click. A black-and-white outline marks the focused control in both layouts, and controls hidden or behind a modal overlay cannot take keyboard actions. In the library, arrow keys on the patch list load adjacent presets, Import, Export, bank scope and previous/next have their own tab stops, and Shift+F10 opens bank actions. License entry, cancellable sync, driver help and backend setup are keyboard reachable, and Escape dismisses backend help and Studio. On Linux, menus now support Up/Down, Home/End, Enter/Space and Escape. Also fixed: the license gate now blocks mouse-wheel edits behind it, backend help blocks underlying context menus, the macOS inline text field has its native focus ring back, and the OSC port field is labelled with its permitted range. Screen-reader support and full keyboard access to Studio are not finished yet.</li>
+        <li>Windows: Virux USB ASIO. A new ASIO driver, installed with the MSI, presents the synth to any ASIO host as six inputs (USB 1/2, 3/4 and 5/6, split like the VST3's buses) and two outputs feeding the synth's USB input pair. The outputs stream only after you enable them in the ASIO control panel. The driver owns the synth the way a plugin instance does, so a DAW using it cannot also drive that synth with the Virux plugin at the same time. It carries no MIDI and is 64-bit only; buffer sizes run from 64 to 2048 samples (256 preferred) at 44.1 kHz-family sample rates.</li>
+        <li>Audio: any host sample rate. Hosts running at 88.2, 96, 176.4 or 192 kHz (or any other rate) were previously refused. Virux now picks the synth rate the host rate is a multiple of and converts the USB audio return with a high-quality windowed-sinc resampler. Reported latency now reflects the actual capture rate plus the converter delay, and the VST3 announces the change to the host after activation.</li>
+        <li>Audio: host audio into the synth (VST3, Windows and Linux). A new stereo input bus, Audio In (USB In), off by default, sends the host's audio to the synth's USB input pair, converted to the synth's rate. Set the synth's Global USB IO Configuration to 2 to hear it. On macOS, the AUv3 and VST3 do not offer this input yet.</li>
+        <li>Hardware Link: knobs turned on the synth now reach the DAW. While Hardware Link is active, each panel parameter change is sent to the host as an output parameter change on the matching automation lane, so moves on the hardware record as automation. The host's echo of a published value is not sent back to the synth as a second edit.</li>
+        <li>Patch sync: ROM banks are now read from your own firmware.bin instead of being requested from the synth. ROM A to Z previously took 26 banks of 128 one-second requests on a first sync; Virux now decodes them directly from your original Access firmware image, using the saved firmware path or the Access installer locations and the image that matches your model (vti.bin, vti_2.bin or vti_snow.bin). An unidentified model is never guessed. No firmware ships with Virux.</li>
+        <li>Projects: import projects saved by the original Virus Control. Choose a .vstpreset, .fxp or .fxb (or a raw state chunk) in the import dialog; Virux files the project's part patches as a draft bank named Project &lt;name&gt;, loads every unlocked part, and restores each part's Output Select. Available in the macOS, Windows and Linux editors.</li>
+        <li>Session: steadier behavior with the hardware. After opening a session, Virux now waits 250 ms after the multi dump before sending the next message, since the synth drops the message that follows a multi dump while unpacking it. For 4 seconds after a fresh open or a restored project's part dumps, host note-ons are dropped instead of sounding up to 1.6 s late (the health line shows how many were held). Automation writes are capped at 250 per second with a burst allowance of 64 on top of per-parameter coalescing, because unthrottled floods can hang the synth's USB audio until a power cycle. The patch-sync sweep now pauses while you play, resuming 1.5 s after the last note-on, and progress shows Sync paused while you play.</li>
+        <li>Session: hanging-note guard. The plugin marks a synth while notes it sent may still be sounding and clears the mark with every panic. If a plugin quits or crashes without releasing its notes, the background sync agent releases them once nobody holds the synth and the mark is old enough.</li>
+        <li>Diagnostics: every text file in the diagnostics bundle is now scrubbed of your home folder path and account name before you send it.</li>
+        <li>virusctl: new backup command writes RAM A to D as .mid files and returns the synth to its local state. listen ... decode and panellisten now print MIDI traffic in plain English: notes, named CCs, parameter changes with their page, dumps with their names, requests and the ping. virusctl firmware rom fills the ROM cache from firmware.bin offline, and the firmware-only virusctl build compiles again.</li>
+        <li>Build: the macOS installer package is now named ViruxVST3-&lt;version&gt;-macos-universal.pkg. The release job verifies the signature of the Windows ASIO driver.</li>
+        <li>Testing: new regression coverage for the session pacing rules, the sample-rate converter (stop-band rejection pinned), host-rate selection and latency reporting, the USB input bus, ROM decoding from firmware.bin and firmware path discovery, the Virus Control project importer, panel-to-host parameter feedback, the hanging-note guard, diagnostics anonymization, traffic decoding, ASIO channel layout, buffer sizes, rates and clock scheduling, the refreshed workspace (every control in frame and unobstructed, Classic Mode switching) and editor keyboard navigation. Still manual: screen readers (VoiceOver, NVDA, Narrator, Orca) and DAW focus traversal, and the ASIO audio path and USB input on real hardware.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
