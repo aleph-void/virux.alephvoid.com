@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.115 - 0.1.116)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.115 &ndash; 0.1.116</p>
+      <section class="release">
+        <h2>v0.1.116 <span class="date">2026-10-16</span></h2>
+        <ul>
+        <li>Editor: choose the editor size (VST3). In hosts that allow plugin windows to be resized, Help &gt; Editor size... offers 75%, 100%, 125%, 150%, 175% or 200%, with the current size checked. The host decides whether to accept the new size, and the accepted size is remembered across editor opens and projects. Display scaling is applied separately, so the percentages are relative to the editor's native size on your screen. Available in the VST3 on macOS, Windows and Linux.</li>
+        <li>Hardware Link: the synth's physical master-volume knob keeps working. With Hardware Link engaged, the master knob could stop controlling the Virus, notably on a TI Desktop with parts routed to the analog outputs. Virux now keeps the knob assigned to the Virus (Volume&gt;Virus) when a session opens, when Hardware Link engages, on restore and on close, without ever changing the master level itself. Master-volume moves reported by the panel are passed through even with parts locked or Live Mode on, repeated values are not re-sent, and the level is never saved into patches or projects.</li>
+        <li>Testing: new regression coverage for the editor size options, the master-knob assignment in every session plan, and decoding of master-volume panel moves. The OsTIrus emulator suite is more reliable: the startup patch request now waits for the TI and TI2 to finish reloading their 16 parts, software LFO level checks measure only audio that was actually rendered (a busy runner no longer makes an unchanged level look too quiet), and a known crash in the emulator's Linux TI2 restore is retried once from a clean state. Still manual: the physical master knob on real hardware.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
