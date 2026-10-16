@@ -1,0 +1,18 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.115",
+  "toVersion": "0.1.116",
+  "generated": "2026-10-16",
+  "releases": [
+    {
+      "version": "0.1.116",
+      "date": "2026-10-16",
+      "changes": [
+        "Editor: choose the editor size (VST3). In hosts that allow plugin windows to be resized, Help > Editor size... offers 75%, 100%, 125%, 150%, 175% or 200%, with the current size checked. The host decides whether to accept the new size, and the accepted size is remembered across editor opens and projects. Display scaling is applied separately, so the percentages are relative to the editor's native size on your screen. Available in the VST3 on macOS, Windows and Linux.",
+        "Hardware Link: the synth's physical master-volume knob keeps working. With Hardware Link engaged, the master knob could stop controlling the Virus, notably on a TI Desktop with parts routed to the analog outputs. Virux now keeps the knob assigned to the Virus (Volume>Virus) when a session opens, when Hardware Link engages, on restore and on close, without ever changing the master level itself. Master-volume moves reported by the panel are passed through even with parts locked or Live Mode on, repeated values are not re-sent, and the level is never saved into patches or projects.",
+        "Testing: new regression coverage for the editor size options, the master-knob assignment in every session plan, and decoding of master-volume panel moves. The OsTIrus emulator suite is more reliable: the startup patch request now waits for the TI and TI2 to finish reloading their 16 parts, software LFO level checks measure only audio that was actually rendered (a busy runner no longer makes an unchanged level look too quiet), and a known crash in the emulator's Linux TI2 restore is retried once from a clean state. Still manual: the physical master knob on real hardware."
+      ]
+    }
+  ]
+}
