@@ -1,0 +1,22 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.114",
+  "toVersion": "0.1.115",
+  "generated": "2026-10-16",
+  "releases": [
+    {
+      "version": "0.1.115",
+      "date": "2026-10-15",
+      "changes": [
+        "Studio: Host LFOs. A new Studio > Host LFOs tab adds software LFOs driven by the host, on top of the synth's own. Add as many as you need per part (there is no fixed bank of slots), then rename, duplicate or delete them; a paged picker keeps long lists manageable. Host sync offers divisions from 4/1 to 1/32, including dotted and triplet values, and follows the host's musical position through seeks and loop wraps, waiting while transport is stopped. Free running covers 0.01 to 20 Hz and keeps moving while the host renders, even with transport stopped. Each LFO has a 0 to 359 degree phase offset.",
+        "Host LFOs: waveforms. Choose Sine, Triangle, Ramp up, Ramp down or Square, or draw your own: drawing on a built-in wave creates a custom copy, and dragging fills in the points between pointer positions. Custom waves have 64 points with smooth interpolation. Copy waveform, Rename wave and Delete wave manage each part's wave library; editing a wave updates every LFO using it, and deleting one switches its users to Sine.",
+        "Host LFOs: assignments. Each LFO can drive up to eight continuous sound parameters on its part. From and To set the destination range (reverse them to invert), and each route has a Linear, Smooth, Ease in or Ease out curve. A parameter belongs to one software LFO at a time. Part and section locks and Live Mode suppress the affected routes, and the Modulation inspector lists software LFO assignments alongside the synth's own. Modulation is never written back to host automation or the patch: stopping, disabling or removing an LFO restores the parameter's base value, and saving the current patch stores the base value rather than a momentary LFO position.",
+        "Host LFOs: saved with the patch. Text presets and preset banks now carry the part's software LFOs, its custom wave library and the LFO assignments, so a patch keeps its movement when shared. A preset whose LFO data is damaged is rejected rather than loaded as a different sound. The AUv3 and VST3 now read the host's tempo and musical position to drive host sync.",
+        "Host LFOs: smoother timing. Between host audio blocks, LFO movement is only predicted up to the end of the current block, so a late render callback no longer makes modulation run ahead and then jump back.",
+        "Editor: Aleph Void look for the refreshed interface. The refreshed layout now uses the Aleph Void palette (near-black surfaces with violet accents), Inter for body text and JetBrains Mono for section labels, and shows the Aleph Void mark. The fonts ship with Virux under the SIL Open Font License and are loaded privately, without touching your system or DAW font registry. Classic Mode keeps the original look and system fonts.",
+        "Testing: new regression coverage for the LFO engine (rate and division math, waveform interpolation, block-bounded timing), LFO preset encoding and validation, the Host LFOs editor workflow and the refreshed interface's fonts. The OsTIrus emulator suite now verifies live software LFO playback at 44.1 and 48 kHz on every model: host-synced readback and audible level changes including a backward seek, audible cycle counts at 60 and 120 BPM, a custom four-level waveform, free running with transport stopped, and base-value restoration when transport stops or a source is disabled or removed. The OsTIrus Linux job no longer intermittently crashes DSP Bridge during a model's cold boot."
+      ]
+    }
+  ]
+}
