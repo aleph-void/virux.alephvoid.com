@@ -116,39 +116,56 @@
 
       <!-- Plugin Mockup -->
       <div class="hero-visual">
-        <div class="plugin-mockup">
+        <div class="plugin-mockup" aria-hidden="true">
           <div class="plugin-header">
             <div class="plugin-dots"><span></span><span></span><span></span></div>
             <span class="plugin-title">Aleph Virux &middot; Virus TI Snow</span>
           </div>
-          <div class="plugin-tabs" aria-hidden="true">
-            <span>Osc</span><span>Filter</span><span class="active">LFO</span><span>Matrix</span><span>Arp</span><span>FX</span>
+          <div class="vx-app">
+            <nav class="vx-side">
+              <div class="vx-logo"><img src="assets/img/app-icon.png" alt="" /><span>VIRUX<small>// Aleph Void</small></span></div>
+              <span>Preset library</span>
+              <span>Overview</span>
+              <span class="active">Oscillators</span>
+              <span>Filters &amp; envelopes</span>
+              <span>LFOs</span>
+              <span>Modulation matrix</span>
+              <span>Arpeggiator</span>
+              <span>Effects</span>
+              <span>Space &amp; vocoder</span>
+            </nav>
+            <div class="vx-main">
+              <div class="vx-topbar">
+                <span class="vx-patch">ANALOG BC</span>
+                <span class="vx-btn">Browse</span><span class="vx-btn">Save</span>
+              </div>
+              <div class="vx-page">
+                <div class="vx-heading">Oscillators<small>Build the source of your sound</small></div>
+                <div class="vx-tabs"><span class="active">Osc 1</span><span>Osc 2</span><span>FM &amp; sync</span><span>Mixer</span></div>
+                <div class="vx-panel">
+                  <div class="vx-panel-title">// Oscillator 1</div>
+                  <div class="vx-mode-row">
+                    <div class="vx-select"><small>Mode</small><span>HyperSaw</span></div>
+                    <div class="vx-scope">
+                      <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+                        <path d="M2 6 L66 54 L66 6 L133 54 L133 6 L198 54" fill="none" stroke="#8b5cf6" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="vx-knobs">
+                    <div class="vx-knob" style="--v:.5"><i></i><b>Semitone</b><em>+0</em></div>
+                    <div class="vx-knob" style="--v:.68"><i></i><b>Keyfollow</b><em>Norm</em></div>
+                    <div class="vx-knob" style="--v:.5"><i></i><b>Balance</b><em>+0 %</em></div>
+                    <div class="vx-knob" style="--v:.3"><i></i><b>Density</b><em>4.0</em></div>
+                    <div class="vx-knob" style="--v:.62"><i></i><b>Detune</b><em>80</em></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="plugin-body" aria-hidden="true">
-            <div class="knob-row">
-              <div class="knob"><span class="knob-dial" style="--r:-120deg"></span><span class="knob-cap">Cutoff</span></div>
-              <div class="knob"><span class="knob-dial" style="--r:40deg"></span><span class="knob-cap">Reso</span></div>
-              <div class="knob"><span class="knob-dial" style="--r:130deg"></span><span class="knob-cap">Env</span></div>
-              <div class="knob"><span class="knob-dial" style="--r:-30deg"></span><span class="knob-cap">Drive</span></div>
-            </div>
-            <div class="plugin-screen">
-              <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-                <path d="M0 25 H200 M50 0 V50 M100 0 V50 M150 0 V50" stroke="#6d28d9" stroke-width="0.4" opacity="0.5" fill="none"/>
-                <path d="M0 25 Q 12.5 2, 25 25 T 50 25 T 75 25 T 100 25 T 125 25 T 150 25 T 175 25 T 200 25"
-                      fill="none" stroke="#8b5cf6" stroke-width="1.4"/>
-              </svg>
-            </div>
-            <div class="knob-row">
-              <div class="knob sm"><span class="knob-dial" style="--r:10deg"></span><span class="knob-cap">Rate</span></div>
-              <div class="knob sm"><span class="knob-dial" style="--r:-80deg"></span><span class="knob-cap">Shape</span></div>
-              <div class="knob sm"><span class="knob-dial" style="--r:90deg"></span><span class="knob-cap">Amount</span></div>
-              <div class="knob sm"><span class="knob-dial" style="--r:160deg"></span><span class="knob-cap">Dest</span></div>
-              <div class="knob sm"><span class="knob-dial" style="--r:-150deg"></span><span class="knob-cap">Phase</span></div>
-              <div class="knob sm"><span class="knob-dial" style="--r:60deg"></span><span class="knob-cap">Fade</span></div>
-            </div>
-          </div>
-          <div class="plugin-footer" aria-hidden="true">
-            <span class="plugin-led on"></span> Connected &middot; 48 kHz &middot; Aleph Void 0.1.0
+          <div class="vx-ribbon">
+            <span class="active">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+            <span class="vx-status"><span class="plugin-led on"></span>USB &middot; 48 kHz</span>
           </div>
         </div>
       </div>
@@ -358,38 +375,38 @@
         </figure>
       </div>
 
-      <div class="shot-grid">
+      <div class="shot-grid shot-grid--desktop">
         <figure class="shot">
-          <img src="assets/screenshots/macos/osc-edit-1.png" alt="Aleph Virux oscillator edit page on macOS" loading="lazy" />
-          <figcaption>Oscillators &amp; common</figcaption>
+          <img src="assets/screenshots/macos/oscillators.png" alt="Aleph Virux oscillator page with HyperSaw waveform preview on macOS" loading="lazy" />
+          <figcaption>Oscillators</figcaption>
         </figure>
         <figure class="shot">
-          <img src="assets/screenshots/macos/lfo-edit.png" alt="Aleph Virux LFO and modulation page on macOS" loading="lazy" />
-          <figcaption>LFOs &amp; modulation</figcaption>
+          <img src="assets/screenshots/macos/filters-envelopes.png" alt="Aleph Virux filter and amp envelope editor on macOS" loading="lazy" />
+          <figcaption>Filters &amp; envelopes</figcaption>
         </figure>
         <figure class="shot">
-          <img src="assets/screenshots/macos/effects.png" alt="Aleph Virux effects section on macOS" loading="lazy" />
-          <figcaption>Effects section</figcaption>
+          <img src="assets/screenshots/macos/lfos.png" alt="Aleph Virux LFO page on macOS" loading="lazy" />
+          <figcaption>LFOs</figcaption>
         </figure>
         <figure class="shot">
           <img src="assets/screenshots/macos/mod-matrix.png" alt="Aleph Virux modulation matrix on macOS" loading="lazy" />
           <figcaption>Modulation matrix</figcaption>
         </figure>
         <figure class="shot">
-          <img src="assets/screenshots/macos/preset-browser.png" alt="Aleph Virux preset browser on macOS" loading="lazy" />
-          <figcaption>Preset browser</figcaption>
+          <img src="assets/screenshots/macos/effects.png" alt="Aleph Virux effects section with EQ and input on macOS" loading="lazy" />
+          <figcaption>Effects section</figcaption>
         </figure>
         <figure class="shot">
-          <img src="assets/screenshots/macos/remote-templates.png" alt="Aleph Virux remote control templates on macOS" loading="lazy" />
+          <img src="assets/screenshots/macos/preset-library.png" alt="Aleph Virux preset library browser on macOS" loading="lazy" />
+          <figcaption>Preset library</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshots/macos/remote.png" alt="Aleph Virux remote control template editor on macOS" loading="lazy" />
           <figcaption>Remote templates</figcaption>
         </figure>
         <figure class="shot">
-          <img src="assets/screenshots/macos/osc-common.png" alt="Aleph Virux oscillator detail page on macOS" loading="lazy" />
-          <figcaption>Oscillator detail</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="assets/screenshots/macos/config-system.png" alt="Aleph Virux configuration and device info on macOS" loading="lazy" />
-          <figcaption>Config &amp; device info</figcaption>
+          <img src="assets/screenshots/macos/classic-mode.png" alt="Aleph Virux Classic Mode layout on macOS" loading="lazy" />
+          <figcaption>Classic Mode</figcaption>
         </figure>
       </div>
 
