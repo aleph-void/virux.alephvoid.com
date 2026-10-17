@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.116 - 0.1.117)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.116 &ndash; 0.1.117</p>
+      <section class="release">
+        <h2>v0.1.117 <span class="date">2026-10-17</span></h2>
+        <ul>
+        <li>Help: Interactive help. Help &gt; Interactive help explains the control under the pointer, including controls that are currently disabled and why they are inactive. Click a control to pin its explanation, click another to change it, and press Escape (or choose the menu item again) to leave help mode. Parameter edits by click, drag, wheel or key are blocked while help is active, so you can explore a patch without changing it. Available in the plugins and the standalone editors on macOS, Windows and Linux.</li>
+        <li>Help: Maintenance window. Help &gt; Maintenance... opens a utility window over the current session with device and firmware information, a RAM refresh, dated RAM backups and bank conversion. A backup writes the cached RAM banks to a new dated folder in both .mid and .syx form, with a manifest listing any slots that were not available; refresh RAM first to include recent edits made on the hardware. Conversion turns a .mid or .syx bank into the other format in a separate dated folder beside the source file, preserving every SysEx message and rejecting incomplete patches; the source file is never modified. The window shares the editor's connection and never opens USB on its own.</li>
+        <li>Compatibility: replace the original Virus TI / Virus TI Snow VST3. In hosts that support VST3 plugin replacement, Virux can take over existing project tracks that used the original plugin, remapping their automation to Virux parameters. The original plugin state is translated on load: part patches, multi settings (including the multi clock tempo), custom automation mappings, soft knobs and performance controllers. Virux keeps its own plugin identity, so projects saved with Virux stay Virux projects. Hosts without replacement support can still import an Access project manually. This does not provide automatic AU or VST2 replacement. Host automation is now seeded from the saved plugin state when a project opens, and part mutes saved in a project are preserved on restore.</li>
+        <li>MIDI: System MIDI ports for other applications. Config &gt; System Info &gt; Device &gt; Expose Synth and MIDI ports publishes two bidirectional ports: Virux Synth, which plays the synth and returns its performance and control MIDI including SysEx, and Virux MIDI, which sends to the synth's rear MIDI OUT and receives from its MIDI IN. The ports ride the active session's USB connection, so keep a Virux plugin, standalone or Windows ASIO session running; the background patch-sync agent alone does not provide them. One physical Virus can be selected at a time, the choice is remembered across launches, and MIDI 1.0 short messages and SysEx up to 64 KiB per message are supported. On macOS the ports appear through CoreMIDI and on Linux through the ALSA sequencer, with no extra driver. On Windows, choose Install Windows MIDI driver... in the same menu (an elevation prompt follows) and restart your MIDI applications; the driver serves native 64-bit WinMM applications, keeps the ports listed even while exposure is off (they pass MIDI only while the selected session is active), and is unregistered when Virux is uninstalled. Turn exposure off before handing the synth to another USB owner. Emulated OsTIrus devices are not supported by this bridge.</li>
+        <li>Windows: Virux USB ASIO and the Virux plugin share one synth. A DAW can now use Virux USB ASIO for audio and one Virux plugin for editing on the same synth at the same time, in either startup order. A shared runtime owns the USB connection, each client receives its own copy of the synth's audio, enabled host-to-synth inputs are mixed, and stopping one client leaves the other connected. Sharing is limited to one DAW process; a separate application still needs exclusive ownership of the synth.</li>
+        <li>Windows: Help &gt; Virux USB ASIO status... reports whether the driver is installed, its file is missing or it is not registered, with the repair for each case. It also explains where to look: an ASIO driver appears only in the audio-device list of an ASIO host, not in Device Manager or Windows Sound settings, and its six inputs are the synth's three USB stereo returns while its two outputs feed the synth's USB input pair. The Windows installer is now verified to install and register the driver in every build.</li>
+        <li>Editor: text you type scales with the editor. The patch rename field, browser search, license key entry and the Studio and Assistant prompts now size their text to the editor instead of the toolkit's fixed default, which stayed tiny in a 150% or 4K editor on Windows. Never smaller than before, so the 75% editor size stays legible. Applies to the macOS, Windows and Linux editors.</li>
+        <li>Editor: sharper enlarged controls. Knobs, buttons and other bitmap controls drawn larger than their native size now use cached high-quality (Lanczos) scaling, cropped to each individual frame so neighbouring animation frames never bleed in. This includes Classic Mode on high-DPI displays.</li>
+        <li>Testing: new regression coverage for interactive help (the catalog resolves for every control), the maintenance backup and conversion paths, the original-plugin state translation and soft-knob remapping, host automation seeding, the inline text sizing rules, bitmap scaling, the shared capture fan-out between clients, the Windows shared runtime loaded by two modules at once, and the MIDI port bridge on every platform including the Windows driver's shared-memory protocol. The Windows installer test now asserts the ASIO component, its registry entries and the MIDI driver file in every package. The OsTIrus emulator suite's software LFO check tolerates audio dropouts on busy runners without miscounting periods. Still manual: real USB unplug and reconnect while sharing, ASIO host timing, and the physical MIDI ports.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
