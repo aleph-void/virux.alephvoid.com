@@ -20,6 +20,14 @@ This repository hosts the source for the Aleph Virux marketing site at [virux.al
 - Support: <https://virux.alephvoid.com/support.html>
 - Privacy policy: <https://virux.alephvoid.com/privacy.html>
 
+## Release Notes
+
+`release-notes/*.json` is the source; the deploy workflow renders it with
+`scripts/generate-release-notes.mjs`. The notes describe what a user of the
+plugin sees. **Never mention `virusctl`, the hardware bench suite, or binary
+hardening/obfuscation** — internal tooling and the protection tiers stay out of
+customer-facing text.
+
 ## Reporting Bugs
 
 Found a bug or have a feature request? File it on our [GitHub issue tracker](https://github.com/aleph-void/virux.alephvoid.com/issues) or email <support@alephvoid.com>. Include your Virus model, macOS or Android version, the Virux build, your host / DAW, and steps to reproduce so we can track it down quickly.
