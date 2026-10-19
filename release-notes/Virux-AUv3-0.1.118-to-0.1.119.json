@@ -1,0 +1,24 @@
+{
+  "product": "Virux-AUv3",
+  "repository": "aleph-void/Virux-AUv3",
+  "fromVersion": "0.1.118",
+  "toVersion": "0.1.119",
+  "generated": "2026-10-18",
+  "releases": [
+    {
+      "version": "0.1.119",
+      "date": "2026-10-18",
+      "changes": [
+        "AUv3: lower audio latency at small host buffers. The AU previously sized its capture buffer from the host's maximum render size, so a host advertising a large ceiling got roughly 96 ms of buffering at 48 kHz even when playing at 64 or 128 frames. Virux now learns the block size the host actually renders and buffers for that instead (for example about 12 ms at 64 frames and 21 ms at 512 frames), growing if the host later renders larger blocks. A size increase re-primes the buffer and can produce a brief moment of silence; reallocating resources (for example changing the host buffer setting) starts the measurement over. The VST3, ASIO and standalone clients keep their existing buffering.",
+        "AUv3: latency reported to the host stays accurate. The latency is now published once the session has actually started and updated whenever the capture rate, rate conversion or learned block size changes, even with the editor closed, so the host's delay compensation follows the real value instead of the estimate made before startup.",
+        "AUv3: hosts that ask the plugin to supply its own output buffers are now supported on all three output buses, rather than having those buses skipped.",
+        "AUv3: dense controller automation no longer swallows notes. A sweep of CC, pitch bend or pressure events could fill the per-block MIDI buffer and cause the whole block, notes included, to be dropped. Continuous controllers now have their own bounded lanes that are thinned while keeping each lane's final value and timing, so notes, program and bank changes, pedals and RPN/NRPN messages keep their place and order.",
+        "AUv3: the editor shows \"Preparing synth...\" while the session starts, followed by a countdown during the existing four-second hold on new notes after opening a project. The hold itself is unchanged.",
+        "Timing: parameter automation interferes less with note timing. The parameter worker now holds the MIDI scheduler's lock only for each individual send rather than for its whole scan, and sends deferred because the synth was briefly busy no longer use up the automation rate budget.",
+        "macOS: smoother editor. Meter animation now repaints only the meter areas instead of the whole page in both the modern editor and Classic Mode, label width measurements are cached, and USB device discovery, MIDI destination listing and the legacy-driver check run off the main thread, so the editor no longer stalls while devices are scanned. The VST3 on macOS uses the same background discovery.",
+        "macOS: patch sync readiness now checks the synth this instance is actually bound to, rather than accepting any connected synth.",
+        "Testing: new regression coverage for the learned block size and latency (including growth up to 4096 frames, re-priming and 48 to 96 kHz conversion), host-supplied output buffers, the controller lanes with thousands of events alongside notes, parameter send accounting and lock scope, meter-only repaints compared pixel for pixel against full redraws across every page, scale and overlay in both editor styles, the label width cache, and background device discovery. The OsTIrus emulator suite now sends 2,000 controller events around every note edge and requires the notes to sound and release on all three buses at 44.1 and 48 kHz. Still manual: Logic playback timing and latency compensation on physical hardware."
+      ]
+    }
+  ]
+}
