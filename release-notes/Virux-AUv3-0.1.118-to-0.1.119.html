@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.118 - 0.1.119)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.118 &ndash; 0.1.119</p>
+      <section class="release">
+        <h2>v0.1.119 <span class="date">2026-10-18</span></h2>
+        <ul>
+        <li>AUv3: lower audio latency at small host buffers. The AU previously sized its capture buffer from the host's maximum render size, so a host advertising a large ceiling got roughly 96 ms of buffering at 48 kHz even when playing at 64 or 128 frames. Virux now learns the block size the host actually renders and buffers for that instead (for example about 12 ms at 64 frames and 21 ms at 512 frames), growing if the host later renders larger blocks. A size increase re-primes the buffer and can produce a brief moment of silence; reallocating resources (for example changing the host buffer setting) starts the measurement over. The VST3, ASIO and standalone clients keep their existing buffering.</li>
+        <li>AUv3: latency reported to the host stays accurate. The latency is now published once the session has actually started and updated whenever the capture rate, rate conversion or learned block size changes, even with the editor closed, so the host's delay compensation follows the real value instead of the estimate made before startup.</li>
+        <li>AUv3: hosts that ask the plugin to supply its own output buffers are now supported on all three output buses, rather than having those buses skipped.</li>
+        <li>AUv3: dense controller automation no longer swallows notes. A sweep of CC, pitch bend or pressure events could fill the per-block MIDI buffer and cause the whole block, notes included, to be dropped. Continuous controllers now have their own bounded lanes that are thinned while keeping each lane's final value and timing, so notes, program and bank changes, pedals and RPN/NRPN messages keep their place and order.</li>
+        <li>AUv3: the editor shows &quot;Preparing synth...&quot; while the session starts, followed by a countdown during the existing four-second hold on new notes after opening a project. The hold itself is unchanged.</li>
+        <li>Timing: parameter automation interferes less with note timing. The parameter worker now holds the MIDI scheduler's lock only for each individual send rather than for its whole scan, and sends deferred because the synth was briefly busy no longer use up the automation rate budget.</li>
+        <li>macOS: smoother editor. Meter animation now repaints only the meter areas instead of the whole page in both the modern editor and Classic Mode, label width measurements are cached, and USB device discovery, MIDI destination listing and the legacy-driver check run off the main thread, so the editor no longer stalls while devices are scanned. The VST3 on macOS uses the same background discovery.</li>
+        <li>macOS: patch sync readiness now checks the synth this instance is actually bound to, rather than accepting any connected synth.</li>
+        <li>Testing: new regression coverage for the learned block size and latency (including growth up to 4096 frames, re-priming and 48 to 96 kHz conversion), host-supplied output buffers, the controller lanes with thousands of events alongside notes, parameter send accounting and lock scope, meter-only repaints compared pixel for pixel against full redraws across every page, scale and overlay in both editor styles, the label width cache, and background device discovery. The OsTIrus emulator suite now sends 2,000 controller events around every note edge and requires the notes to sound and release on all three buses at 44.1 and 48 kHz. Still manual: Logic playback timing and latency compensation on physical hardware.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
