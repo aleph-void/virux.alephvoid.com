@@ -232,6 +232,7 @@
         <a href="#osc-params" class="toc-sub">OSC parameters</a>
         <a href="#osc-midi" class="toc-sub">OSC notes &amp; audio</a>
         <a href="#windows">8. Windows Drivers</a>
+        <a href="#windows-asio" class="toc-sub">Virux USB ASIO</a>
         <a href="#licensing">9. Licensing</a>
         <a href="#troubleshooting">10. Troubleshooting</a>
       </aside>
@@ -630,6 +631,50 @@ name = "Warm Pad  "
             <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             <p>Never bypass the conflict guard by forcing a driver replacement with another tool while a Virus device is bound to the Access driver. <strong>Release USB</strong> only releases Virux's handles &mdash; it does not change which Windows driver is installed.</p>
           </div>
+
+          <h3 id="windows-asio">Virux USB ASIO</h3>
+          <p>
+            The Windows installer also installs <strong>Virux USB ASIO</strong>, an ASIO driver that
+            presents the synth to any 64-bit ASIO host &mdash; a DAW, a sampler, a recorder &mdash;
+            without the Virux plugin. Like the original <em>Virus USB ASIO driver</em>, it turns the
+            Virus into the host's audio interface for the synth's USB audio.
+          </p>
+          <p>
+            <strong>Where it appears.</strong> Only inside ASIO hosts: open your DAW's audio settings,
+            choose the ASIO driver type, and pick <strong>Virux USB ASIO</strong> from the device list.
+            An ASIO driver is a plug-in library the host loads, not a Windows device driver, so it has
+            <em>no</em> entry in Device Manager, in Settings &rsaquo; Sound, or in Apps &amp; features.
+            To confirm it is installed, open <span class="menu-path">Help &rsaquo; Virux USB ASIO status&hellip;</span>
+            in the editor: it reports <em>installed</em> (with the driver file,
+            <code>C:\Program Files\Virux\ViruxASIO.dll</code>), <em>file missing</em> or <em>not
+            registered</em>, and names the repair &mdash; Settings &rsaquo; Apps &rsaquo; Installed apps &rsaquo;
+            Virux &rsaquo; Repair, or running the installer again.
+          </p>
+          <p>
+            <strong>Channels, seen from the DAW.</strong> ASIO names channels from the computer's side,
+            which is the reverse of the synth's labels:
+          </p>
+          <table>
+            <thead><tr><th>ASIO channel</th><th>Direction</th><th>What it carries</th></tr></thead>
+            <tbody>
+              <tr><td>Inputs 1&ndash;2</td><td>synth &rarr; DAW</td><td>USB 1 L/R &mdash; the synth's first USB stereo output (the plugin's main bus)</td></tr>
+              <tr><td>Inputs 3&ndash;4</td><td>synth &rarr; DAW</td><td>USB 2 L/R (the plugin's second bus)</td></tr>
+              <tr><td>Inputs 5&ndash;6</td><td>synth &rarr; DAW</td><td>USB 3 L/R (the plugin's third bus)</td></tr>
+              <tr><td>Outputs 1&ndash;2</td><td>DAW &rarr; synth</td><td>the synth's USB audio input (vocoder / ring-modulator feed)</td></tr>
+            </tbody>
+          </table>
+          <p>
+            So the &ldquo;six inputs&rdquo; are the three stereo pairs the Virus sends to the computer, recorded
+            like the plugin's three output buses; a part routed to USB&nbsp;3/4 on the synth arrives on inputs
+            3&ndash;4 only. The two outputs stream only after you enable them in the driver's control
+            panel (the ASIO panel button in your DAW), and the synth must be set to Global USB IO
+            Configuration&nbsp;2 (&ldquo;3 Outs + Input&rdquo;) to listen to them. Sample rates 44.1, 48, 88.2, 96,
+            176.4 and 192&nbsp;kHz; buffers of 64&ndash;2048 samples (256 preferred).
+          </p>
+          <div class="callout">
+            <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p><strong>One owner at a time.</strong> The ASIO driver owns the synth the way a plugin instance does. A DAW running on Virux USB ASIO cannot also drive that synth with the Virux plugin or the standalone app; close one before opening the other. The driver carries <strong>no MIDI</strong> &mdash; ASIO is audio only &mdash; so play the synth from its own keyboard, its DIN MIDI In, or a Virux plugin instance in another host. The synth's rear MIDI ports are not exposed as a Windows MIDI device by Virux.</p>
+          </div>
         </section>
 
         <section id="licensing">
@@ -666,7 +711,9 @@ name = "Warm Pad  "
             <li><strong>Can't select the synth:</strong> another process owns it &mdash; a second DAW, a standalone app, or another plugin instance. Close the other owner, or check whether <strong>Release USB</strong> is active for that device (<span class="menu-path">Config &rsaquo; System Info &rsaquo; Device &rsaquo; Reconnect</span>).</li>
             <li><strong>No audio return, notes still sounding:</strong> a patch load can overwrite a part's Output Select. Re-route the part to USB1&nbsp;L+R, or in a standalone send <code>/audio/reroute</code>; the apps also detect and repair this themselves.</li>
             <li><strong>No device banks in the browser:</strong> Patch Sync is off (Config page, System Info card), or the first sweep hasn't completed. Use <strong>Refresh patches from synth&hellip;</strong> on a device bank to force a live read.</li>
-            <li><strong>Wrong or no sample rate:</strong> run the host at 44.1 or 48&nbsp;kHz &mdash; Virux performs no sample-rate conversion.</li>
+            <li><strong>Wrong or no sample rate:</strong> Virux follows the host rate &mdash; 44.1 and 48&nbsp;kHz natively, 88.2, 96, 176.4 and 192&nbsp;kHz through its built-in sample-rate converter. If audio stops after a rate change, restart playback or reload the plugin so the host re-announces the rate.</li>
+            <li><strong>Can't find Virux USB ASIO (Windows):</strong> it is listed only inside ASIO hosts, never in Device Manager or Settings. <span class="menu-path">Help &rsaquo; Virux USB ASIO status&hellip;</span> confirms whether it is installed; see <a href="#windows-asio">Virux USB ASIO</a>.</li>
+            <li><strong>Text in an editable field is tiny (Windows):</strong> fixed in the release after 0.1.116 &mdash; the inline edit box now scales its text with the editor size and display scaling.</li>
             <li><strong>Emulator trouble:</strong> see <a href="#ostirus-troubleshooting">OsTIrus troubleshooting</a>; the built-in OsTIrus help page shows the current failure reason.</li>
             <li><strong>Help pages:</strong> USB help and OsTIrus help are built into the editor and work offline; both appear automatically whenever no backend can be used.</li>
           </ul>
