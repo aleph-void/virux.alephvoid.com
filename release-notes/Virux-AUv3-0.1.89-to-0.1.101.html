@@ -118,7 +118,6 @@
         <li>Reconciled protocol, session, editor parameter/UI, USB, host, bench-tool and identity behavior against the original Virus Control software (divergence audit sections 3.1-3.8).</li>
         <li>Sync: reject truncated SysEx dumps and verify per-patch 14-bit CRCs.</li>
         <li>Editor gestures now wired consistently across every plugin shell, including host lane names and value texts.</li>
-        <li>virusctl audio: routes through openConfigurePlan on IF#3, sends the MIDI port start/stop word, reports IF#3 liveness and per-channel peaks, and reads back part 1's edit buffer -- matching the plugin's own behavior.</li>
         <li>Hardware-in-the-loop test node now runs automatically on every pull request.</li>
         <li>Fixed GCC -Werror failures and four CI breaks on non-MSVC toolchains.</li>
         <li>Dependency updates: vst3sdk, azure/trusted-signing-action, softprops/action-gh-release.</li>
@@ -161,7 +160,6 @@
         <ul>
         <li>Installer: added a &quot;Sync patches&quot; setting, off by default.</li>
         <li>Audio: each output bus is now fed from the correct capture pair.</li>
-        <li>virusctl: lists visible CoreAudio devices when no Virus hardware is found.</li>
         </ul>
       </section>
       <section class="release">
