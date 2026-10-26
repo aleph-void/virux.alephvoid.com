@@ -1,0 +1,16 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.121",
+  "toVersion": "0.1.122",
+  "generated": "2026-10-26",
+  "releases": [
+    {
+      "version": "0.1.122",
+      "date": "2026-10-26",
+      "changes": [
+        "Windows: the VST3 loads again in DAWs that scan plugins strictly. Some hosts could not find the Virux support library that is installed alongside the plugin, so the plugin failed during the scan or would not open, even though it was installed correctly. Virux now finds its support library in its own install folder, whatever the host's working folder or search path. The Virux ASIO driver uses the same lookup. When both are open, the VST3 and ASIO driver share one connection to the synth, whichever opens first. If the installation is damaged, the host now reports the plugin as unloadable instead of picking up an unrelated file.",
+        "Testing: new coverage that scans and opens a relocated copy of the Windows VST3 the way a strict DAW does. The test runs from an unrelated folder with no extra search paths, with and without the ASIO driver loaded first, on x64 and ARM64. The installer is now checked for the standard VST3 folder layout and for a support library installed beside both the VST3 and the ASIO driver."
+      ]
+    }
+  ]
+}
