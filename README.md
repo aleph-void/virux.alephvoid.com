@@ -18,6 +18,7 @@ This repository hosts the source for the Aleph Virux marketing site at [virux.al
 - Install: <https://virux.alephvoid.com/#install>
 - FAQ: <https://virux.alephvoid.com/#faq>
 - Support: <https://virux.alephvoid.com/support.html>
+- Testimonials: <https://virux.alephvoid.com/testimonials.html>
 - Privacy policy: <https://virux.alephvoid.com/privacy.html>
 
 ## Reporting Bugs
