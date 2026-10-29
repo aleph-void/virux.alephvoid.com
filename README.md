@@ -1,5 +1,7 @@
 # Aleph Virux
 
+[![Sponsor Aleph Void](https://img.shields.io/badge/Sponsor-Aleph%20Void-EA4AAA?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/aleph-void)
+
 **The Access Virus TI, native again — a userspace driver and synth plugin for Apple Silicon and Android.**
 
 Access shipped the Virus TI with an x86 kernel driver that never made the jump to Apple Silicon. Aleph Virux rebuilds the whole stack from scratch in userspace — no kext, no DriverKit — so your Virus TI Snow, Desktop, or Polar shows up as a plugin again. A lightweight container app claims the USB device; the AUv3 and VST3 plugins reach it over IPC, exposing the original control surface (oscillators, filters, LFOs, modulation matrix, arpeggiator, and effects). An Android control app is in the works too.
@@ -20,6 +22,13 @@ This repository hosts the source for the Aleph Virux marketing site at [virux.al
 - Support: <https://virux.alephvoid.com/support.html>
 - Testimonials: <https://virux.alephvoid.com/testimonials.html>
 - Privacy policy: <https://virux.alephvoid.com/privacy.html>
+
+## Release Notes
+
+`release-notes/*.json` is the source; the deploy workflow renders it with
+`scripts/generate-release-notes.mjs`. The notes describe what a user of the
+plugin sees in the product. Internal tooling, test infrastructure and build
+details stay out of them.
 
 ## Reporting Bugs
 
