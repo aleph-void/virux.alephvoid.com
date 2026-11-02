@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.122 - 0.1.123)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.122 &ndash; 0.1.123</p>
+      <section class="release">
+        <h2>v0.1.123 <span class="date">2026-11-02</span></h2>
+        <ul>
+        <li>Windows: uninstalling Virux now also removes the USB driver set up by the plugin's &quot;Install Virus USB driver&quot; button. Previously, uninstalling left the synth bound to that driver with no standard USB audio or MIDI connections, so other Virus software on the machine found no device. Uninstall now removes the synth's driver binding, the driver package and the driver signing certificates Virux added. A connected synth switches back to Windows' built-in USB drivers straight away, so other Virus software sees it again without re-plugging. Uninstall also clears Virux's machine-wide data folder (%ProgramData%\Virux), which holds patch caches, the Patch Sync setting and the service log. Your licence, presets and settings in your user folder are kept for a later reinstall, and upgrading Virux leaves everything in place. If an item cannot be removed, the uninstall still completes. It lists what was left, explains how to finish in Device Manager, and asks for a restart. The Access driver removed when you first switched to Virux is not reinstalled; install the Access suite if you need it.</li>
+        <li>Testing: new coverage for the Windows uninstall cleanup. Tests check that only Virux's own driver packages, device bindings and certificates are recognised, so Access and built-in Windows drivers are never touched. They check the removal order and that cleanup carries on past individual failures, reports each one and asks for a restart when needed. The data folder cleanup is tested to never follow links out of the folder. The installer is checked to run the cleanup only on a full uninstall, never during an upgrade, and only after the sync service has been removed.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
