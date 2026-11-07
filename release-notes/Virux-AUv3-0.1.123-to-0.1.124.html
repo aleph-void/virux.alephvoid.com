@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.123 - 0.1.124)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.123 &ndash; 0.1.124</p>
+      <section class="release">
+        <h2>v0.1.124 <span class="date">2026-11-06</span></h2>
+        <ul>
+        <li>Editor: new edit tools on a right-click in any empty part of the window. The menu offers Undo and Redo, Compare, Randomize Subtle, Medium and Strong, Init patch and Panic. Undo and Redo use the same history as Studio, so you no longer have to open Studio to reach it. They are also on Ctrl+Z and Ctrl+Shift+Z (Cmd+Z and Cmd+Shift+Z on macOS). A single knob turn is listed under that knob's name. Compare switches the focused part between your edit and the patch as it was loaded, and back again. If you edit or load a patch while comparing, the compare ends and your edited sound is kept as an Undo step. Randomize moves the unlocked sections of the focused part by up to 10, 25 or 50 % of each range, as one Undo step. The input, vocoder and arpeggiator sections, patch volume, transpose and key mode are never changed. Init patch loads a sound built from the default settings, named -Init-. Panic sends sustain off and all notes off on all 16 channels and is also in the Help menu.</li>
+        <li>Editor: the browser's right-click menu now lists Init patch, Revert to and up to ten Recently used patches for the focused part. Revert to swaps the part back to the sound it held before the last load, including any edits you had made. Recently used shows the newest patch first. Loading a patch already in the list moves it to the top, and loading from the list or reverting keeps the order. Both lists last for the current session only.</li>
+        <li>Editor: the header read-out now follows the mouse, as on the original editor. Resting the pointer on a control shows its name, its current value, its value in the loaded patch and the part. Moving off any control clears the read-out. A value you just set by dragging stays visible until you hover over another control.</li>
+        <li>Editor: the window follows the part you select on the synth's own panel in Multi edit mode. Nothing is sent back to the synth when this happens.</li>
+        <li>Editor: loading a patch from one of the synth's RAM or ROM banks now selects it on the synth first, so the synth's display shows its location (for example RAM-B 4). The patch itself follows about 0.15 s later. Patches from libraries, files and Init patch show as LIB. Patches stored to a RAM slot now record the correct bank; it was previously off by one. Selections made on the synth's panel, Undo and Compare do not send a program change.</li>
+        <li>Editor: Virux now shows &quot;A sync error occurred. Press Stop and Play to clear.&quot; when three notes in a row go out more than 5 ms late while the DAW is playing. In Classic Mode it appears in the info panel; in the refreshed interface it appears on the bottom banner. Stopping and starting playback clears it.</li>
+        <li>Editor: the arpeggiator's user pattern graph has its own right-click menu. It offers Shift Sequence to Left and Right, Randomize Pattern, Velocity and Note Length, Reset Pattern and Fill Up Pattern. Reset returns the steps up to the pattern length to their defaults. Fill Up repeats those steps across the rest of the pattern and doubles the length when it fits. Alt+click on a step in the graph switches it on or off. Factory patterns have no such menu.</li>
+        <li>Editor: the modulation matrix and the LFO user destinations now list Distortion Mix, Osc 1 and Osc 2 F-Shift, Osc 1 and Osc 2 F-Spread and Slot 6 Amount 1. These real destinations were previously hidden behind reserved entries. The six reserved entries are gone, and the menus keep the original's order.</li>
+        <li>Library: you can drop files onto the editor from Explorer, Finder or your Linux file manager. Supported files are .mid and .syx libraries, a .vtibackup, or a project of the original Virus Control (.vstpreset, .fxp, .fxb). Libraries are copied into your preset folder and shown immediately, and the browser notice says what was added and what was skipped. Imports, whether dropped or picked in the import dialog, no longer overwrite an existing library of the same name.</li>
+        <li>Library: the browser now also lists the libraries in the original Virus Control's folders without importing them. On Windows and macOS these are Access Music/Virus TI/Patches under Documents and under your user and the machine's application data folders. On Linux, Virux also looks in your localized documents folder and a Wine installation. These folders are read only: imports and saves still go to the Virux preset folder.</li>
+        <li>Library: storing or restoring a patch over a RAM slot now backs up the patch it replaces. The old patch is first added to today's &quot;RAM Backup YYYY-MM-DD&quot; library in your preset folder, so you can drag it back. If the backup cannot be written, nothing is sent to the synth and the browser says why. Rewriting the same sound needs no backup.</li>
+        <li>Library: Help › Maintenance… can restore RAM A, B, C or D from a library file. Only the slots that differ from the synth's synced bank are written, one at a time, and each one is backed up first. A full bank takes about four seconds, and the window shows how many patches are still being written.</li>
+        <li>Patch sync: ROM banks you burned with your own patches using the Access Control Center now show your patches. Previously Virux showed the factory names and sounds for them. Virux reads which ROM banks hold your own patches and reads just those banks from the synth in a single pass, with progress such as &quot;Reading user ROM bank F from the synth…&quot;. It keeps them for that synth and reads them again after a re-burn. A burned bank that has not been read yet shows as empty, never as factory content. On a TI2 the background sync service does this, and the plugin shows what the service found.</li>
+        <li>Timing: changing a patch on one part no longer briefly stops the other parts. Virux now sends a patch in small pieces about 10 ms apart, as the original does, so notes for other parts continue between the pieces. It also sends patches on the channel the synth reserves for sound data, so the synth's sound engine no longer has to sort the patch out of the note stream. A parameter change made during the roughly 0.1 s transfer waits until the patch is complete.</li>
+        <li>Timing: no more sudden release of all sounding notes about a second after playback starts. The synth releases every voice when its MIDI keepalive stops. Once your DAW has sent notes, Virux now keeps that signal going every 300 ms, as the original does, for as long as the session runs.</li>
+        <li>MIDI: protection against MIDI floods. Notes and controllers from the DAW are limited to about 4 kB per second, with short bursts allowed, because sustained floods could freeze the synth's audio until it was power cycled. Normal playing never comes close to the limit. Excess messages are delayed in order rather than dropped, so every note-off still follows its note-on. Panic is never delayed.</li>
+        <li>Windows and Linux: fewer lost messages when the synth is briefly busy, for example during a patch change on its panel or a multi setup. A message the synth could not accept right away is now retried for up to a second instead of being dropped. A synth that has really stopped accepting MIDI is still detected, now within about 1.2 seconds instead of 0.4.</li>
+        <li>Export: exporting, freezing and bouncing in a DAW now capture the synth's real audio, in the VST3 and the AUv3. Previously an offline render ran faster than the synth could play, which caused repeated or missing audio. Offline renders now run in real time. Virux waits up to 8 seconds for the synth at the start and up to a second for each later block. If the synth stops sending audio, for example because it was switched off, the render continues with silence instead of hanging.</li>
+        <li>Sleep: Virux now recovers after the computer wakes from sleep. Sleep can reset the synth's setup without any error message, leaving it receiving MIDI but making no sound. When the synth's audio starts running again after standing still, Virux repeats its startup: the output routing goes out again, and notes held over from before the sleep are discarded instead of played all at once. The VST3 also sends the project's sounds again.</li>
+        <li>Windows and Linux: Virux corrects a synth stuck at the wrong sample rate. After a replug, a wake or another application's session, the synth could send 48 kHz audio while 44.1 kHz was expected, or the other way round. This was heard as silence or a thin, broken signal. Virux now measures the incoming rate, switches the synth to the other rate and back to unstick it, and tries up to three times. It does the same when the USB audio stays silent during playback for 10 seconds within a minute of connecting. If that does not help, the diagnostic log notes that the synth needs a power cycle. On macOS the system sets the rate, so this is not attempted there.</li>
+        <li>Linux: the synth becomes a normal USB sound card again after Virux has used it. Previously its sound card stayed dead until you unplugged the synth. When no Virux plugin or app has used a connected synth for 30 seconds, the background sync service now hands it back to the system. Restarting your DAW within that time does not trigger a hand-back, and closing a plugin never does this by itself.</li>
+        <li>macOS: Virux now warns when another Virus driver is installed, such as AURA Plugins' Virus TI USB MIDI driver or the legacy Access driver. Only one driver can use the synth, and whichever claims it first wins, so Virux found the synth only some of the time. While this instance has no synth, the bottom banner names the driver and what to do: move the driver out of its folder and restart, or use the Access uninstaller. Virux keeps trying to connect either way. This works on all Macs, not only Intel.</li>
+        <li>VST3: projects made with the original Access Virus TI or Virus TI Snow plugin now open in Virux in Ableton Live 11 and 12, and other hosts that restore plugins only by their exact ID. Your plugin list shows two extra entries, Virux (original projects) and Virux Snow (original projects), for this purpose. They are needed for projects saved on Windows. Original projects saved on a Mac still need a host that supports plugin replacement. If the original Access plugin is still installed, two plugins will share that ID. Automation from original projects saved on a Mac is now mapped too.</li>
+        <li>VST3: fewer host crashes when a plugin is unloaded. A host could crash or close if it unloaded Virux while the background licence check was still running, for example during a plugin scan, on Windows and Linux. On Linux, a host that unloaded the plugin and later loaded it again could crash when opening the editor.</li>
+        <li>OsTIrus: Virux now requires DSP Bridge 2.2.27. Update the server and its bundled plugins together, including on remote machines, because the 2.2.25 server cannot connect. Existing configurations set to 2.2.25 are upgraded automatically and keep their device, firmware, host, port and model. The setup help points to the new version.</li>
+        <li>Testing: new coverage for: the edit tools, including Undo and Redo keys, Compare, Randomize, Init patch, Revert to, Recently used, Panic and the detailed-log switch; the hover read-out; following the synth's part selection; selecting bank patches on the synth before loading; the sync-error alert; the arpeggiator pattern actions; dropped files; the original's library folders; RAM backups and bank restores; reading user-burned ROM banks from a simulated synth, including a re-burn; patches split into pieces and reassembled exactly; keepalive timing; the MIDI rate limit; retries on a busy synth; offline render pacing through the real audio engine; sleep and wrong-rate recovery; the timing and order of the Linux hand-back; detection of other macOS drivers; the original-project plugin entries and their saved state; and the Windows plugin scan showing all six plugin entries. The OsTIrus emulator suite now runs against DSP Bridge 2.2.27 and fails on any server crash instead of retrying.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
