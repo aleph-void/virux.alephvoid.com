@@ -1,0 +1,182 @@
+name: Bug report
+description: Something in Aleph Virux isn't working as expected.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. Before filing, please check the [Support page](https://virux.alephvoid.com/support.html) — many "not detected" issues come down to the USB cable, the port, or the Virus firmware.
+
+        **Don't include license keys, purchase receipts, or other personal information in this issue.**
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A clear, short description of the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exactly what you did, in order, so we can reproduce it.
+      placeholder: |
+        1. Launch the Aleph Virux container app
+        2. Open Logic Pro and insert the AUv3 plugin on a track
+        3. Change the filter cutoff on the hardware
+        4. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does it happen?
+      options:
+        - Every time
+        - Often
+        - Occasionally
+        - Only happened once
+    validations:
+      required: true
+
+  - type: dropdown
+    id: virus-model
+    attributes:
+      label: Virus model
+      options:
+        - Virus TI Snow
+        - Virus TI Desktop
+        - Virus TI2 Desktop
+        - Virus TI Polar
+        - Virus TI2 Polar
+        - Virus TI Keyboard
+        - Virus TI2 Keyboard
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: input
+    id: firmware
+    attributes:
+      label: Virus firmware version
+      description: Shown on the synth's display at boot, or under the CONFIG menu.
+      placeholder: e.g. 5.1.8.00
+    validations:
+      required: false
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS (Apple Silicon)
+        - macOS (Intel)
+        - Windows
+        - Android
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      placeholder: e.g. macOS 26.1, Windows 11 24H2, Android 15 (Pixel 8)
+    validations:
+      required: true
+
+  - type: input
+    id: virux-build
+    attributes:
+      label: Aleph Virux build
+      description: The version shown in the app or plugin (see the [release notes](https://virux.alephvoid.com/release-notes/) for the latest).
+      placeholder: e.g. 0.1.126
+    validations:
+      required: true
+
+  - type: dropdown
+    id: plugin-format
+    attributes:
+      label: Component
+      description: Which part of Aleph Virux shows the problem?
+      multiple: true
+      options:
+        - Container / standalone app
+        - AUv3 plugin
+        - VST3 plugin
+        - Android app
+        - Installer / licensing
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: host
+    attributes:
+      label: Host / DAW and version
+      placeholder: e.g. Logic Pro 11.2, Ableton Live 12.1, Bitwig 5.3, standalone
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: What does the problem affect?
+      multiple: true
+      options:
+        - USB connection / device detection
+        - Audio over USB
+        - MIDI / notes
+        - Parameter control / sync
+        - Patch sync (editor ↔ hardware)
+        - Plugin UI
+        - Crash or hang
+        - Performance / CPU
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: connection
+    attributes:
+      label: Connection setup
+      description: How the Virus is connected — direct or through a hub/dock/adapter, cable type, and whether the original Access driver is also installed (Windows).
+      placeholder: e.g. Direct USB-C → USB-B cable into a MacBook Pro M3; no hub.
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, crash reports, or error messages
+      description: Paste any relevant output. On macOS, crash reports are in Console.app → Crash Reports. This will be formatted as code automatically.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshots or recordings
+      description: Drag and drop images or video here. Screenshots help a lot.
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Workarounds you've found, when it started (e.g. after updating), or other context.
+    validations:
+      required: false

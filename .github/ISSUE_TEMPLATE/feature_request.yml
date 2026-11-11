@@ -1,0 +1,78 @@
+name: Feature request
+description: Suggest an idea or improvement for Aleph Virux.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please search existing issues first to see if it has already been requested — if so, add a 👍 there instead.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the workflow or limitation you're running into.
+      placeholder: When I'm working on patches I want to ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you like Aleph Virux to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or workarounds
+      description: Anything you're doing today instead, or other approaches you've considered.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform(s) this applies to
+      multiple: true
+      options:
+        - macOS
+        - Windows
+        - Android
+        - All
+    validations:
+      required: false
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      multiple: true
+      options:
+        - Container / standalone app
+        - AUv3 plugin
+        - VST3 plugin
+        - Android app
+        - Website / documentation
+        - Not sure
+    validations:
+      required: false
+
+  - type: input
+    id: virus-model
+    attributes:
+      label: Virus model
+      placeholder: e.g. Virus TI Snow
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Mockups, screenshots, or references to how other synth editors handle this.
+    validations:
+      required: false

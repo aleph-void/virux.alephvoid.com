@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support & troubleshooting
+    url: https://virux.alephvoid.com/support.html
+    about: Common fixes for device detection, permissions, and plugin scanning.
+  - name: User manual
+    url: https://virux.alephvoid.com/manual.html
+    about: How to install and use Aleph Virux.
+  - name: Email support (licensing & private issues)
+    url: mailto:support@alephvoid.com
+    about: For purchase, license, or anything you'd rather not post publicly.
