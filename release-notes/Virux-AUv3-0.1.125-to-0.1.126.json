@@ -1,0 +1,17 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.125",
+  "toVersion": "0.1.126",
+  "generated": "2026-11-10",
+  "releases": [
+    {
+      "version": "0.1.126",
+      "date": "2026-11-10",
+      "changes": [
+        "macOS: wake-from-sleep recovery now also works when macOS stops answering questions about the synth's audio format. After some wakes, macOS could stop reporting the synth's format while its audio had also stopped. Virux read this as a format change and kept restarting only the audio input, so it never reconnected to the synth, which stayed silent until you replugged it. Virux now treats an unanswered query as no news, so its stall check notices the missing audio and runs the full recovery. A real format change, or a format Virux cannot use, still restarts the audio input as before.",
+        "macOS VST3: Virux now asks for your DAW's Microphone permission. macOS treats the synth's USB audio as an audio input, so a DAW without this permission received only silence from the synth. When the synth becomes ready and your DAW has not been asked yet, the system prompt now appears, even if the editor is closed or the synth was connected later. If you allow access, the synth's audio starts at once, with no need to reload the plugin. If access was already denied or restricted, the editor's banner explains what to do, as before. Some DAWs cannot show this prompt and could even close if asked. Virux does not ask in those DAWs and notes this in the diagnostic log. Turn on audio input in the DAW's settings instead. OsTIrus never triggers the prompt.",
+        "Testing: new coverage for the macOS audio input when the system stops reporting the synth's format after a wake. The tests check that this leads to the full reconnect, that a brief failure recovers on its own and that a real or unusable format change still restarts the audio input. They also check that two-channel and six-channel audio arrives in the right channel order, that the built-in microphone or another synth is never used in its place and that failed starts leave nothing running. The VST3 Microphone permission is tested to be requested only once per activation, also with no editor open. Allowing access restarts the audio exactly once, and a late answer after the plugin was deactivated or closed has no effect."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.122",
+  "toVersion": "0.1.123",
+  "generated": "2026-11-02",
+  "releases": [
+    {
+      "version": "0.1.123",
+      "date": "2026-11-02",
+      "changes": [
+        "Windows: uninstalling Virux now also removes the USB driver set up by the plugin's \"Install Virus USB driver\" button. Previously, uninstalling left the synth bound to that driver with no standard USB audio or MIDI connections, so other Virus software on the machine found no device. Uninstall now removes the synth's driver binding, the driver package and the driver signing certificates Virux added. A connected synth switches back to Windows' built-in USB drivers straight away, so other Virus software sees it again without re-plugging. Uninstall also clears Virux's machine-wide data folder (%ProgramData%\\Virux), which holds patch caches, the Patch Sync setting and the service log. Your licence, presets and settings in your user folder are kept for a later reinstall, and upgrading Virux leaves everything in place. If an item cannot be removed, the uninstall still completes. It lists what was left, explains how to finish in Device Manager, and asks for a restart. The Access driver removed when you first switched to Virux is not reinstalled; install the Access suite if you need it.",
+        "Testing: new coverage for the Windows uninstall cleanup. Tests check that only Virux's own driver packages, device bindings and certificates are recognised, so Access and built-in Windows drivers are never touched. They check the removal order and that cleanup carries on past individual failures, reports each one and asks for a restart when needed. The data folder cleanup is tested to never follow links out of the folder. The installer is checked to run the cleanup only on a full uninstall, never during an upgrade, and only after the sync service has been removed."
+      ]
+    }
+  ]
+}
