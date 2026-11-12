@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.126 - 0.1.127)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.126 &ndash; 0.1.127</p>
+      <section class="release">
+        <h2>v0.1.127 <span class="date">2026-11-12</span></h2>
+        <ul>
+        <li>macOS: the standalone app's editor now lists your connected synths. Previously its device list could stay empty even while the app was connected and playing, so the synth picker had nothing to choose from. You can now pick a synth from the editor's list, and the app no longer claims that every synth is in use by another plugin when it simply has not connected yet. The search for synths runs in the background, so the window no longer waits on it at launch or while a patch transfer is running. The app still connects to the first synth it finds when it starts.</li>
+        <li>macOS: with more than one synth attached, the standalone app now plays back and watches the audio of the synth you connected to, also after a replug or a wake, instead of whichever synth macOS lists first.</li>
+        <li>Editor: when you switch to another synth, the browser now shows that synth's own RAM and burned ROM banks instead of keeping those of the previous one.</li>
+        <li>macOS: diagnostic captures from the standalone app are more complete. The report now names the connected synth and shows how many MIDI messages actually reached it and how many failed. Since the app has no MIDI watchdog, the report now says the MIDI path is not monitored instead of reporting it as healthy. Messages about audio playback, audio capture, connecting and disconnecting are now included in the saved diagnostics, even where macOS does not allow the system log to be exported. Values the app could not read at that moment are shown as unknown rather than as plausible defaults.</li>
+        <li>Testing: new coverage for the standalone app's synth list, including a slow search that must not hold up the window, a synth that is unplugged and a synth that is found but not yet connected. The diagnostic report is tested to show the connected synth, the actual MIDI message counts, an unmonitored MIDI path and unknown values when the synth is busy or absent. Messages from the macOS app are tested to reach the saved diagnostics only while a capture is running, with their text kept exactly as written.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
