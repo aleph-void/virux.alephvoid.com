@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.127 - 0.1.128)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.127 &ndash; 0.1.128</p>
+      <section class="release">
+        <h2>v0.1.128 <span class="date">2026-11-12</span></h2>
+        <ul>
+        <li>macOS: the standalone app now recovers when your synth stops accepting MIDI from it. Previously the app kept sending notes and edits that never reached the synth, while its audio kept playing, so the synth looked connected but did not respond until you reconnected it. The app now notices failed sends and reconnects to the synth once. If that does not help, it switches to a second MIDI route to the synth. If that route fails too, it stops trying and shows the 'synth stopped accepting MIDI' notice until you reconnect. If the synth needs a short rest before the next attempt, the app waits and the editor shows how long. Edits, notes and patch sync wait while recovery runs, instead of being lost. Recovery works whether or not the app may use the Microphone, and the diagnostic report now shows the MIDI path as monitored.</li>
+        <li>Patch sync: the standalone app no longer marks a patch sync as finished when the synth was not ready to send its RAM banks. Previously, if the RAM read was postponed, the browser could show the saved ROM banks and stop there, leaving your RAM banks missing. The app now tries again on its own and keeps a requested refresh until it actually runs, so the RAM banks are read fresh from the synth. If only the ROM banks have to wait, a retry reuses the RAM banks already read instead of reading them from the synth again. A read that failed or was cancelled is not repeated automatically, and the long ROM download is skipped when the RAM read did not succeed.</li>
+        <li>Testing: new coverage for the standalone app's MIDI recovery, including a synth that stops accepting MIDI while its audio keeps playing, waiting until the synth is ready, retrying a second route that is briefly unavailable, stopping for good after that route fails until you reconnect, and a disconnect during recovery, which must leave no stale result behind. Patch sync is tested to retry only when the synth was not yet ready, never to count saved ROM banks as a finished RAM sync, and not to read the RAM banks again while only the ROM banks are waiting.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
