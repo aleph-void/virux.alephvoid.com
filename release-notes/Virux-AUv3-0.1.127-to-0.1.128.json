@@ -1,0 +1,17 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.127",
+  "toVersion": "0.1.128",
+  "generated": "2026-11-12",
+  "releases": [
+    {
+      "version": "0.1.128",
+      "date": "2026-11-12",
+      "changes": [
+        "macOS: the standalone app now recovers when your synth stops accepting MIDI from it. Previously the app kept sending notes and edits that never reached the synth, while its audio kept playing, so the synth looked connected but did not respond until you reconnected it. The app now notices failed sends and reconnects to the synth once. If that does not help, it switches to a second MIDI route to the synth. If that route fails too, it stops trying and shows the 'synth stopped accepting MIDI' notice until you reconnect. If the synth needs a short rest before the next attempt, the app waits and the editor shows how long. Edits, notes and patch sync wait while recovery runs, instead of being lost. Recovery works whether or not the app may use the Microphone, and the diagnostic report now shows the MIDI path as monitored.",
+        "Patch sync: the standalone app no longer marks a patch sync as finished when the synth was not ready to send its RAM banks. Previously, if the RAM read was postponed, the browser could show the saved ROM banks and stop there, leaving your RAM banks missing. The app now tries again on its own and keeps a requested refresh until it actually runs, so the RAM banks are read fresh from the synth. If only the ROM banks have to wait, a retry reuses the RAM banks already read instead of reading them from the synth again. A read that failed or was cancelled is not repeated automatically, and the long ROM download is skipped when the RAM read did not succeed.",
+        "Testing: new coverage for the standalone app's MIDI recovery, including a synth that stops accepting MIDI while its audio keeps playing, waiting until the synth is ready, retrying a second route that is briefly unavailable, stopping for good after that route fails until you reconnect, and a disconnect during recovery, which must leave no stale result behind. Patch sync is tested to retry only when the synth was not yet ready, never to count saved ROM banks as a finished RAM sync, and not to read the RAM banks again while only the ROM banks are waiting."
+      ]
+    }
+  ]
+}
