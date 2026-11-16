@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+<link rel="icon" type="image/png" href="/assets/img/app-icon.png" sizes="256x256" />
+<title>Virux-AUv3 Release Notes (0.1.129 - 0.1.130)</title>
+<style>
+  :root {
+    --color-bg: #0a0a0f;
+    --color-bg-card: #16161f;
+    --color-border: #1e1e2e;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #a1a1aa;
+    --color-accent-light: #8b5cf6;
+  }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    line-height: 1.6;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+  }
+  .release {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .release h2 {
+    font-size: 1.125rem;
+    margin: 0 0 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-accent-light);
+  }
+  .release .date {
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .release ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .release li {
+    margin-bottom: 0.4rem;
+  }
+  .release li:last-child {
+    margin-bottom: 0;
+  }
+  .index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .index-list li {
+    margin-bottom: 0.75rem;
+  }
+  .index-list a {
+    display: block;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .index-list a:hover {
+    border-color: var(--color-accent-light);
+  }
+  .index-list .range {
+    color: var(--color-accent-light);
+  }
+  .index-list .meta {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-text-secondary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">&larr; All release notes</a>
+  <h1>Virux-AUv3 Release Notes</h1>
+  <p class="subtitle">Versions 0.1.129 &ndash; 0.1.130</p>
+      <section class="release">
+        <h2>v0.1.130 <span class="date">2026-11-16</span></h2>
+        <ul>
+        <li>Editor: the refreshed interface now offers five dark color schemes under Help &gt; Color scheme...: Purple (the default), Blue, Teal, Amber and Neutral. Your choice applies to the current window at once, including the margins around the editor, and new windows open in the same scheme in every plugin format and in the standalone app. The scheme is your own preference and is not saved with songs, so loading a song keeps the colors you picked. Classic Mode keeps its original colors. If Virux cannot save the preference, the window still changes and the display says the choice could not be saved.</li>
+        <li>VST3: notes your host marks as played live now go out on their own queue. They no longer wait behind notes the host has already queued ahead on other keys, and each key's note-on and note-off stay in order. A live note that would collide with a queued note-off on the same key stays in normal order. Hosts that do not mark live notes keep the usual timing, and AUv3 timing is unchanged.</li>
+        <li>Timing: a new option, Help &gt; Even rhythm for live notes (+128 frames), adds a small fixed delay to live notes so they can land more evenly. It is off by default and takes effect within a second of switching it.</li>
+        <li>Timing: DAW count-ins now drive the synth's arpeggiator and LFO clock. Previously the clock stayed silent until the song position passed zero. When you start playback or jump to a new position, the position and start are now sent together with the next clock tick, and small rounding differences from the host no longer restart the clock. Crossing zero at the end of a count-in continues smoothly.</li>
+        <li>Windows: the VST3 now follows your host's actual buffer size for the synth's audio return, including very small 32 and 64 frame buffers, as on macOS. The latency reported to your host now matches the buffering actually used, including when the sample rate is converted. On Linux the latency follows the block size configured in your host.</li>
+        <li>Audio: Virux now watches the synth's audio return for signs that the audio stream has slipped out of alignment, which sounds like loud digital noise. If this shows up for a full second while audio is playing, Virux restarts audio capture once, without reconnecting the synth or interrupting MIDI. Silence and normal loud material do not trigger it, and it happens at most once each time the plugin is activated.</li>
+        <li>Diagnostics: local diagnostic logging is now on by default, so a problem is already recorded when you need to report it. Nothing is uploaded. The log is limited to a 4 MiB file plus one older copy and now rolls over while you work, not only at startup. If you had turned the detailed log off, it stays off, and you can turn it off at any time in Help &gt; Detailed log from next start. The welcome page explains this. Saved diagnostic captures now include the older log copy and note when your host asked for audio before the synth supplied it. On Windows the log now stays within its size limit, and on Linux the log, the USB capture and the saved diagnostics now use the same folder even when no temporary folder is set.</li>
+        <li>Patch sync: the sync progress now shows the name of the last patch received, how many slots are still missing in the current bank and roughly how long that bank will take, not counting pauses while you play. Slots the synth did not answer are no longer counted as read, so the progress bar now reflects patches actually received. A bank that has finished reading is kept even if you cancel right after it.</li>
+        <li>Snow: on a Virus TI Snow, the part meters now follow the MIDI you play on each part instead of the combined level of the synth's audio return, which made all parts move together. Each of the Snow's four parts also shows an activity dot.</li>
+        <li>Help: the Help menu now lists the Access Reference, Quickstart, Atomizer, Virus Control Tutorial and Programming Analogue Synths PDFs when the Access documentation is installed on your computer, and opens them directly. On a Snow, the Snow manuals are preferred, with the Virus TI manuals as a fallback. No Access manuals come with Virux; if none are found, the menu reminds you to install your Access documentation.</li>
+        <li>AUv3: selecting a patch and editing in the editor now reach the synth in the order you made them. Previously the bank select, program change, patch transfer and following edits could overtake each other, especially while a patch sync was running, so the synth could end up on the wrong patch or miss edits. Commands for one synth no longer hold up another synth.</li>
+        <li>AUv3: patch sync in the AUv3 editor now behaves like the standalone app. If the synth was not ready to send its RAM banks, saved ROM banks no longer count as a finished sync, and Virux tries again on its own. The long ROM download no longer starts when the RAM read failed, and a retry reuses RAM banks already read.</li>
+        <li>MIDI recovery: in the plugins, when the synth stops accepting MIDI and Virux tries its second MIDI route but the synth is busy or still settling, Virux now waits and tries that route again every five seconds, even if you play nothing. Previously this could be treated as a failure and show the 'synth stopped accepting MIDI' notice too early. If MIDI starts working again in the meantime, the retry is cancelled, and a route that actually failed is still not retried.</li>
+        <li>Testing: new coverage for the color schemes, including readable text on every surface in each scheme, saving and restoring the choice, damaged preferences, songs that must not change the scheme and Classic Mode staying unchanged. Live notes are tested to bypass queued notes without ever reversing note-on and note-off, the even-rhythm delay at common sample rates, count-ins and crossing zero without a clock restart, slipped-audio detection that ignores silence, music and noise and restarts capture only once, log size limits while running, sync progress that counts only received patches, AUv3 editor commands staying in order, and the MIDI route retry for every busy or settling case.</li>
+        </ul>
+      </section>
+</main>
+</body>
+</html>
