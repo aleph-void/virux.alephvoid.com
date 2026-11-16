@@ -1,0 +1,16 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.128",
+  "toVersion": "0.1.129",
+  "generated": "2026-11-16",
+  "releases": [
+    {
+      "version": "0.1.129",
+      "date": "2026-11-16",
+      "changes": [
+        "macOS: sending a patch to the synth from the standalone app is now more reliable and reports failures honestly. Virux sends each patch in small pieces with short pauses so your notes and clock keep flowing in between. Previously it only queued these pieces and counted queuing as success. The pauses could then be lost, and if the synth stopped accepting a piece partway through, Virux kept sending the rest of the patch and the follow-up output routing and still reported that the patch had loaded. Virux now waits until each piece has actually reached the synth before pausing and sending the next. If a piece fails, Virux stops at once, skips the rest of the patch and the output routing, and reports the load as failed. This applies to both MIDI routes to the synth. Notes can still be played while a patch is being sent. A patch may take slightly longer to send, since the pauses now come on top of the transfer time.",
+        "Testing: new coverage for sending a patch to the synth, with a delivery failure at every one of the patch's eleven pieces, including the last. Each case is tested to report the failure, to send no further pieces and no output routing, and to confirm that every piece arrives before the next one is sent."
+      ]
+    }
+  ]
+}
