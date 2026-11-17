@@ -1,0 +1,20 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.130",
+  "toVersion": "0.1.131",
+  "generated": "2026-11-17",
+  "releases": [
+    {
+      "version": "0.1.131",
+      "date": "2026-11-17",
+      "changes": [
+        "macOS: when the synth stops accepting MIDI, Virux now clears the backlog quickly instead of letting it pile up. Previously every note queued behind the stalled connection waited another half second or so before failing, so a patch you sent next could time out behind them and recovery took much longer. After two messages in a row fail, Virux now drops the waiting notes at once and reports the failure to anything still waiting, such as a patch send. A single brief hiccup still keeps the following notes, including note-offs, and new notes and edits still get a fresh attempt, so a synth that starts responding again is noticed right away.",
+        "MIDI recovery: while Virux switches to its second MIDI route to the synth, notes and the all-notes-off cleanup now wait until the switch and the restore of your setup have fully finished. Previously a note or cleanup message sent at that moment could slip in between and disturb the switch. This also covers notes that were already on their way when recovery started. Once the switch succeeds, notes and cleanup continue normally. If it fails, notes stay blocked and the 'synth stopped accepting MIDI' notice appears as before.",
+        "macOS: the standalone app's audio monitor no longer builds up delay. Previously the synth's audio could start arriving before the app's audio output was running, or pile up after a short output stall. That old audio then stayed queued, so you heard the synth later than you played it until the next reconnect. The monitor now starts with a small fixed buffer, drops excess audio as soon as it builds up, and smooths small clock differences between the synth and your audio interface without clicks. If the synth's audio stops briefly, the monitor goes silent and starts again cleanly once audio returns. A MIDI recovery no longer changes how late you hear the synth.",
+        "Installers: the Windows, macOS and Linux installers now tell you to uninstall any other Virus TI/TI2 plugins, such as Access Virus Control, because they compete with Virux for the synth's USB connection. The macOS installer now opens with an introduction page that lists what gets installed and shows this note. The Linux installer shows it before and after installing.",
+        "Audio: converting the synth's audio to your host's sample rate now uses less CPU, especially when several of the synth's outputs are in use. The sound is unchanged. Panel edits from the synth are also handled with less overhead.",
+        "Testing: new coverage for the MIDI backlog, replaying a patch send that stalls partway through with notes queued behind it. Each case is tested to keep notes after a single brief hiccup and to clear the backlog after two failures in a row. A fresh note must still get through once the synth responds again. Switching to the second MIDI route is tested to hold back notes and cleanup through the whole switch, whether it succeeds or fails, including a note already on its way when it starts. The standalone monitor is tested to start without delay after a second of buffered audio, to recover from an output stall, to smooth clock drift and to restart cleanly after a gap. Sample rate conversion is tested to keep every output channel intact, and panel edits from the synth are tested to stay in order when many arrive at once."
+      ]
+    }
+  ]
+}
