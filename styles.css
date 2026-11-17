@@ -1610,6 +1610,13 @@ code {
   margin-bottom: 4px;
   color: var(--color-warn);
 }
+.install-warning p { margin: 0; }
+.install-warning--general {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  color: var(--color-text);
+  border-left: 4px solid var(--color-warn);
+}
 .install-note {
   text-align: center;
   margin-top: 28px;

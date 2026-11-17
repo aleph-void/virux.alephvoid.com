@@ -513,6 +513,10 @@
         <h2>Download <span class="text-gradient">Aleph Virux</span></h2>
         <p>Pick your platform below.</p>
       </div>
+      <div class="install-warning install-warning--general" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p><strong>Before you install:</strong> uninstall any other plugin or driver for the Virus TI / TI2. That includes the original Access Virus Control plugin and USB drivers, as well as any other modern reimplementations. Only one piece of software can claim the Virus over USB at a time, so leaving another one installed will stop Virux from working properly.</p>
+      </div>
       <div class="install-grid">
         <a href="https://apps.apple.com/us/app/aleph-void-virux/id6773055172?mt=12" class="install-card">
           <svg class="install-platform-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
@@ -570,6 +574,10 @@
         <details class="faq-item">
           <summary>Do I need to install a kernel driver?</summary>
           <p>No. Everything runs in userspace over IOUSBLib. There's no kext or DriverKit system extension to approve, and no reboot to install. A small container app claims the USB device, and your plugins reach it over IPC.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I keep other Virus TI plugins or drivers installed?</summary>
+          <p>No. Any other plugin or driver for the Virus TI / TI2 must be uninstalled for Virux to work properly &mdash; that includes the original Access Virus Control plugin and USB drivers, as well as any other modern reimplementations. Only one piece of software can claim the Virus over USB at a time, and another one holding the device will keep Virux from connecting.</p>
         </details>
         <details class="faq-item">
           <summary>What plugin formats are there?</summary>
