@@ -1,0 +1,25 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.131",
+  "toVersion": "0.1.132",
+  "generated": "2026-11-18",
+  "releases": [
+    {
+      "version": "0.1.132",
+      "date": "2026-11-17",
+      "changes": [
+        "macOS: when the synth is briefly busy, for example while it loads a patch you just selected, a piece of a patch transfer that stalls no longer fails the whole send. Virux now picks up from the exact point the synth reached and tries again, up to four times within one second, so the patch still arrives complete. A synth that really stops responding still fails the send once, with no retries for the messages that follow, so the existing quick recovery is unchanged. This applies to the AUv3, the macOS VST3 and the standalone app.",
+        "macOS: Virux no longer resets the synth's USB connection state after a transfer that merely timed out while the synth was busy. That reset could cause the next MIDI messages to be dropped. The reset now happens only when the connection has actually stalled. A failing MIDI input from the synth is also retried after a short pause instead of at once, so it can no longer keep busy the part of Virux that sends your notes.",
+        "macOS: the parts of Virux that send your notes to the synth now run at the highest everyday priority. They no longer wait behind your DAW's own work, and on Apple Silicon they are no longer moved to the slower efficiency cores, so notes leave with less delay under load.",
+        "Timing: some hosts process audio in bursts of several blocks at once. After a loop or a jump in the song, notes at the start of every burst could fire late and bunched together, on every burst for the rest of the session. Virux now detects this pattern and shifts its note timing to match. The adjustment is taken back once the host is on time again. Hosts that deliver blocks evenly are not affected.",
+        "macOS: in the AUv3 and the macOS VST3, the synth's audio return now has less latency. Virux asks macOS for a smaller audio buffer on the synth's input, typically cutting the delay by about 5 ms at 48 kHz, and reports the new latency to your host so it is compensated automatically. If your DAW uses the Virus as its own audio interface, Virux leaves that buffer setting alone. The previous buffer size is restored when Virux stops. If the synth delivers larger chunks of audio than macOS reported, Virux adapts at once instead of dropping out. The standalone app's audio monitor is unchanged.",
+        "Patch sync: if Virux reads your patches but cannot save them to disk, it now says so and asks you to check storage space and permissions, then restart the sync. Previously this could be reported as a USB failure with advice to power-cycle the synth, and a sync could be started again automatically. Patches that were read are still available. ROM patches read from an installed firmware file are still delivered when saving fails, and Virux does not fall back to reading them from the synth.",
+        "Patch sync: cancelling a sync just after it has started talking to the synth now respects the synth's short settle time before the next sync begins. If the synth's previous setup could not be restored after a cancelled sync, this is now reported as a failed sync instead of a cancellation, and MIDI stays blocked as after any failed restore.",
+        "macOS: if the synth's USB connection could not receive any data at startup, Virux now reports the connection as failed instead of treating it as ready. A very slow startup can also no longer hang the plugin.",
+        "Diagnostics: saved diagnostic captures now include a timing section. It shows how promptly notes were sent, any USB transfers that timed out, retried or failed, the synth's audio buffer size and whether your host delivers audio in bursts. It counts from the moment Virux was loaded, so problems from before you started the capture are included. While a capture is running, changes are also written to the log.",
+        "Linux: Ubuntu 24.04 LTS and 26.04 LTS are now supported, on x86_64 and aarch64. Ubuntu 22.04 is no longer supported, so upgrade before installing this release. Other distributions remain best-effort. The installer now picks the correct audio library package on newer Ubuntu releases.",
+        "Testing: new coverage for resuming a patch transfer after a busy synth, including the exact bytes resent, the retry limit and a synth that never responds. The USB connection is tested to be reset only on a real stall, and a failing MIDI input to be retried after a pause. Note timing is tested for hosts that deliver bursts of 2, 3, 4 and 8 blocks, starting from every block in the burst, including taking the adjustment back afterwards. The smaller audio buffer is tested for refusals, a host using the synth as its interface, restoring the old size and larger-than-reported audio. Also covered: the reported latency, cache save failures for user and ROM patches, cancelling a sync at every stage, connection startup failures and the new timing section in diagnostic captures."
+      ]
+    }
+  ]
+}
