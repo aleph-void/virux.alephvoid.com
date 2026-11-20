@@ -1,0 +1,17 @@
+{
+  "product": "Virux-AUv3",
+  "fromVersion": "0.1.132",
+  "toVersion": "0.1.133",
+  "generated": "2026-11-20",
+  "releases": [
+    {
+      "version": "0.1.133",
+      "date": "2026-11-20",
+      "changes": [
+        "Sleep and wake: Virux no longer mistakes a paused host for the computer waking from sleep. Some hosts stop processing audio while a track is idle or the transport is stopped. When they started again, Virux treated this as a wake from sleep: it sent all-notes-off, set up the synth's audio routing again, resent your project and held back notes for about four seconds. Notes from your DAW could then stay silent while the synth's own keys still played, every time you returned from idle. Virux now goes by whether the synth itself is still sending audio, so a paused host no longer triggers any of this. A real sleep and wake is still detected and handled as before.",
+        "VST3: the macros saved in your project now work as soon as the project loads, even if your host sends automation at that same moment. Previously the macros could do nothing until you opened the editor, so automation routed through them had no effect.",
+        "Testing: new coverage for a host that pauses for ten seconds while the synth keeps streaming, which must not count as a wake. The synth's audio stopping and returning must still be detected as a wake. Also covered: counting every piece of audio the synth delivers, including audio that arrives while the host is paused."
+      ]
+    }
+  ]
+}
